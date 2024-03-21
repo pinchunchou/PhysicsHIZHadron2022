@@ -1574,7 +1574,7 @@ bool PbPbTrackTreeMessenger::Initialize()
    TrackEta = nullptr;
    TrackPhi = nullptr;
    TrackCharge = nullptr;
-   TrackPDFID = nullptr;
+   TrackPDGID = nullptr;
    TrackNHits = nullptr;
    TrackNPixHits = nullptr;
    TrackNLayers = nullptr;
@@ -1614,7 +1614,7 @@ bool PbPbTrackTreeMessenger::Initialize()
    Tree->SetBranchAddress("trkEta", &TrackEta);
    Tree->SetBranchAddress("trkPhi", &TrackPhi);
    Tree->SetBranchAddress("trkCharge", &TrackCharge);
-   Tree->SetBranchAddress("trkPDFId", &TrackPDFID);
+   Tree->SetBranchAddress("trkPDGId", &TrackPDGID);
    Tree->SetBranchAddress("trkNHits", &TrackNHits);
    Tree->SetBranchAddress("trkNPixHits", &TrackNPixHits);
    Tree->SetBranchAddress("trkNLayers", &TrackNLayers);
@@ -1861,7 +1861,7 @@ ZHadronMessenger::~ZHadronMessenger()
       delete trackDphi;
       delete trackMuTagged;
       delete trackMuDR;
-      delete trackPDFId;
+      delete TrackPDGID;
       delete trackEta;
       delete trackPhi;
       delete trackCharge;
@@ -1928,7 +1928,7 @@ bool ZHadronMessenger::Initialize()
    trackDphi = nullptr;
    trackPt = nullptr;
    trackDeta = nullptr;
-   trackPDFId = nullptr;
+   TrackPDGID = nullptr;
    trackEta = nullptr;
    trackPhi = nullptr;
    trackMuTagged = nullptr;
@@ -2012,7 +2012,7 @@ bool ZHadronMessenger::Initialize()
    Tree->SetBranchAddress("trackDphi", &trackDphi);
    Tree->SetBranchAddress("trackPt", &trackPt);
    Tree->SetBranchAddress("trackDeta", &trackDeta);
-   Tree->SetBranchAddress("trackPDFId", &trackPDFId);
+   Tree->SetBranchAddress("TrackPDGID", &TrackPDGID);
    // Tree->SetBranchAddress("trackEta", &trackEta);
    // Tree->SetBranchAddress("trackPhi", &trackPhi);
    Tree->SetBranchAddress("trackMuTagged", &trackMuTagged);
@@ -2096,7 +2096,7 @@ bool ZHadronMessenger::SetBranch(TTree *T)
    trackPt = new std::vector<double>();
    trackDeta = new std::vector<double>();
    trackDphi = new std::vector<double>();
-   trackPDFId = new std::vector<double>();
+   TrackPDGID = new std::vector<double>();
    trackEta = new std::vector<double>();
    trackPhi = new std::vector<double>();
    trackMuTagged = new std::vector<bool>();
@@ -2181,7 +2181,7 @@ bool ZHadronMessenger::SetBranch(TTree *T)
    Tree->Branch("trackPt",                &trackPt);
    Tree->Branch("trackDeta",              &trackDeta);
    Tree->Branch("trackDphi",              &trackDphi);
-   Tree->Branch("trackPDFId",             &trackPDFId);
+   Tree->Branch("TrackPDGID",             &TrackPDGID);
    // Tree->Branch("trackPhi",               &trackPhi);
    // Tree->Branch("trackEta",               &trackEta);
    Tree->Branch("trackMuTagged",          &trackMuTagged);
@@ -2295,7 +2295,7 @@ void ZHadronMessenger::Clear()
    trackPt->clear();
    trackDeta->clear();
    trackDphi->clear();
-   trackPDFId->clear();
+   TrackPDGID->clear();
    trackPhi->clear();
    trackEta->clear();
    trackMuTagged->clear();

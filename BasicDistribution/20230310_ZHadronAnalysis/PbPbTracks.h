@@ -45,7 +45,7 @@ public :
    vector<float>   *trkEta;
    vector<float>   *trkPhi;
    vector<char>    *trkCharge;
-   vector<int>     *trkPDFId;
+   vector<int>     *trkPDGId;
    vector<char>    *trkNHits;
    vector<char>    *trkNPixHits;
    vector<char>    *trkNLayers;
@@ -82,7 +82,7 @@ public :
    TBranch        *b_trkEta;   //!
    TBranch        *b_trkPhi;   //!
    TBranch        *b_trkCharge;   //!
-   TBranch        *b_trkPDFId;   //!
+   TBranch        *b_trkPDGId;   //!
    TBranch        *b_trkNHits;   //!
    TBranch        *b_trkNPixHits;   //!
    TBranch        *b_trkNLayers;   //!
@@ -171,7 +171,7 @@ void PbPbTracks::Init(TTree *tree)
    trkEta = 0;
    trkPhi = 0;
    trkCharge = 0;
-   trkPDFId = 0;
+   trkPDGId = 0;
    trkNHits = 0;
    trkNPixHits = 0;
    trkNLayers = 0;
@@ -213,7 +213,7 @@ void PbPbTracks::Init(TTree *tree)
    fChain->SetBranchAddress("trkEta", &trkEta, &b_trkEta);
    fChain->SetBranchAddress("trkPhi", &trkPhi, &b_trkPhi);
    fChain->SetBranchAddress("trkCharge", &trkCharge, &b_trkCharge);
-   fChain->SetBranchAddress("trkPDFId", &trkPDFId, &b_trkPDFId);
+   fChain->SetBranchAddress("trkPDGId", &trkPDGId, &b_trkPDGId);
    fChain->SetBranchAddress("trkNHits", &trkNHits, &b_trkNHits);
    fChain->SetBranchAddress("trkNPixHits", &trkNPixHits, &b_trkNPixHits);
    fChain->SetBranchAddress("trkNLayers", &trkNLayers, &b_trkNLayers);

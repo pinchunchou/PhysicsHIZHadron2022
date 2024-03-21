@@ -466,7 +466,7 @@ public:
    std::vector<float> *TrackEta;
    std::vector<float> *TrackPhi;
    std::vector<char>  *TrackCharge;
-   std::vector<int>   *TrackPDFID;
+   std::vector<int>   *TrackPDGID;
    std::vector<char>  *TrackNHits;
    std::vector<char>  *TrackNPixHits;
    std::vector<char>  *TrackNLayers;
@@ -536,7 +536,7 @@ public:
    std::vector<double> *trackPt;
    std::vector<double> *trackDeta;
    std::vector<double> *trackDphi;
-   std::vector<double> *trackPDFId;
+   std::vector<double> *TrackPDGID;
    std::vector<double> *trackEta;
    std::vector<double> *trackPhi;
    std::vector<bool> *trackMuTagged;

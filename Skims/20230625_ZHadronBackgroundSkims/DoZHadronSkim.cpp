@@ -58,7 +58,7 @@ public:
 
 int main(int argc, char *argv[])
 {
-   string Version = "V18";
+   string Version = "V18b";
 
    CommandLine CL(argc, argv);
 

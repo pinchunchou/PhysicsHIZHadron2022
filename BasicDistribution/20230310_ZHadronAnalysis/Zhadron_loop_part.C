@@ -45,7 +45,7 @@ class ZhadronData
    vector<double> trackDphi;
    vector<double> trackPt;
    vector<double> trackDeta;
-   vector<double> trackPDFId;
+   vector<double> TrackPDGID;
    vector<double> trackEta;
    vector<double> trackPhi;
 
@@ -91,7 +91,7 @@ class ZhadronData
       t->Branch("trackDphi",&trackDphi);
       t->Branch("trackDeta",&trackDeta);
       t->Branch("trackPt",&trackPt);
-      t->Branch("trackPDFId",&trackPDFId);
+      t->Branch("TrackPDGID",&TrackPDGID);
       t->Branch("trackPhi",&trackPhi);
       t->Branch("trackEta",&trackEta);
       t->Branch("hiBin",&hiBin);
@@ -135,7 +135,7 @@ class ZhadronData
       trackDphi.clear();
       trackPt.clear();
       trackDeta.clear();
-      trackPDFId.clear();
+      TrackPDGID.clear();
       trackPhi.clear();
       trackEta.clear();
 
@@ -283,7 +283,7 @@ void Zhadron_singleFile(const char *dirname, TString fname, int genornot, TNtupl
             data.trackDphi.push_back(deltaPhi);
             data.trackDeta.push_back(deltaEta);
             data.trackPt.push_back(f.tracks.trkPt->at(itrack));
-            data.trackPDFId.push_back(f.tracks.trkPDFId->at(itrack));
+            data.trackPDGId.push_back(f.tracks.trkPDGId->at(itrack));
             data.trackPhi.push_back(f.tracks.trkPhi->at(itrack));
             data.trackEta.push_back(f.tracks.trkEta->at(itrack));
          }
