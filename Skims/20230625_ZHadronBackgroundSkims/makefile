@@ -80,7 +80,6 @@ TestRunPPDataSigBkg: Execute
 		--Background $(PPSignalData)/0000/HiForestAOD_12.root,$(PPSignalData)/0000/HiForestAOD_24.root,$(PPSignalData)/0000/HiForestAOD_35.root,$(PPSignalData)/0000/HiForestAOD_46.root,$(PPSignalData)/0000/HiForestAOD_60.root \
 		--ReuseBackground true --CheckForBackgroundZ true --WithProgressBar true
 
->>>>>>> 235dae3ff51bb22d93c46df70206746dd5b85221
 PrepareToRunRandomMCBackground:
 	bash PrepareInputRandomBackground.sh \
 		$(CERNBOX)/OutputMC_v18b_PFmuon/ LogMCBackground_v18b/ $(CERNBOX)/OutputMCBackground_v18b/ $(PbPbBackgroundMC)/ 37 \
