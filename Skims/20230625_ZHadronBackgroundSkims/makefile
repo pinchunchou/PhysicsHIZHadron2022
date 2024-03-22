@@ -25,8 +25,8 @@ Execute: DoZHadronSkim.cpp
 		$(ProjectBase)/CommonCode/library/Messenger.o
 
 TestRun: Execute
-	./Execute --Input $(CERNBOX)/OutputMC_v18_PFmuon_mZ/Result10.root \
-		--Output /tmp/$(USER)/Test.root --Fraction 0.1 \
+	./Execute --Input ../20230310_ZHadronSkims/TestMC_v18b.root \
+		--Output TestBkgMC_v18b.root --Fraction 0.1 \
 		`./Expand Setting.dh PbPbBackgroundMC Nominal` \
 		--Background $(PbPbBackgroundMC)/HiForestMiniAOD_10.root,$(PbPbBackgroundMC)/HiForestMiniAOD_14.root,$(PbPbBackgroundMC)/HiForestMiniAOD_15.root,$(PbPbBackgroundMC)/HiForestMiniAOD_16.root \
 		--ReuseBackground true --WithProgressBar true
@@ -76,7 +76,7 @@ TestRunPPDataSigBkg: Execute
 >>>>>>> 235dae3ff51bb22d93c46df70206746dd5b85221
 PrepareToRunRandomMCBackground:
 	bash PrepareInputRandomBackground.sh \
-		$(CERNBOX)/OutputMC_v18_PFmuon_mZ/ LogMCBackground_v18_mZ_742_v2/ $(CERNBOX)/OutputMCBackground_v18_mZ_742_v2/ $(PbPbBackgroundMC)/ 37 \
+		$(CERNBOX)/OutputMC_v18b_PFmuon/ LogMCBackground_v18b/ $(CERNBOX)/OutputMCBackground_v18b/ $(PbPbBackgroundMC)/ 37 \
 		`./Expand Setting.dh PbPbBackgroundMC Nominal`
 
 PrepareToRunRandomMCBackgroundCent10:
