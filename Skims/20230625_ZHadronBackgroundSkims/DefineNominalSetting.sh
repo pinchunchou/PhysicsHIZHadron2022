@@ -95,6 +95,7 @@ SigBkgMCCent10="   --DoBackground true --CheckForBackgroundZ true --HFShift 0  -
 BackgroundGenMCCent10="--DoBackground true --HFShift 816.7 --Tolerance 10000000 --ToleranceFraction 0.001 --Oversample 1 --HFCeiling 156000 --VZTolerance 10000000 --MaximumCentrality 10"
 BackgroundMCCent10="--DoBackground true --HFShift 742.192 --Tolerance 10000000 --ToleranceFraction 0.001 --Oversample 1 --HFCeiling 134000 --VZTolerance 10000000 --MaximumCentrality 10"
 
+DHSet Setting.dh PbPbBackgroundMCGenMatch    Nominal string "$Common $MC --IsPP false $MiniAODPF $PbPbJetMC    $PbPbRecoTrack $BackgroundGenMC --ForceGenMatch true"
 DHSet Setting.dh PPSignalMCCent10    Nominal string "$Common $MC    --IsPP true  $AODPF     $PPJetMC      $PbPbRecoTrack  $PPSigBkgMCCent10"
 DHSet Setting.dh PbPbSignalMCCent10  Nominal string "$Common $MC    --IsPP false $MiniAODPF $PbPbJetMC    $PbPbRecoTrack  $SigBkgMCCent10"
 DHSet Setting.dh PbPbBackgroundMCCent10 Nominal string "$Common $MC --IsPP false $MiniAODPF $PbPbJetMC    $PbPbRecoTrack  $BackgroundMCCent10"
