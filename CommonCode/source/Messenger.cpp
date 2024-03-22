@@ -1985,6 +1985,8 @@ bool ZHadronMessenger::Initialize()
    
    Tree->SetBranchAddress("SignalHF", &SignalHF);
    Tree->SetBranchAddress("BackgroundHF", &BackgroundHF);
+   Tree->SetBranchAddress("SignalGenHF", &SignalGenHF);
+   Tree->SetBranchAddress("BackgroundGenHF", &BackgroundGenHF);
    Tree->SetBranchAddress("SignalVZ", &SignalVZ);
 
    Tree->SetBranchAddress("NCollWeight", &NCollWeight);
@@ -2154,6 +2156,8 @@ bool ZHadronMessenger::SetBranch(TTree *T)
 
    Tree->Branch("SignalHF",               &SignalHF,     "SignalHF/F");
    Tree->Branch("BackgroundHF",           &BackgroundHF, "BackgroundHF/F");
+   Tree->Branch("SignalGenHF",            &SignalGenHF,     "SignalGenHF/F");
+   Tree->Branch("BackgroundGenHF",        &BackgroundGenHF, "BackgroundGenHF/F");
    Tree->Branch("SignalVZ",               &SignalVZ,     "SignalVZ/F");
 
    Tree->Branch("NCollWeight",            &NCollWeight,  "NCollWeight/F");
@@ -2267,6 +2271,8 @@ void ZHadronMessenger::Clear()
 
    SignalHF = -1;
    BackgroundHF = -1;
+   SignalGenHF = -1;
+   BackgroundGenHF = -1;
    SignalVZ = -999;
 
    NCollWeight = 1;
@@ -2384,6 +2390,8 @@ void ZHadronMessenger::CopyNonTrack(ZHadronMessenger &M)
 
    SignalHF     = M.SignalHF;
    BackgroundHF = M.BackgroundHF;
+   SignalGenHF     = M.SignalGenHF;
+   BackgroundGenHF = M.BackgroundGenHF;
    SignalVZ     = M.SignalVZ;
 
    NCollWeight  = M.NCollWeight;

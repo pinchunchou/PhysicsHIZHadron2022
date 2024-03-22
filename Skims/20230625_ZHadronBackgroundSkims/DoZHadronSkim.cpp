@@ -110,6 +110,8 @@ int main(int argc, char *argv[])
 
    bool WithProgressBar               = CL.GetBool("WithProgressBar", false);
 
+   bool ForceGenMatch                 = CL.GetBool("ForceGenMatch", false);
+
 
    //std::cout<<"TrackEfficiency"<<std::endl;
 
@@ -158,6 +160,9 @@ int main(int argc, char *argv[])
 
       EventIndex Index;
       Index.HF = MSignalZHadron.SignalHF;
+      if(ForceGenMatch){
+         Index.HF = MSignalZHadron.SignalGenHF;
+      }
       Index.VZ = MSignalZHadron.VZ;
       Index.Index = iE;
 
@@ -170,8 +175,12 @@ int main(int argc, char *argv[])
       // if(DoGenCorrelation == false && MSignalZHadron.zPt->size() == 0)     continue;
 
       // Too small signal HF.  Too peripheral.  Won't attempt to match it
-      if(MSignalZHadron.SignalHF < HFShift)
+
+      if(ForceGenMatch && MSignalZHadron.SignalGenHF < HFShift){
          continue;
+      }else if(!ForceGenMatch &&MSignalZHadron.SignalHF < HFShift){
+         continue;
+      }
 
       if(!IsPP && ((MSignalZHadron.hiBin < 0) || (MSignalZHadron.hiBin > MaximumCentrality*2)) )   // too central, skip
          continue;
@@ -227,6 +236,7 @@ int main(int argc, char *argv[])
    Key = "ReuseBackground";         Value = InfoString(ReuseBackground);         InfoTree.Fill();
    Key = "CheckForBackgroundZ";     Value = InfoString(CheckForBackgroundZ);     InfoTree.Fill();
    Key = "MaximumCentrality";       Value = InfoString(MaximumCentrality);       InfoTree.Fill();
+   Key = "ForceGenMatch";           Value = InfoString(ForceGenMatch);           InfoTree.Fill();
 
    TH2D H2D("H2D", "", 100, -6, 6, 100, -M_PI, M_PI);
 
@@ -341,10 +351,18 @@ int main(int argc, char *argv[])
 
          //double SumHF = DoGenCorrelation ? GetGenHFSum(&MGen, MinGenTrackPT) : (DoSumET ? MEvent.hiHF : GetHFSum(&MPF, MinPFPT));
          double SumHF = DoGenCorrelation ? GetGenHFSum(&MGen, MinGenTrackPT) : GetHFSum(&MPF, MinPFPT);
+         double SumGenHF;
+         
+         if(DoGenLevel){
+            SumGenHF = GetGenHFSum(&MGen, MinGenTrackPT);
+         }
 
          double VZ = MEvent.vz;
 
          double ShiftedHF = SumHF + HFShift;
+         if(ForceGenMatch){
+            ShiftedHF = SumGenHF + HFShift;
+         }
 
          double HFMin = min(ShiftedHF - HFTolerance, ShiftedHF / (1 + HFToleranceFraction));
          double HFMax = max(ShiftedHF + HFTolerance, ShiftedHF / (1 - HFToleranceFraction));
@@ -375,6 +393,10 @@ int main(int argc, char *argv[])
             MZHadron.Clear();
             MZHadron.CopyNonTrack(MSignalZHadron);   // this needs to be implemented
             MZHadron.BackgroundHF = SumHF;
+            if(DoGenLevel)
+            {
+               MZHadron.BackgroundGenHF = SumGenHF;
+            }
 
             double Mu1Eta = DoGenCorrelation ? MZHadron.genMuEta1->at(0) : MZHadron.muEta1->at(0);
             double Mu1Phi = DoGenCorrelation ? MZHadron.genMuPhi1->at(0) : MZHadron.muPhi1->at(0);

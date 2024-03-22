@@ -574,6 +574,11 @@ int main(int argc, char *argv[])
             }
 
             MZHadron.SignalHF = DoGenCorrelation ? GetGenHFSum(&MSignalGen, MinGenTrackPT) : (DoSumET ? MSignalEvent.hiHF : GetHFSum(&MSignalPF, MinPFPT));
+            
+            if(DoGenLevel == true){
+               MZHadron.SignalGenHF = GetGenHFSum(&MSignalGen, MinGenTrackPT);
+            }
+
             MZHadron.SignalVZ = MSignalEvent.vz;
 
             // Z-track correlation
