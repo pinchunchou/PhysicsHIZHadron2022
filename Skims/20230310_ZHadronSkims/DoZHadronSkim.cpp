@@ -759,6 +759,10 @@ int main(int argc, char *argv[])
                   MZHadron.trackMuDR->push_back(min(DeltaRMu1, DeltaRMu2));
                   MZHadron.subevent->push_back(SubEvent);
 
+                  MZHadron.trackEta->push_back(TrackEta);
+                  MZHadron.trackPhi->push_back(TrackPhi);
+                  MZHadron.trackCharge->push_back(TrackCharge);
+
                   double TrackCorrection = 1;
                   if(DoTrackEfficiency == true && DoGenCorrelation == false)
                   {
