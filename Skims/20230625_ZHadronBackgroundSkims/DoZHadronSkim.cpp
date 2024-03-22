@@ -323,12 +323,12 @@ int main(int argc, char *argv[])
 
          //cout<<"MEvent.vz = "<<MEvent.vz<<", MEvent.hiBin = "<<MEvent.hiBin<<", MEvent.hiHF = "<<MEvent.hiHF<<endl;
 
-         //if(IsPP == false && IsData == false && DoMCHiBinShift == true)   // PbPb MC, we shift 1.5% as per Kaya
-         //{
-         //   MEvent.hiBin = MEvent.hiBin - MCHiBinShift;
-         //   if(MEvent.hiBin < 0)   // too central, skip
-         //      continue;
-         //}
+         if(IsPP == false && IsData == false && DoMCHiBinShift == true)   // PbPb MC, we shift 1.5% as per Kaya
+         {
+            MEvent.hiBin = MEvent.hiBin - MCHiBinShift;
+            if(MEvent.hiBin < 0)   // too central, skip
+               continue;
+         }
 
          if(MEvent.hiBin > MaximumCentrality * 2)
             continue;
@@ -678,15 +678,15 @@ bool EventPassesZ(int iE, HiEventTreeMessenger &MSignalEvent, MuTreeMessenger &M
    MSignalTrigger.GetEntry(iE);
 
 
-   if(IsPP == false && IsData == false && DoMCHiBinShift == true)   // PbPb MC, we shift 1.5% as per Kaya
-   {
-      MSignalEvent.hiBin = MSignalEvent.hiBin - MCHiBinShift;
-      if((MSignalEvent.hiBin < 0) || (MSignalEvent.hiBin > MaximumCentrality*2) )   // too central, skip
-      {   
-         Z_passed = false;
-         return false;
-      }
-   }
+   //if(IsPP == false && IsData == false && DoMCHiBinShift == true)   // PbPb MC, we shift 1.5% as per Kaya
+   //{
+   //   MSignalEvent.hiBin = MSignalEvent.hiBin - MCHiBinShift;
+   //   if((MSignalEvent.hiBin < 0) || (MSignalEvent.hiBin > MaximumCentrality*2) )   // too central, skip
+   //   {   
+   //      Z_passed = false;
+   //      return false;
+   //   }
+   //}
 
    // Do event selection and triggers
    if(IsPP == true)
