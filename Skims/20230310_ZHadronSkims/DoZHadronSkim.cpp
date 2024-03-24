@@ -784,6 +784,8 @@ int main(int argc, char *argv[])
             }
             if(DoGenLevel == true && GoodGenZ == true)
             {
+               GenParticleTreeMessenger *MGen = &MSignalGen;
+
                //std::cout<<"MGen->Mult = "<<MGen->Mult<<std::endl;
                for(int itrack = 0; itrack < MGen->Mult; itrack++)
                {
