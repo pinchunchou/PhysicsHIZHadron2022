@@ -570,8 +570,8 @@ int main(int argc, char *argv[])
                   if(DeltaRMu1 < MuonVeto)   MuTagged = true;
                   if(DeltaRMu2 < MuonVeto)   MuTagged = true;
 
-                  double ZEta = DoGenCorrelation ? MZHadron.genZEta->at(0) : MZHadron.zEta->at(0);
-                  double ZPhi = DoGenCorrelation ? MZHadron.genZPhi->at(0) : MZHadron.zPhi->at(0);
+                  double ZEta = MZHadron.genZEta->at(0);
+                  double ZPhi = MZHadron.genZPhi->at(0);
 
                   double deltaEta = TrackEta - ZEta;
                   double deltaPhi = DeltaPhi(TrackPhi, ZPhi);

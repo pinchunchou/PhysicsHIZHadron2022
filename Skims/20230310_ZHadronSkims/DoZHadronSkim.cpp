@@ -802,12 +802,14 @@ int main(int argc, char *argv[])
                      if(GenCorrelationCharged == true && MGen->Charge->at(itrack) == 0)
                         continue;
                      
-                 
+                     std::cout<<"passed gen selection"<<std::endl;
                      double TrackEta = MGen->Eta->at(itrack) ;
                      double TrackPhi = MGen->Phi->at(itrack) ;
                      double TrackPT  = MGen->PT->at(itrack);
                      int TrackCharge = MGen->Charge->at(itrack) ;
                      int SubEvent    = MGen->SubEvent->at(itrack) + DoBackground;
+
+                     std::cout<<"MZHadron.genMuEta1->size()= "<<MZHadron.genMuEta1->size()<<std::endl;
 
                      double Mu1Eta = MZHadron.genMuEta1->at(0);
                      double Mu1Phi = MZHadron.genMuPhi1->at(0);
@@ -826,8 +828,10 @@ int main(int argc, char *argv[])
                      if(DeltaRMu1 < MuonVeto)   MuTagged = true;
                      if(DeltaRMu2 < MuonVeto)   MuTagged = true;
 
-                     double ZEta = DoGenCorrelation ? MZHadron.genZEta->at(0) : MZHadron.zEta->at(0);
-                     double ZPhi = DoGenCorrelation ? MZHadron.genZPhi->at(0) : MZHadron.zPhi->at(0);
+                     std::cout<<"MZHadron.genZEta->size()= "<<MZHadron.genZEta->size()<<std::endl;
+
+                     double ZEta = MZHadron.genZEta->at(0);
+                     double ZPhi = MZHadron.genZPhi->at(0);
 
                      double deltaEta = TrackEta - ZEta;
                      double deltaPhi = DeltaPhi(TrackPhi, ZPhi);
