@@ -799,7 +799,7 @@ int main(int argc, char *argv[])
                         continue;
                      if(MGen->DaughterCount->at(itrack) > 0)
                         continue;
-                     if(GenCorrelationCharged == true && MGen->Charge->at(itrack) == 0)
+                     if(MGen->Charge->at(itrack) == 0)
                         continue;
                      
                      //std::cout<<"passed gen selection"<<std::endl;
