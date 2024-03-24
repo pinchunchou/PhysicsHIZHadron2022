@@ -33,7 +33,7 @@ TestRun: Execute
 
 TestRunGenMatch: Execute
 	./Execute --Input ../20230310_ZHadronSkims/TestMC_v18b.root \
-		--Output TestBkgMC_v18b_ForceGenMatch.root --Fraction 0.1 \
+		--Output TestBkgMC_v18b_ForceGenMatch.root --Fraction 1 \
 		`./Expand Setting.dh PbPbBackgroundMCGenMatch Nominal` \
 		--Background $(PbPbBackgroundMC)/HiForestMiniAOD_10.root,$(PbPbBackgroundMC)/HiForestMiniAOD_14.root,$(PbPbBackgroundMC)/HiForestMiniAOD_15.root,$(PbPbBackgroundMC)/HiForestMiniAOD_16.root \
 		--ReuseBackground true --WithProgressBar true 
