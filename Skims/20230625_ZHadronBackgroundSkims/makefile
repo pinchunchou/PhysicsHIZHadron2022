@@ -46,10 +46,10 @@ TestRunCent10: Execute
 		--ReuseBackground true --WithProgressBar true
 
 TestRunMCGenBackground: Execute
-	./Execute --Input $(CERNBOX)/OutputMCGen_v18_PFmuon/Result10.root \
-		--Output /tmp/$(USER)/TestMCGen.root --Fraction 0.1 \
+	./Execute --Input ../20230310_ZHadronSkims/TestGenMC_v18b.root \
+		--Output TestMCGenBkg_v18b.root --Fraction 1 \
 		`./Expand Setting.dh PbPbBackgroundGenMC Nominal` \
-		--Background $(PbPbBackgroundMC)/HiForestMiniAOD_10.root,$(PbPbBackgroundMC)/HiForestMiniAOD_34.root,$(PbPbBackgroundMC)/HiForestMiniAOD_17.root,$(PbPbBackgroundMC)/HiForestMiniAOD_20.root \
+		--Background $(PbPbBackgroundMC)/HiForestMiniAOD_10.root,$(PbPbBackgroundMC)/HiForestMiniAOD_14.root,$(PbPbBackgroundMC)/HiForestMiniAOD_15.root,$(PbPbBackgroundMC)/HiForestMiniAOD_16.root \
 		--ReuseBackground true --WithProgressBar true
 
 TestRunMCSigBkg: Execute
