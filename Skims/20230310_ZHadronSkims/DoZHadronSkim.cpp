@@ -832,6 +832,7 @@ int main(int argc, char *argv[])
                      double deltaEta = TrackEta - ZEta;
                      double deltaPhi = DeltaPhi(TrackPhi, ZPhi);
 
+                     std::cout<<"push back"<<std::endl;
                      MZHadron.GenTrackDphi->push_back(deltaPhi);
                      MZHadron.GenTrackDeta->push_back(deltaEta);
                      MZHadron.GenTrackPt->push_back(TrackPT);
@@ -842,11 +843,13 @@ int main(int argc, char *argv[])
                      MZHadron.GenTrackEta->push_back(TrackEta);
                      MZHadron.GenTrackPhi->push_back(TrackPhi);
                      MZHadron.GenTrackCharge->push_back(TrackCharge);
-
-                     
+                     std::cout<<"pushed back"<<std::endl;
                   }
+                  std::cout<<"a"<<std::endl;
                }
+               std::cout<<"b"<<std::endl;
             }
+            std::cout<<"c"<<std::endl;
 
             if(GoodRecoZ == true && DoJet == true)
             {
