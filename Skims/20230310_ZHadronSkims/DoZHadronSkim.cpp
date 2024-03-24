@@ -810,6 +810,7 @@ int main(int argc, char *argv[])
                      int SubEvent    = MGen->SubEvent->at(itrack) + DoBackground;
 
                      std::cout<<"MZHadron.genMuEta1->size()= "<<MZHadron.genMuEta1->size()<<std::endl;
+                     std::cout<<"MZHadron.genZPt->size()= "<<MZHadron.genZPt->size()<<std::endl;
 
                      double Mu1Eta = MZHadron.genMuEta1->at(0);
                      double Mu1Phi = MZHadron.genMuPhi1->at(0);
