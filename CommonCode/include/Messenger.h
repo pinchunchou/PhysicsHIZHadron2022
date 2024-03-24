@@ -548,6 +548,16 @@ public:
    std::vector<double> *trackResidualWeight;
    std::vector<int> *trackCharge;
    std::vector<int> *subevent;
+
+   std::vector<double> *GenTrackDphi;
+   std::vector<double> *GenTrackDeta;
+   std::vector<double> *GenTrackPt;
+   std::vector<bool> *GenTrackMuTagged;
+   std::vector<double> *GenTrackMuDR;
+   std::vector<int> *GenSubevent;
+   std::vector<double> *GenTrackEta;
+   std::vector<double> *GenTrackPhi;
+   std::vector<int> *GenTrackCharge;
    
    std::vector<double> *jetPt;
    std::vector<double> *jetDeta;

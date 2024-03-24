@@ -19,4 +19,4 @@
 * Version 18 - Mar 5, 2024 
    * Implement MinGenTrackPT and MinPFPT (only for GetHFSum).
 * Version 18b - Mar 22, 2024 
-   * Implement ForceGenMatch and save GenHF, trackEta, trackPhi, trackCharge. hiBin shift for bkg.
+   * Implement ForceGenMatch and save GenHF, trackEta, trackPhi, trackCharge. hiBin shift for bkg. Add Gen trk info.

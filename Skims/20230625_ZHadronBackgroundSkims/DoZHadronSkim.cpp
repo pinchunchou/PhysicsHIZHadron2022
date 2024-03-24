@@ -528,6 +528,69 @@ int main(int argc, char *argv[])
                MZHadron.trackResidualWeight->push_back(TrackResidualCorrection);
             }
 
+            if(DoGenLevel == true)
+            {
+               for(int itrack = 0; itrack < MGen->Mult; itrack++)
+               {
+                  if(MGen->PT->at(itrack) < MinGenTrackPT )
+                     continue;
+
+                  if(MGen->PT->at(itrack) < MinTrackPT)
+                     continue;
+                  if(MGen->Eta->at(itrack) < -2.4)
+                     continue;
+                  if(MGen->Eta->at(itrack) > +2.4)
+                     continue;
+                  if(MGen->DaughterCount->at(itrack) > 0)
+                     continue;
+                  if(GenCorrelationCharged == true && MGen->Charge->at(itrack) == 0)
+                     continue;
+                  
+              
+                  double TrackEta = MGen->Eta->at(itrack) ;
+                  double TrackPhi = MGen->Phi->at(itrack) ;
+                  double TrackPT  = MGen->PT->at(itrack);
+                  int TrackCharge = MGen->Charge->at(itrack) ;
+                  int SubEvent    = MGen->SubEvent->at(itrack) + 1;
+
+                  double Mu1Eta = MZHadron.genMuEta1->at(0);
+                  double Mu1Phi = MZHadron.genMuPhi1->at(0);
+                  double Mu2Eta = MZHadron.genMuEta2->at(0);
+                  double Mu2Phi = MZHadron.genMuPhi2->at(0);
+
+                  double DeltaEtaMu1 = TrackEta - Mu1Eta;
+                  double DeltaEtaMu2 = TrackEta - Mu2Eta;
+                  double DeltaPhiMu1 = DeltaPhi(TrackPhi, Mu1Phi);
+                  double DeltaPhiMu2 = DeltaPhi(TrackPhi, Mu2Phi);
+
+                  double DeltaRMu1 = sqrt(DeltaEtaMu1 * DeltaEtaMu1 + DeltaPhiMu1 * DeltaPhiMu1);
+                  double DeltaRMu2 = sqrt(DeltaEtaMu2 * DeltaEtaMu2 + DeltaPhiMu2 * DeltaPhiMu2);
+
+                  bool MuTagged = false;
+                  if(DeltaRMu1 < MuonVeto)   MuTagged = true;
+                  if(DeltaRMu2 < MuonVeto)   MuTagged = true;
+
+                  double ZEta = DoGenCorrelation ? MZHadron.genZEta->at(0) : MZHadron.zEta->at(0);
+                  double ZPhi = DoGenCorrelation ? MZHadron.genZPhi->at(0) : MZHadron.zPhi->at(0);
+
+                  double deltaEta = TrackEta - ZEta;
+                  double deltaPhi = DeltaPhi(TrackPhi, ZPhi);
+
+                  MZHadron.GenTrackDphi->push_back(deltaPhi);
+                  MZHadron.GenTrackDeta->push_back(deltaEta);
+                  MZHadron.GenTrackPt->push_back(TrackPT);
+                  MZHadron.GenTrackMuTagged->push_back(MuTagged);
+                  MZHadron.GenTrackMuDR->push_back(min(DeltaRMu1, DeltaRMu2));
+                  MZHadron.GenSubevent->push_back(SubEvent);
+
+                  MZHadron.GenTrackEta->push_back(TrackEta);
+                  MZHadron.GenTrackPhi->push_back(TrackPhi);
+                  MZHadron.GenTrackCharge->push_back(TrackCharge);
+
+                  
+               }
+            }
+
             MZHadron.FillEntry();
 
             // Now we increment the counter, and remove from index if necessary

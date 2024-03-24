@@ -1866,6 +1866,16 @@ ZHadronMessenger::~ZHadronMessenger()
       delete trackPhi;
       delete trackCharge;
 
+      delete GenTrackDphi;
+      delete GenTrackDeta;
+      delete GenTrackPt;
+      delete GenTrackMuTagged;
+      delete GenTrackMuDR;
+      delete GenSubevent;
+      delete GenTrackEta;
+      delete GenTrackPhi;
+      delete GenTrackCharge;
+
       delete jetPt;
       delete jetDeta;
       delete jetDphi;
@@ -1937,6 +1947,16 @@ bool ZHadronMessenger::Initialize()
    trackResidualWeight = nullptr;
    trackCharge = nullptr;
    subevent = nullptr;
+
+   GenTrackDphi = nullptr;
+   GenTrackDeta = nullptr;
+   GenTrackPt = nullptr;
+   GenTrackMuTagged = nullptr;
+   GenTrackMuDR = nullptr;
+   GenSubevent = nullptr;
+   GenTrackEta = nullptr;
+   GenTrackPhi = nullptr;
+   GenTrackCharge = nullptr;
 
    jetPt = nullptr;
    jetDeta = nullptr;
@@ -2024,6 +2044,18 @@ bool ZHadronMessenger::Initialize()
    Tree->SetBranchAddress("trackCharge", &trackCharge);
    Tree->SetBranchAddress("subevent", &subevent);
 
+   Tree->SetBranchAddress("GenTrackDphi", &GenTrackDphi);
+   Tree->SetBranchAddress("GenTrackDeta", &GenTrackDeta);
+   Tree->SetBranchAddress("GenTrackPt", & GenTrackPt);
+   Tree->SetBranchAddress("GenTrackMuTagged", & GenTrackMuTagged);
+   Tree->SetBranchAddress("GenTrackMuDR", & GenTrackMuDR);
+   Tree->SetBranchAddress("GenSubevent", & GenSubevent);
+   Tree->SetBranchAddress("GenTrackEta", & GenTrackEta);
+   Tree->SetBranchAddress("GenTrackPhi", & GenTrackPhi);
+   Tree->SetBranchAddress("GenTrackCharge", & GenTrackCharge);
+
+
+
    Tree->SetBranchAddress("jetPt", &jetPt);
    Tree->SetBranchAddress("jetDeta", &jetDeta);
    Tree->SetBranchAddress("jetDphi", &jetDphi);
@@ -2107,6 +2139,16 @@ bool ZHadronMessenger::SetBranch(TTree *T)
    trackResidualWeight = new std::vector<double>();
    trackCharge = new std::vector<int>();
    subevent = new std::vector<int>();
+
+   GenTrackDphi = new std::vector<double>();
+   GenTrackDeta = new std::vector<double>();
+   GenTrackPt = new std::vector<double>();
+   GenTrackMuTagged = new std::vector<bool>();
+   GenTrackMuDR = new std::vector<double>();
+   GenSubevent = new std::vector<int>();
+   GenTrackEta = new std::vector<double>();
+   GenTrackPhi = new std::vector<double>();
+   GenTrackCharge = new std::vector<int>();
 
    jetPt = new std::vector<double>();
    jetDeta = new std::vector<double>();
@@ -2194,6 +2236,16 @@ bool ZHadronMessenger::SetBranch(TTree *T)
    Tree->Branch("trackResidualWeight",    &trackResidualWeight);
    Tree->Branch("trackCharge",            &trackCharge);
    Tree->Branch("subevent",               &subevent);
+
+   Tree->Branch("GenTrackDphi",           &GenTrackDphi);
+   Tree->Branch("GenTrackDeta",           &GenTrackDeta);
+   Tree->Branch("GenTrackPt",             & GenTrackPt);
+   Tree->Branch("GenTrackMuTagged",       & GenTrackMuTagged);
+   Tree->Branch("GenTrackMuDR",           & GenTrackMuDR);
+   Tree->Branch("GenSubevent",            & GenSubevent);
+   Tree->Branch("GenTrackEta",            & GenTrackEta);
+   Tree->Branch("GenTrackPhi",            & GenTrackPhi);
+   Tree->Branch("GenTrackCharge",         & GenTrackCharge);
    
    Tree->Branch("jetPt",                  &jetPt);
    Tree->Branch("jetDeta",                &jetDeta);
@@ -2310,6 +2362,16 @@ void ZHadronMessenger::Clear()
    trackResidualWeight->clear();
    trackCharge->clear();
    subevent->clear();
+
+   GenTrackDphi->clear();
+   GenTrackDeta->clear();
+   GenTrackPt->clear();
+   GenTrackMuTagged->clear();
+   GenTrackMuDR->clear();
+   GenSubevent->clear();
+   GenTrackEta->clear();
+   GenTrackPhi->clear();
+   GenTrackCharge->clear();
 
    jetPt->clear();
    jetDeta->clear();
