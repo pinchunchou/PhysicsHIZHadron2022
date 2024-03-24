@@ -530,28 +530,28 @@ int main(int argc, char *argv[])
 
             if(DoGenLevel == true && MZHadron.genZPt->size() > 0)
             {
-               for(int itrack = 0; itrack < MGen->Mult; itrack++)
+               for(int itrack = 0; itrack < MGen.Mult; itrack++)
                {
-                  if(MGen->PT->at(itrack) < MinGenTrackPT )
+                  if(MGen.PT->at(itrack) < MinGenTrackPT )
                      continue;
 
-                  if(MGen->PT->at(itrack) < MinTrackPT)
+                  if(MGen.PT->at(itrack) < MinTrackPT)
                      continue;
-                  if(MGen->Eta->at(itrack) < -2.4)
+                  if(MGen.Eta->at(itrack) < -2.4)
                      continue;
-                  if(MGen->Eta->at(itrack) > +2.4)
+                  if(MGen.Eta->at(itrack) > +2.4)
                      continue;
-                  if(MGen->DaughterCount->at(itrack) > 0)
+                  if(MGen.DaughterCount->at(itrack) > 0)
                      continue;
-                  if(GenCorrelationCharged == true && MGen->Charge->at(itrack) == 0)
+                  if(GenCorrelationCharged == true && MGen.Charge->at(itrack) == 0)
                      continue;
                   
               
-                  double TrackEta = MGen->Eta->at(itrack) ;
-                  double TrackPhi = MGen->Phi->at(itrack) ;
-                  double TrackPT  = MGen->PT->at(itrack);
-                  int TrackCharge = MGen->Charge->at(itrack) ;
-                  int SubEvent    = MGen->SubEvent->at(itrack) + 1;
+                  double TrackEta = MGen.Eta->at(itrack) ;
+                  double TrackPhi = MGen.Phi->at(itrack) ;
+                  double TrackPT  = MGen.PT->at(itrack);
+                  int TrackCharge = MGen.Charge->at(itrack) ;
+                  int SubEvent    = MGen.SubEvent->at(itrack) + 1;
 
                   double Mu1Eta = MZHadron.genMuEta1->at(0);
                   double Mu1Phi = MZHadron.genMuPhi1->at(0);
