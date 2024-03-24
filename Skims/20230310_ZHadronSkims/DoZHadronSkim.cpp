@@ -780,14 +780,14 @@ int main(int argc, char *argv[])
                   MZHadron.trackResidualWeight->push_back(TrackResidualCorrection);
                }
 
-               std::cout<<"DoGenLevel = "<<DoGenLevel<<std::endl;
+               //std::cout<<"DoGenLevel = "<<DoGenLevel<<std::endl;
 
-               if(DoGenLevel == true)
+               if(DoGenLevel == true && GoodGenZ == true)
                {
-                  std::cout<<"MGen->Mult = "<<MGen->Mult<<std::endl;
+                  //std::cout<<"MGen->Mult = "<<MGen->Mult<<std::endl;
                   for(int itrack = 0; itrack < MGen->Mult; itrack++)
                   {
-                     std::cout<<"MGen->PT->at(itrack) = "<<MGen->PT->at(itrack)<<std::endl;
+                     //std::cout<<"MGen->PT->at(itrack) = "<<MGen->PT->at(itrack)<<std::endl;
                      if(MGen->PT->at(itrack) < MinGenTrackPT )
                         continue;
 
@@ -802,15 +802,15 @@ int main(int argc, char *argv[])
                      if(GenCorrelationCharged == true && MGen->Charge->at(itrack) == 0)
                         continue;
                      
-                     std::cout<<"passed gen selection"<<std::endl;
+                     //std::cout<<"passed gen selection"<<std::endl;
                      double TrackEta = MGen->Eta->at(itrack) ;
                      double TrackPhi = MGen->Phi->at(itrack) ;
                      double TrackPT  = MGen->PT->at(itrack);
                      int TrackCharge = MGen->Charge->at(itrack) ;
                      int SubEvent    = MGen->SubEvent->at(itrack) + DoBackground;
 
-                     std::cout<<"MZHadron.genMuEta1->size()= "<<MZHadron.genMuEta1->size()<<std::endl;
-                     std::cout<<"MZHadron.genZPt->size()= "<<MZHadron.genZPt->size()<<std::endl;
+                     //std::cout<<"MZHadron.genMuEta1->size()= "<<MZHadron.genMuEta1->size()<<std::endl;
+                     //std::cout<<"MZHadron.genZPt->size()= "<<MZHadron.genZPt->size()<<std::endl;
 
                      double Mu1Eta = MZHadron.genMuEta1->at(0);
                      double Mu1Phi = MZHadron.genMuPhi1->at(0);
@@ -829,7 +829,7 @@ int main(int argc, char *argv[])
                      if(DeltaRMu1 < MuonVeto)   MuTagged = true;
                      if(DeltaRMu2 < MuonVeto)   MuTagged = true;
 
-                     std::cout<<"MZHadron.genZEta->size()= "<<MZHadron.genZEta->size()<<std::endl;
+                     //std::cout<<"MZHadron.genZEta->size()= "<<MZHadron.genZEta->size()<<std::endl;
 
                      double ZEta = MZHadron.genZEta->at(0);
                      double ZPhi = MZHadron.genZPhi->at(0);
@@ -837,7 +837,7 @@ int main(int argc, char *argv[])
                      double deltaEta = TrackEta - ZEta;
                      double deltaPhi = DeltaPhi(TrackPhi, ZPhi);
 
-                     std::cout<<"push back"<<std::endl;
+                     //std::cout<<"push back"<<std::endl;
                      MZHadron.GenTrackDphi->push_back(deltaPhi);
                      MZHadron.GenTrackDeta->push_back(deltaEta);
                      MZHadron.GenTrackPt->push_back(TrackPT);
@@ -848,13 +848,13 @@ int main(int argc, char *argv[])
                      MZHadron.GenTrackEta->push_back(TrackEta);
                      MZHadron.GenTrackPhi->push_back(TrackPhi);
                      MZHadron.GenTrackCharge->push_back(TrackCharge);
-                     std::cout<<"pushed back"<<std::endl;
+                     //std::cout<<"pushed back"<<std::endl;
                   }
-                  std::cout<<"a"<<std::endl;
+                  //std::cout<<"a"<<std::endl;
                }
-               std::cout<<"b"<<std::endl;
+               //std::cout<<"b"<<std::endl;
             }
-            std::cout<<"c"<<std::endl;
+            //std::cout<<"c"<<std::endl;
 
             if(GoodRecoZ == true && DoJet == true)
             {

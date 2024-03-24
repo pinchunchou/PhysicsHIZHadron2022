@@ -528,7 +528,7 @@ int main(int argc, char *argv[])
                MZHadron.trackResidualWeight->push_back(TrackResidualCorrection);
             }
 
-            if(DoGenLevel == true)
+            if(DoGenLevel == true && MZHadron.genZPt->size() > 0)
             {
                for(int itrack = 0; itrack < MGen->Mult; itrack++)
                {
