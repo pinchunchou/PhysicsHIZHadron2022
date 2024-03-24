@@ -780,15 +780,11 @@ int main(int argc, char *argv[])
                   MZHadron.trackResidualWeight->push_back(TrackResidualCorrection);
                }
 
-               std::cout<<"DoGenLevel = "<<DoGenLevel<<std::endl;
-
+               
                if(DoGenLevel == true)
                {
-                  std::cout<<"MGen->Mult = "<<MGen->Mult<<std::endl;
-
                   for(int itrack = 0; itrack < MGen->Mult; itrack++)
                   {
-                      std::cout<<"MGen->PT->at(itrack) = "<<MGen->PT->at(itrack)<<std::endl;
                      if(MGen->PT->at(itrack) < MinGenTrackPT )
                         continue;
 
