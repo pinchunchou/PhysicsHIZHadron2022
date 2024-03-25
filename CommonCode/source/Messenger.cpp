@@ -1660,7 +1660,7 @@ bool PbPbTrackTreeMessenger::PassZHadron2022Cut(int index)
    double RelativeUncertainty = TrackPTError->at(index) / TrackPT->at(index);
    if(RelativeUncertainty >= 0.1)
       return false;
-
+/*
    // double XYVertexSignificance = fabs(TrackAssociatedVertexDxy->at(index) / TrackAssociatedVertexDxyError->at(index));
    double XYVertexSignificance = fabs(TrackFirstVertexDxy->at(index) / TrackFirstVertexDxyError->at(index));
    if(XYVertexSignificance >= 3)
@@ -1676,7 +1676,7 @@ bool PbPbTrackTreeMessenger::PassZHadron2022Cut(int index)
 
    if(TrackNormChi2->at(index) / TrackNLayers->at(index) >= 0.18)
       return false;
-
+*/
    double ECAL = -1, HCAL = -1;
    if(PFEcal != nullptr && PFEcal->size() > index)   ECAL = PFEcal->at(index);
    if(PFHcal != nullptr && PFHcal->size() > index)   HCAL = PFHcal->at(index);
