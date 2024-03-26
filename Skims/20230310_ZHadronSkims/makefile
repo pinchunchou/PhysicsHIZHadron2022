@@ -114,49 +114,49 @@ PrepareToRunMC:
 PrepareToRunLoose:
 	bash PrepareInput.sh \
 		'$(PbPbSignalSingleMuon)/*/' \
-		5 LogDataLoose_v17_PFmuon/ $(EOSBase)/OutputDataLoose_v17_PFmuon/ \
+		5 LogDataLoose_v18c_PFmuon/ $(EOSBase)/OutputDataLoose_v18c_PFmuon/ \
 		--Fraction 1 `./Expand Setting.dh PbPbSignalData Loose`
 
 PrepareToRunMCLoose:
 	bash PrepareInput.sh \
 		$(PbPbSignalMC)/ \
-		5 LogMCLoose_v17_PFmuon/ $(EOSBase)/OutputMCLoose_v17_PFmuon/ \
+		5 LogMCLoose_v18c_PFmuon/ $(EOSBase)/OutputMCLoose_v18c_PFmuon/ \
 		--Fraction 1 `./Expand Setting.dh PbPbSignalMC Loose`
 
 PrepareToRunTight:
 	bash PrepareInput.sh \
 		'$(PbPbSignalSingleMuon)/*/' \
-		5 LogDataTight_v17_PFmuon/ $(EOSBase)/OutputDataTight_v17_PFmuon/ \
+		5 LogDataTight_v18c_PFmuon/ $(EOSBase)/OutputDataTight_v18c_PFmuon/ \
 		--Fraction 1 `./Expand Setting.dh PbPbSignalData Tight`
 
 PrepareToRunMCTight:
 	bash PrepareInput.sh \
 		$(PbPbSignalMC)/ \
-		5 LogMCTight_v17_PFmuon/ $(EOSBase)/OutputMCTight_v17_PFmuon/ \
+		5 LogMCTight_v18c_PFmuon/ $(EOSBase)/OutputMCTight_v18c_PFmuon/ \
 		--Fraction 1 `./Expand Setting.dh PbPbSignalMC Tight`
 
 PrepareToRunGenMC:
 	bash PrepareInput.sh \
 		$(PbPbSignalMC)/ \
-		5 LogGenMC_v18_PFmuon_mZ/ $(CERNBOX)/OutputMCGen_v18_PFmuon_mZ/ \
+		5 LogGenMC_v18c_PFmuon/ $(CERNBOX)/OutputMCGen_v18c_PFmuon/ \
  		--Fraction 1 `./Expand Setting.dh PbPbSignalGenMC Nominal`
 
 PrepareToRunPP:
 	bash PrepareInput.sh \
 		$(PPSignalMC)/ \
-		10 LogPP_v18_PFmuon_mZ/ $(CERNBOX)/OutputPPMC_v18_PFmuon_mZ/ \
+		10 LogPP_v18c_PFmuon/ $(CERNBOX)/OutputPPMC_v18c_PFmuon/ \
  		--Fraction 1 `./Expand Setting.dh PPSignalMC Nominal`
 
 PrepareToRunGenPP:
 	bash PrepareInput.sh \
 		$(PPSignalMC)/ \
-		10 LogGenPP_v18_PFmuon_mZ/ $(CERNBOX)/OutputPPMCGen_v18_PFmuon_mZ/ \
+		10 LogGenPP_v18c_PFmuon/ $(CERNBOX)/OutputPPMCGen_v18c_PFmuon/ \
  		--Fraction 1 `./Expand Setting.dh PPSignalGenMC Nominal`
 
 PrepareToRunPPData:
 	bash PrepareInput.sh \
 		'$(PPSignalData)/*/' \
-		10 LogPPData_v18_PFmuon_mZ/ $(CERNBOX)/OutputPPData_v18_PFmuon_mZ/ \
+		10 LogPPData_v18c_PFmuon/ $(CERNBOX)/OutputPPData_v18c_PFmuon/ \
  		--Fraction 1 `./Expand Setting.dh PPSignalData Nominal`
 
 PrepareToRunBackground:
