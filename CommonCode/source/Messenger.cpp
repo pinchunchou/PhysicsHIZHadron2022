@@ -1654,8 +1654,8 @@ bool PbPbTrackTreeMessenger::PassZHadron2022Cut(int index)
    if(index >= TrackPT->size())
       return false;
 
-   if(TrackHighPurity->at(index) == false)
-      return false;
+   //if(TrackHighPurity->at(index) == false)
+   //   return false;
 
    //double RelativeUncertainty = TrackPTError->at(index) / TrackPT->at(index);
    //if(RelativeUncertainty >= 0.1)
