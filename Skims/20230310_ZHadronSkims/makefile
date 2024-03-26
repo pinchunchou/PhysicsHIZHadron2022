@@ -25,12 +25,12 @@ TestRun: Execute
 	
 TestRunMC: Execute
 	time ./Execute --Input $(PbPbSignalMC)/HiForestMiniAOD_114.root \
-		--Output TestMC_v18b.root --Fraction 1 --WithProgressBar true \
+		--Output TestMC_v18c.root --Fraction 0.1 --WithProgressBar true \
 		`./Expand Setting.dh PbPbSignalMC Nominal`
 
 TestRunGen: Execute
 	./Execute --Input $(PbPbSignalMC)/HiForestMiniAOD_114.root \
-		--Output TestGenMC_v18b.root --Fraction 1 --WithProgressBar true \
+		--Output TestGenMC_v18c.root --Fraction 0.1 --WithProgressBar true \
 		`./Expand Setting.dh PbPbSignalGenMC Nominal`
 
 TestRunGenPP: Execute
@@ -108,7 +108,7 @@ PrepareToRun:
 PrepareToRunMC:
 	bash PrepareInput.sh \
 		$(PbPbSignalMC)/ \
-		5 LogMC_v18b_PFmuon/ $(CERNBOX)/OutputMC_v18b_PFmuon/ \
+		5 LogMC_v18c_PFmuon/ $(CERNBOX)/OutputMC_v18c_PFmuon/ \
 		--Fraction 1 `./Expand Setting.dh PbPbSignalMC Nominal`
 
 PrepareToRunLoose:

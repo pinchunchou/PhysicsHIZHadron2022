@@ -25,15 +25,15 @@ Execute: DoZHadronSkim.cpp
 		$(ProjectBase)/CommonCode/library/Messenger.o
 
 TestRun: Execute
-	./Execute --Input ../20230310_ZHadronSkims/TestMC_v18b.root \
-		--Output TestBkgMC_v18b.root --Fraction 1 \
+	./Execute --Input ../20230310_ZHadronSkims/TestMC_v18c.root \
+		--Output TestBkgMC_v18c.root --Fraction 1 \
 		`./Expand Setting.dh PbPbBackgroundMC Nominal` \
 		--Background $(PbPbBackgroundMC)/HiForestMiniAOD_10.root,$(PbPbBackgroundMC)/HiForestMiniAOD_14.root,$(PbPbBackgroundMC)/HiForestMiniAOD_15.root,$(PbPbBackgroundMC)/HiForestMiniAOD_16.root \
 		--ReuseBackground true --WithProgressBar true
 
 TestRunGenMatch: Execute
-	./Execute --Input ../20230310_ZHadronSkims/TestMC_v18b.root \
-		--Output TestBkgMC_v18b_ForceGenMatch.root --Fraction 1 \
+	./Execute --Input ../20230310_ZHadronSkims/TestMC_v18c.root \
+		--Output TestBkgMC_v18c_ForceGenMatch.root --Fraction 1 \
 		`./Expand Setting.dh PbPbBackgroundMCGenMatch Nominal` \
 		--Background $(PbPbBackgroundMC)/HiForestMiniAOD_10.root,$(PbPbBackgroundMC)/HiForestMiniAOD_14.root,$(PbPbBackgroundMC)/HiForestMiniAOD_15.root,$(PbPbBackgroundMC)/HiForestMiniAOD_16.root \
 		--ReuseBackground true --WithProgressBar true 
@@ -46,15 +46,15 @@ TestRunCent10: Execute
 		--ReuseBackground true --WithProgressBar true
 
 TestRunMCGenBackground: Execute
-	./Execute --Input ../20230310_ZHadronSkims/TestGenMC_v18b.root \
+	./Execute --Input ../20230310_ZHadronSkims/TestGenMC_v18c.root \
 		--Output TestMCGenBkg_v18b.root --Fraction 1 \
 		`./Expand Setting.dh PbPbBackgroundGenMC Nominal` \
 		--Background $(PbPbBackgroundMC)/HiForestMiniAOD_10.root,$(PbPbBackgroundMC)/HiForestMiniAOD_14.root,$(PbPbBackgroundMC)/HiForestMiniAOD_15.root,$(PbPbBackgroundMC)/HiForestMiniAOD_16.root \
 		--ReuseBackground true --WithProgressBar true
 
 TestRunMCSigBkg: Execute
-	./Execute --Input $(EOSBase)/OutputMC_v17_PFmuon/Result73.root \
-		--Output /tmp/$(USER)/TestMCSigBkg.root --Fraction 0.1 \
+	./Execute --Input ../20230310_ZHadronSkims/TestMC_v18c.root \
+		--Output TestMCSigBkg_v18c.root --Fraction 0.1 \
 		`./Expand Setting.dh PbPbSignalMC Nominal` \
 		--Background $(PbPbSignalMC)/HiForestMiniAOD_12.root,$(PbPbSignalMC)/HiForestMiniAOD_24.root,$(PbPbSignalMC)/HiForestMiniAOD_35.root,$(PbPbSignalMC)/HiForestMiniAOD_46.root,$(PbPbSignalMC)/HiForestMiniAOD_60.root \
 		--ReuseBackground false --CheckForBackgroundZ true --WithProgressBar true
@@ -82,17 +82,17 @@ TestRunPPDataSigBkg: Execute
 
 PrepareToRunRandomMCBackground:
 	bash PrepareInputRandomBackground.sh \
-		$(CERNBOX)/OutputMC_v18b_PFmuon/ LogMCBackground_v18b/ $(CERNBOX)/OutputMCBackground_v18b/ $(PbPbBackgroundMC)/ 37 \
+		$(CERNBOX)/OutputMC_v18c_PFmuon/ LogMCBackground_v18c/ $(CERNBOX)/OutputMCBackground_v18c/ $(PbPbBackgroundMC)/ 37 \
 		`./Expand Setting.dh PbPbBackgroundMC Nominal`
 
 PrepareToRunRandomMCBackgroundGenMatch:
 	bash PrepareInputRandomBackground.sh \
-		$(CERNBOX)/OutputMC_v18b_PFmuon/ LogMCBackground_v18b_GenMatch/ $(CERNBOX)/OutputMCBackground_v18b_GenMatch/ $(PbPbBackgroundMC)/ 37 \
+		$(CERNBOX)/OutputMC_v18c_PFmuon/ LogMCBackground_v18c_GenMatch/ $(CERNBOX)/OutputMCBackground_v18c_GenMatch/ $(PbPbBackgroundMC)/ 37 \
 		`./Expand Setting.dh PbPbBackgroundMCGenMatch Nominal`
 
 PrepareToRunRandomMCBackgroundCent10:
 	bash PrepareInputRandomBackground.sh \
-		$(CERNBOX)/OutputMC_v18_PFmuon_mZ/ LogMCBackground_v18_mZ_cent10/ $(CERNBOX)/OutputMCBackground_v18_mZ_cent10/ $(PbPbBackgroundMC)/ 37 \
+		$(CERNBOX)/OutputMC_v18c_PFmuon/ LogMCBackground_v18c_cent10/ $(CERNBOX)/OutputMCBackground_v18c_cent10/ $(PbPbBackgroundMC)/ 37 \
 		`./Expand Setting.dh PbPbBackgroundMCCent10 Nominal`
 
 #PrepareToRunRandomPJMCBackground:
@@ -119,16 +119,6 @@ PrepareToRunRandomMCGenBackgroundUEDown25:
 	bash PrepareInputRandomBackground.sh \
 		$(CERNBOX)/OutputMCGen_v18_PFmuon_mZ/ LogMCGenbkgUEDown25_v18_230127_mZ/ $(CERNBOX)/OutputMCGenbkgUEDown25_v18_230127_mZ/ $(PbPbBackgroundMC)/ 37 \
 		`./Expand Setting.dh PbPbBackgroundGenMC UEDown25`
-
-#PrepareToRunRandomPJMCGenBackground:
-#	bash PrepareInputRandomBackground.sh \
-#		$(EOSBase)/OutputMCGen_v17_PFmuon/ LogMCGenbkg_v17d_PJov1/ $(EOSBase)/OutputMCGenbkg_v17d_PJov1/ $(PbPbBackgroundPJMC)/ 37 \
-#		`./Expand Setting.dh PbPbBackgroundGenMC Nominal`
-
-PrepareToRunRandomMCRecGenBackground:
-	bash PrepareInputRandomBackground.sh \
-		$(EOSBase)/OutputMC_v17_PFmuon/ LogMCRecGenbkg_v17d_wVZ/ $(EOSBase)/OutputMCRecGenbkg_v17d_wVZ/ $(PbPbBackgroundMC)/ 37 \
-		`./Expand Setting.dh PbPbBackgroundGenMC Nominal`
 
 PrepareToRunRandomMCGenBackgroundCent10:
 	bash PrepareInputRandomBackground.sh \
