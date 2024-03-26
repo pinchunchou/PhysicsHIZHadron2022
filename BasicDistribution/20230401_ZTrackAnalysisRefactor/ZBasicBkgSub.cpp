@@ -74,18 +74,18 @@ TFile *file_ppMC;
 TFile *file_ppbkgMC;
 
 
-const char *typeofdata = "v18/20240318/Gen_HydjetV18_mZ";
+const char *typeofdata = "v18_PFmuon/20240326/Reco_V18c";
 //const char *typeofdata = "testBkgSub/20240204/v17d_No1Sub";
 //const char *typeofdata1 = "no1sub";
 //const char *typeofdata1 = "37_ov10_RECO_PP";
 //const char *typeofdata1 = "SigNo0Sub";
-const char *typeofdata1 = "37_ov1_GEN";
+const char *typeofdata1 = "37_ov1_RECO";
 
 //const char *typeofdata = "v17d_PFMuon/20240204/SigBkg_ov20_10HF";
 //const char *typeofdata1 = "350_ov20_pp10HF";
 
 bool selfmix = false;
-bool isgen = true;
+bool isgen = false;
 
 void ZBasicBkgSub_single(int binnum=40,float ptL=20,float ptH=2000,float centL=0,float centH=90,float TptL=0,float TptH=10000, 
    string HistName="HPhi", string XTitleName = "#Delta#phi_{Z,track}", string YTitleName = "dN/d#Delta#phi", int rebinnum=1)
@@ -151,10 +151,10 @@ void ZBasicBkgSub_single(int binnum=40,float ptL=20,float ptH=2000,float centL=0
    //TH1D *npM_tN    = (TH1D *) file_ppMC ->Get(Form("%s/HTotalEventCount",FolderName.c_str()));
    //TH1D *npb_tN    = (TH1D *) file_ppbkgMC ->Get(Form("%s/HTotalEventCount",FolderName.c_str()));
    
-   TNamed *nM_tN  = (TNamed *) file_sigMC->Get(Form("%s/GenEntryCount",FolderName.c_str()));
-   TNamed *nMb_tN = (TNamed *) file_bkgMC->Get(Form("%s/GenEntryCount",FolderName.c_str()));
-   TNamed *npM_tN = (TNamed *) file_ppMC->Get(Form("%s/GenEntryCount",FolderName.c_str()));
-   TNamed *npb_tN = (TNamed *) file_ppbkgMC->Get(Form("%s/GenEntryCount",FolderName.c_str()));
+   TNamed *nM_tN  = (TNamed *) file_sigMC->Get(Form("%s/EntryCount",FolderName.c_str()));
+   TNamed *nMb_tN = (TNamed *) file_bkgMC->Get(Form("%s/EntryCount",FolderName.c_str()));
+   TNamed *npM_tN = (TNamed *) file_ppMC->Get(Form("%s/EntryCount",FolderName.c_str()));
+   TNamed *npb_tN = (TNamed *) file_ppbkgMC->Get(Form("%s/EntryCount",FolderName.c_str()));
 
    std::string sM_tN  = (std::string) nM_tN->GetTitle();
    std::string sMb_tN = (std::string) nMb_tN->GetTitle();
@@ -446,7 +446,7 @@ int main(int argc, char *argv[]){
    if(isgen)
       file_sigMC = TFile::Open("/afs/cern.ch/user/p/pchou/PhysicsHIZHadron2022/BasicDistribution/20230401_ZTrackAnalysisRefactor/GraphMCGen_v18_PFmuon_mZ.root","read");
    else
-      file_sigMC = TFile::Open("~/eos_base/BasicPlots/GraphMCSignal_v18_PFmuon.root","read");
+      file_sigMC = TFile::Open("~/cernbox/GraphMCSignal_v18c_PFmuon.root","read");
    
    if(selfmix)
       file_bkgMC = TFile::Open("~/eos_base/BasicPlots/GraphMCSigBkg_v17d_PFmuon_350_10HF_ov20.root","read");
@@ -454,7 +454,7 @@ int main(int argc, char *argv[]){
       if(isgen)
          file_bkgMC  = TFile::Open("/afs/cern.ch/user/p/pchou/PhysicsHIZHadron2022/BasicDistribution/20230401_ZTrackAnalysisRefactor/GraphMCGenbkg_v18_230127_mZ.root","read");
       else
-         file_bkgMC = TFile::Open("~/eos_base/BasicPlots/GraphMCBackground_v18.root","read");
+         file_bkgMC = TFile::Open("~/cernbox/GraphMCBackground_v18c.root","read");
    }
 
    if(isgen)
