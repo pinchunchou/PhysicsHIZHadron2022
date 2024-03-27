@@ -330,7 +330,7 @@ void ZBasicBkgSub_single(int binnum=40,float ptL=20,float ptH=2000,float centL=0
    if(selfmix)
       leg1.AddEntry(hpp_phi ,Form("pp raw-bkg%s",genlegtxt.c_str()),"l");
    else
-      leg1.AddEntry(hpp_phi ,Form("pp%s",genlegtxt.c_str()),"l");
+      leg1.AddEntry(hpp_phi ,Form("pp%s (NPU=0)",genlegtxt.c_str()),"l");
       //leg1.AddEntry(hpp_phi ,"sig GEN","l");
    leg1.SetFillColorAlpha(kWhite,0);
    leg1.SetLineColor(kBlack);
