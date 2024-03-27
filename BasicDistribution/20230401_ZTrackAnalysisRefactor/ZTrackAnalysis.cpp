@@ -54,6 +54,7 @@ int main(int argc, char *argv[])
    bool OnlyZeroSub      = CL.GetBool("OnlyZeroSub", false);
    bool OnlyZeroNPU      = CL.GetBool("OnlyZeroNPU", false);
    bool OnlyOneSub       = CL.GetBool("OnlyOneSub", false);
+   bool OnlyOneNVertex   = CL.GetBool("OnlyOneNVertex", false);
    bool NoZeroSub        = CL.GetBool("NoZeroSub", false);
    bool NoOneSub         = CL.GetBool("NoOneSub", false);
    bool DoGenCorrelation = CL.GetBool("DoGenCorrelation", false);
@@ -228,8 +229,8 @@ int main(int argc, char *argv[])
    else
       Tree->Add((InputBase + "?#Tree").c_str());
  
-   int HiBin;
-   int NPU;
+   int HiBin, NPU, NVertex;
+
    vector<double> *ZMass       = nullptr;
    vector<double> *ZPT         = nullptr;
    vector<double> *ZEta        = nullptr;
@@ -272,6 +273,7 @@ int main(int argc, char *argv[])
 
    Tree->SetBranchAddress("hiBin",                  &HiBin);
    Tree->SetBranchAddress("NPU",                    &NPU);
+   Tree->SetBranchAddress("NVertex",                &NVertex);
    Tree->SetBranchAddress("zMass",                  &ZMass);
    Tree->SetBranchAddress("zPt",                    &ZPT);
    Tree->SetBranchAddress("zEta",                   &ZEta);
@@ -333,6 +335,7 @@ int main(int argc, char *argv[])
 
       //if(OnlyZeroSub == true && DoGenCorrelation == false && NPU != 0) continue;
       if(OnlyZeroNPU == true && NPU != 0) continue;
+      if(OnlyOneNVertex == true && NVertex != 1) continue;
 
       for(int iC = 0; iC < (int)C.size(); iC++)
       {
