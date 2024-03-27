@@ -74,7 +74,7 @@ TFile *file_ppMC;
 TFile *file_ppbkgMC;
 
 
-const char *typeofdata = "v18_PFmuon/20240326/Reco_V18c";
+const char *typeofdata = "v18_PFmuon/20240326/Reco_V18c_ppNVtx1";
 //const char *typeofdata = "testBkgSub/20240204/v17d_No1Sub";
 //const char *typeofdata1 = "no1sub";
 //const char *typeofdata1 = "37_ov10_RECO_PP";
@@ -330,7 +330,7 @@ void ZBasicBkgSub_single(int binnum=40,float ptL=20,float ptH=2000,float centL=0
    if(selfmix)
       leg1.AddEntry(hpp_phi ,Form("pp raw-bkg%s",genlegtxt.c_str()),"l");
    else
-      leg1.AddEntry(hpp_phi ,Form("pp%s (NPU=0)",genlegtxt.c_str()),"l");
+      leg1.AddEntry(hpp_phi ,Form("pp%s (NVertex=1)",genlegtxt.c_str()),"l");
       //leg1.AddEntry(hpp_phi ,"sig GEN","l");
    leg1.SetFillColorAlpha(kWhite,0);
    leg1.SetLineColor(kBlack);
@@ -460,7 +460,7 @@ int main(int argc, char *argv[]){
    if(isgen)
       file_ppMC  = TFile::Open("/afs/cern.ch/user/p/pchou/PhysicsHIZHadron2022/BasicDistribution/20230401_ZTrackAnalysisRefactor/GraphPPMCGen0NPU_v18_mZ.root","read");
    else
-      file_ppMC  = TFile::Open("~/cernbox/GraphPPMC0NPU_v18c.root","read");
+      file_ppMC  = TFile::Open("~/cernbox/GraphPPMCNVtx1_v18c.root","read");
 
    if(selfmix)
       file_ppbkgMC  = TFile::Open("~/eos_base/BasicPlots/GraphPPMCSigBkg_v17d_PFmuon_143_10HF.root","read");
