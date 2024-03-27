@@ -460,7 +460,7 @@ int main(int argc, char *argv[]){
    if(isgen)
       file_ppMC  = TFile::Open("/afs/cern.ch/user/p/pchou/PhysicsHIZHadron2022/BasicDistribution/20230401_ZTrackAnalysisRefactor/GraphPPMCGen0NPU_v18_mZ.root","read");
    else
-      file_ppMC  = TFile::Open("~/eos_base/BasicPlots/GraphPPMC_v17_PFmuon_ZTot.root","read");
+      file_ppMC  = TFile::Open("~/cernbox/GraphPPMC0NPU_v18c.root","read");
 
    if(selfmix)
       file_ppbkgMC  = TFile::Open("~/eos_base/BasicPlots/GraphPPMCSigBkg_v17d_PFmuon_143_10HF.root","read");
