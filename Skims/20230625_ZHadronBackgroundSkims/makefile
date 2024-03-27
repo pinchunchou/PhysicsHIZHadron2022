@@ -127,7 +127,7 @@ PrepareToRunRandomMCGenBackgroundCent10:
 
 PrepareToRunRandomMCBackgroundUEUp25:
 	bash PrepareInputRandomBackground.sh \
-		$(EOSBase)/OutputMC_v18c_PFmuon/ LogMCBackgroundUEUp25_v18c_PFmuon_694/ $(EOSBase)/OutputMCBackgroundUEUp25_v18c_PFmuon_694/ $(PbPbBackgroundMC)/ 37 \
+		$(CERNBOX)/OutputMC_v18c_PFmuon/ LogMCBackgroundUEUp25_v18c_PFmuon_694/ $(CERNBOX)/OutputMCBackgroundUEUp25_v18c_PFmuon_694/ $(PbPbBackgroundMC)/ 37 \
 		`./Expand Setting.dh PbPbBackgroundMC UEUp25`
 
 PrepareToRunRandomDataBackgroundUEUp25:
@@ -137,7 +137,7 @@ PrepareToRunRandomDataBackgroundUEUp25:
 
 PrepareToRunRandomMCBackgroundUEDown25:
 	bash PrepareInputRandomBackground.sh \
-		$(EOSBase)/OutputMC_v18c_PFmuon/ LogMCBackgroundUEDown25_v18c_PFmuon_694/ $(EOSBase)/OutputMCBackgroundUEDown25_v18c_PFmuon_694/ $(PbPbBackgroundMC)/ 37 \
+		$(CERNBOX)/OutputMC_v18c_PFmuon/ LogMCBackgroundUEDown25_v18c_PFmuon_694/ $(CERNBOX)/OutputMCBackgroundUEDown25_v18c_PFmuon_694/ $(PbPbBackgroundMC)/ 37 \
 		`./Expand Setting.dh PbPbBackgroundMC UEDown25`
 
 PrepareToRunRandomDataBackgroundUEDown25:
