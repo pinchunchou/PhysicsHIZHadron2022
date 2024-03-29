@@ -74,7 +74,7 @@ TFile *file_ppMC;
 TFile *file_ppbkgMC;
 
 
-const char *typeofdata = "v18_PFmuon/20240328/Reco_V18c_cent10_ov10";
+const char *typeofdata = "v18_PFmuon/20240328/Reco_V18c_694_tol1200_ov1";
 //const char *typeofdata = "testBkgSub/20240204/v17d_No1Sub";
 //const char *typeofdata1 = "no1sub";
 //const char *typeofdata1 = "37_ov10_RECO_PP";
@@ -454,7 +454,7 @@ int main(int argc, char *argv[]){
       if(isgen)
          file_bkgMC  = TFile::Open("/afs/cern.ch/user/p/pchou/PhysicsHIZHadron2022/BasicDistribution/20230401_ZTrackAnalysisRefactor/GraphMCGenbkg_v18_230127_mZ.root","read");
       else
-         file_bkgMC = TFile::Open("~/eos_base/BasicPlots/GraphMCBackground_v18c_cent10_ov10.root","read");
+         file_bkgMC = TFile::Open("~/eos_base/BasicPlots/GraphMCBackground_v18c_694_tol1200_ov1.root","read");
    }
 
    if(isgen)
