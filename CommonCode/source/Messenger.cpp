@@ -1997,9 +1997,9 @@ bool ZHadronMessenger::Initialize()
    genMuDR = nullptr;
    genMuDphiS = nullptr;
 
-   Tree->SetBranchAddress("Run", &Run);
-   Tree->SetBranchAddress("Event", &Event);
-   Tree->SetBranchAddress("Lumi", &Lumi);
+   Tree->SetBranchAddress("run", &Run);
+   Tree->SetBranchAddress("event", &Event);
+   Tree->SetBranchAddress("lumi", &Lumi);
 
    Tree->SetBranchAddress("hiBin", &hiBin);
    Tree->SetBranchAddress("hiBinUp", &hiBinUp);
@@ -2038,8 +2038,8 @@ bool ZHadronMessenger::Initialize()
    Tree->SetBranchAddress("trackPt", &trackPt);
    Tree->SetBranchAddress("trackDeta", &trackDeta);
    Tree->SetBranchAddress("TrackPDGID", &TrackPDGID);
-   // Tree->SetBranchAddress("trackEta", &trackEta);
-   // Tree->SetBranchAddress("trackPhi", &trackPhi);
+   Tree->SetBranchAddress("trackEta", &trackEta);
+   Tree->SetBranchAddress("trackPhi", &trackPhi);
    Tree->SetBranchAddress("trackMuTagged", &trackMuTagged);
    Tree->SetBranchAddress("trackMuDR", &trackMuDR);
    Tree->SetBranchAddress("trackWeight", &trackWeight);
@@ -2231,8 +2231,8 @@ bool ZHadronMessenger::SetBranch(TTree *T)
    Tree->Branch("trackDeta",              &trackDeta);
    Tree->Branch("trackDphi",              &trackDphi);
    Tree->Branch("TrackPDGID",             &TrackPDGID);
-   // Tree->Branch("trackPhi",               &trackPhi);
-   // Tree->Branch("trackEta",               &trackEta);
+   Tree->Branch("trackPhi",               &trackPhi);
+   Tree->Branch("trackEta",               &trackEta);
    Tree->Branch("trackMuTagged",          &trackMuTagged);
    Tree->Branch("trackMuDR",              &trackMuDR);
    Tree->Branch("trackWeight",            &trackWeight);
