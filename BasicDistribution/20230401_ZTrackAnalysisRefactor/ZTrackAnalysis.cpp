@@ -134,6 +134,9 @@ int main(int argc, char *argv[])
    vector<TH1D *>           HEta;
    vector<TH1D *>           HPhi;
    vector<TH2D *>           HEtaPhi;
+   vector<TH1D *>           HGenEta;
+   vector<TH1D *>           HGenPhi;
+   vector<TH2D *>           HGenEtaPhi;
    vector<TH1D *>           HMaxHadronEta;
    vector<TH1D *>           HMaxHadronPhi;
    vector<TH2D *>           HMaxHadronEtaPhi;
