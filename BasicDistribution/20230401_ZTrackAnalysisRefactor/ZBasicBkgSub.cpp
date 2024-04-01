@@ -74,7 +74,7 @@ TFile *file_ppMC;
 TFile *file_ppbkgMC;
 
 
-const char *typeofdata = "v18_PFmuon/20240401/Reco_v18c_GenMatch";
+const char *typeofdata = "v18_PFmuon/20240401/Reco_v18c_694_ov10";
 //const char *typeofdata = "testBkgSub/20240204/v17d_No1Sub";
 //const char *typeofdata1 = "no1sub";
 //const char *typeofdata1 = "37_ov10_RECO_PP";
