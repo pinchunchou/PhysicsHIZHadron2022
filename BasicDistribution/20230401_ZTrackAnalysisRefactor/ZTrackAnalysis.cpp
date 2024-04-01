@@ -59,6 +59,11 @@ int main(int argc, char *argv[])
    bool NoOneSub         = CL.GetBool("NoOneSub", false);
    bool DoGenCorrelation = CL.GetBool("DoGenCorrelation", false);
    bool DoSingleFile     = CL.GetBool("DoSingleFile", false);
+
+   bool DoZWeight        = CL.GetBool("DoZWeight", true);
+   bool DoVZWeight       = CL.GetBool("DoVZWeight", true);
+   bool DoTrackWeight    = CL.GetBool("DoTrackWeight", true);
+   bool DoTrackResWeight = CL.GetBool("DoTrackResWeight", true);
    
    // Note: fields are bin count, Z min, Z max, Cent. min, Cent. max, Track min, Track max
    vector<Configuration> C;
@@ -302,8 +307,16 @@ int main(int argc, char *argv[])
    Tree->SetBranchAddress("trackDphi",              &TrackDPhi);
 
    Tree->SetBranchAddress("NCollWeight",            &NCollWeight);
-   Tree->SetBranchAddress("ZWeight",                &ZWeight);
-   Tree->SetBranchAddress("VZWeight",               &VZWeight);
+
+   if(DoZWeight)
+      Tree->SetBranchAddress("ZWeight",                &ZWeight);
+   else
+      ZWeight=1;
+
+   if(DoVZWeight)
+      Tree->SetBranchAddress("VZWeight",               &VZWeight);
+   else
+      VZWeight=1;
    
    Tree->SetBranchAddress("trackWeight",            &trackWeight);
    Tree->SetBranchAddress("trackResidualWeight",    &trackResidualWeight);
@@ -436,7 +449,14 @@ int main(int argc, char *argv[])
             bool PassEvent = ZMassRange && ZPTRange && CentRange;
             bool PassEverything = PassEvent && TrackPTRange && TrackNotCloseToMuon;
 
-            double weight = (trackWeight->at(iT))*(trackResidualWeight->at(iT))*NCollWeight*ZWeight*VZWeight;
+            double weight = NCollWeight*ZWeight*VZWeight;
+            
+            if(DoTrackWeight)
+               weight *= (trackWeight->at(iT));
+
+            if(DoTrackResWeight)
+               weight *= (trackResidualWeight->at(iT));
+            
             //double weight = NCollWeight;
             //double weight = trackWeight->at(iT);
 
