@@ -79,13 +79,13 @@ const char *typeofdata = "v18_PFmuon/20240401/Reco_v18c_694_ov10";
 //const char *typeofdata1 = "no1sub";
 //const char *typeofdata1 = "37_ov10_RECO_PP";
 //const char *typeofdata1 = "SigNo0Sub";
-const char *typeofdata1 = "37_ov1_Reco";
+const char *typeofdata1 = "37_ov1_Gen";
 
 //const char *typeofdata = "v17d_PFMuon/20240204/SigBkg_ov20_10HF";
 //const char *typeofdata1 = "350_ov20_pp10HF";
 
 bool selfmix = false;
-bool isgen = false;
+bool isgen = true;
 
 void ZBasicBkgSub_single(int binnum=40,float ptL=20,float ptH=2000,float centL=0,float centH=90,float TptL=0,float TptH=10000, 
    string HistName="HPhi", string XTitleName = "#Delta#phi_{Z,track}", string YTitleName = "dN/d#Delta#phi", int rebinnum=1)
