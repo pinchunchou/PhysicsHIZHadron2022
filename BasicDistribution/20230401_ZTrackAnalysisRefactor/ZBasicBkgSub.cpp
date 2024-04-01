@@ -450,9 +450,9 @@ int main(int argc, char *argv[]){
    style();
 
    if(isgen)
-      file_sigMC = TFile::Open("~/eos_base/BasicPlots/GraphMCSignal_v18c_PFmuon_v2.root","read");
+      file_sigMC = TFile::Open("~/eos_base/BasicPlots/GraphMCSignal_v18c_PFmuon_notrkres.root","read");
    else
-      file_sigMC = TFile::Open("~/eos_base/BasicPlots/GraphMCSignal_v18c_PFmuon_v2.root","read");
+      file_sigMC = TFile::Open("~/eos_base/BasicPlots/GraphMCSignal_v18c_PFmuon_notrkres.root","read");
    
    if(selfmix)
       file_bkgMC = TFile::Open("~/eos_base/BasicPlots/GraphMCSigBkg_v17d_PFmuon_350_10HF_ov20.root","read");
@@ -464,9 +464,9 @@ int main(int argc, char *argv[]){
    }
 
    if(isgen)
-      file_ppMC  = TFile::Open("~/eos_base/BasicPlots/GraphPPMC0NPU_v18c_v2.root","read");
+      file_ppMC  = TFile::Open("~/eos_base/BasicPlots/GraphPPMC0NPU_v18c_notrkres.root","read");
    else
-      file_ppMC  = TFile::Open("~/eos_base/BasicPlots/GraphPPMC0NPU_v18c_v2.root","read");
+      file_ppMC  = TFile::Open("~/eos_base/BasicPlots/GraphPPMC0NPU_v18c_notrkres.root","read");
 
    if(selfmix)
       file_ppbkgMC  = TFile::Open("~/eos_base/BasicPlots/GraphPPMCSigBkg_v17d_PFmuon_143_10HF.root","read");
