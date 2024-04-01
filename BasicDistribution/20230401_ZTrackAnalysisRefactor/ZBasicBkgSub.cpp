@@ -151,10 +151,16 @@ void ZBasicBkgSub_single(int binnum=40,float ptL=20,float ptH=2000,float centL=0
    //TH1D *npM_tN    = (TH1D *) file_ppMC ->Get(Form("%s/HTotalEventCount",FolderName.c_str()));
    //TH1D *npb_tN    = (TH1D *) file_ppbkgMC ->Get(Form("%s/HTotalEventCount",FolderName.c_str()));
    
-   TNamed *nM_tN  = (TNamed *) file_sigMC->Get(Form("%s/EntryCount",FolderName.c_str()));
-   TNamed *nMb_tN = (TNamed *) file_bkgMC->Get(Form("%s/EntryCount",FolderName.c_str()));
-   TNamed *npM_tN = (TNamed *) file_ppMC->Get(Form("%s/EntryCount",FolderName.c_str()));
-   TNamed *npb_tN = (TNamed *) file_ppbkgMC->Get(Form("%s/EntryCount",FolderName.c_str()));
+   string NameEntryCount;
+   if(isgen)
+      NameEntryCount = "GenEntryCount";
+   else
+      NameEntryCount = "EntryCount";
+
+   TNamed *nM_tN  = (TNamed *) file_sigMC->Get(Form("%s/%s",FolderName.c_str(),NameEntryCount.c_str()));
+   TNamed *nMb_tN = (TNamed *) file_bkgMC->Get(Form("%s/%s",FolderName.c_str(),NameEntryCount.c_str()));
+   TNamed *npM_tN = (TNamed *) file_ppMC->Get(Form("%s/%s",FolderName.c_str(),NameEntryCount.c_str()));
+   TNamed *npb_tN = (TNamed *) file_ppbkgMC->Get(Form("%s/%s",FolderName.c_str(),NameEntryCount.c_str()));
 
    std::string sM_tN  = (std::string) nM_tN->GetTitle();
    std::string sMb_tN = (std::string) nMb_tN->GetTitle();
