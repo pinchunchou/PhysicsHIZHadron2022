@@ -74,7 +74,7 @@ TFile *file_ppMC;
 TFile *file_ppbkgMC;
 
 
-const char *typeofdata = "v18_PFmuon/20240402/Reco_v18c_694_ov10_noZW";
+const char *typeofdata = "v18_PFmuon/20240405/Reco_v18c_694_ov10_siggen";
 //const char *typeofdata = "testBkgSub/20240204/v17d_No1Sub";
 //const char *typeofdata1 = "no1sub";
 //const char *typeofdata1 = "37_ov10_RECO_PP";
@@ -133,8 +133,12 @@ void ZBasicBkgSub_single(int binnum=40,float ptL=20,float ptH=2000,float centL=0
    std::string FolderName = Form("Plot_ZPT_%.0f_%.0f_Cent_%.0f_%.0f_TrackPT_%.2f_%.2f",ptL,ptH,centL,centH,TptL,TptH);
    std::replace(FolderName.begin(), FolderName.end(), '.', 'p');
 
+   std::string HistNameGen = HistName;
+   if(isgen==false)
+      std::replace(HistNameGen.begin(), HistNameGen.end(), 'H', 'HGen');
+
    TH1D* hMC_phi = (TH1D*) file_sigMC->Get(Form("%s/%s", FolderName.c_str(), HistName.c_str()));
-   TH1D* hpp_phi = (TH1D*) file_ppMC->Get(Form("%s/%s", FolderName.c_str(), HistName.c_str()));
+   TH1D* hpp_phi = (TH1D*) file_sigMC->Get(Form("%s/%s", FolderName.c_str(), HistNameGen.c_str()));
    TH1D* hpp_bkg_phi = (TH1D*) file_ppbkgMC->Get(Form("%s/%s", FolderName.c_str(), HistName.c_str()));
 
    hMC_phi->SetName("hMC_phi");
@@ -157,9 +161,10 @@ void ZBasicBkgSub_single(int binnum=40,float ptL=20,float ptH=2000,float centL=0
    else
       NameEntryCount = "EntryCount";
 
+
    TNamed *nM_tN  = (TNamed *) file_sigMC->Get(Form("%s/%s",FolderName.c_str(),NameEntryCount.c_str()));
    TNamed *nMb_tN = (TNamed *) file_bkgMC->Get(Form("%s/%s",FolderName.c_str(),NameEntryCount.c_str()));
-   TNamed *npM_tN = (TNamed *) file_ppMC->Get(Form("%s/%s",FolderName.c_str(),NameEntryCount.c_str()));
+   TNamed *npM_tN = (TNamed *) file_sigMC->Get(Form("%s/GenEntryCount",FolderName.c_str()));
    TNamed *npb_tN = (TNamed *) file_ppbkgMC->Get(Form("%s/%s",FolderName.c_str(),NameEntryCount.c_str()));
 
    std::string sM_tN  = (std::string) nM_tN->GetTitle();
@@ -234,7 +239,7 @@ void ZBasicBkgSub_single(int binnum=40,float ptL=20,float ptH=2000,float centL=0
    else if(isgen)
       typeofsample = "Nominal MC Gen";
    else
-      typeofsample = "Nominal MC Reco";
+      typeofsample = "Nominal MC";
 
    TLatex *pt0 = new TLatex(0.15,0.82,typeofsample.c_str());
    //TLatex *pt0 = new TLatex(0.15,0.82,"Nominal MC GEN (Pythia+Hydjet)");
@@ -336,7 +341,8 @@ void ZBasicBkgSub_single(int binnum=40,float ptL=20,float ptH=2000,float centL=0
    if(selfmix)
       leg1.AddEntry(hpp_phi ,Form("pp raw-bkg%s",genlegtxt.c_str()),"l");
    else
-      leg1.AddEntry(hpp_phi ,Form("pp%s (NPU=0)",genlegtxt.c_str()),"l");
+      leg1.AddEntry(hpp_phi ,"sig GEN (pythia)","lep");
+      //leg1.AddEntry(hpp_phi ,Form("pp%s (NPU=0)",genlegtxt.c_str()),"l");
       //leg1.AddEntry(hpp_phi ,"sig GEN","l");
    leg1.SetFillColorAlpha(kWhite,0);
    leg1.SetLineColor(kBlack);
@@ -385,7 +391,8 @@ void ZBasicBkgSub_single(int binnum=40,float ptL=20,float ptH=2000,float centL=0
    if(selfmix)
       PbPb_to_pp->SetYTitle("(PbPb r-b) - (pp r-b)");
    else
-      PbPb_to_pp->SetYTitle("(PbPb r-b) - pp");
+      PbPb_to_pp->SetYTitle("(PbPb r-b) - PbPb pythia");
+      //PbPb_to_pp->SetYTitle("(PbPb r-b) - pp");
    
 
    PbPb_to_pp->Draw("ep");
@@ -450,23 +457,23 @@ int main(int argc, char *argv[]){
    style();
 
    if(isgen)
-      file_sigMC = TFile::Open("~/eos_base/BasicPlots/GraphMCSignal_v18c_PFmuon_noZW.root","read");
+      file_sigMC = TFile::Open("~/eos_base/BasicPlots/GraphMCSignal_v18c_PFmuon_v2.root","read");
    else
-      file_sigMC = TFile::Open("~/eos_base/BasicPlots/GraphMCSignal_v18c_PFmuon_noZW.root","read");
+      file_sigMC = TFile::Open("~/eos_base/BasicPlots/GraphMCSignal_v18c_PFmuon_v2.root","read");
    
    if(selfmix)
       file_bkgMC = TFile::Open("~/eos_base/BasicPlots/GraphMCSigBkg_v17d_PFmuon_350_10HF_ov20.root","read");
    else{
       if(isgen)
-         file_bkgMC = TFile::Open("~/eos_base/BasicPlots/GraphMCBackground_v18c_694_ov10_noZW.root","read");
+         file_bkgMC = TFile::Open("~/eos_base/BasicPlots/GraphMCBackground_v18c_694_ov10_v2.root","read");
       else
-         file_bkgMC = TFile::Open("~/eos_base/BasicPlots/GraphMCBackground_v18c_694_ov10_noZW.root","read");
+         file_bkgMC = TFile::Open("~/eos_base/BasicPlots/GraphMCBackground_v18c_694_ov10_v2.root","read");
    }
 
    if(isgen)
-      file_ppMC  = TFile::Open("~/eos_base/BasicPlots/GraphPPMC0NPU_v18c_noZW.root","read");
+      file_ppMC  = TFile::Open("~/eos_base/BasicPlots/GraphPPMC0NPU_v18c_v2.root","read");
    else
-      file_ppMC  = TFile::Open("~/eos_base/BasicPlots/GraphPPMC0NPU_v18c_noZW.root","read");
+      file_ppMC  = TFile::Open("~/eos_base/BasicPlots/GraphPPMC0NPU_v18c_v2.root","read");
 
    if(selfmix)
       file_ppbkgMC  = TFile::Open("~/eos_base/BasicPlots/GraphPPMCSigBkg_v17d_PFmuon_143_10HF.root","read");
