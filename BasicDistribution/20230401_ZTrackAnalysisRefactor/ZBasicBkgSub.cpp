@@ -135,8 +135,10 @@ void ZBasicBkgSub_single(int binnum=40,float ptL=20,float ptH=2000,float centL=0
 
    std::string HistNameGen = HistName;
    if(isgen==false)
-      std::replace(HistNameGen.begin(), HistNameGen.end(), 'H', 'HGen');
+      HistNameGen.replace(HistNameGen.find('H'), 1, "HGen");
+      //std::replace(HistNameGen.begin(), HistNameGen.end(), 'H', 'HGen');
 
+   cout<<"HistNameGen = "<<HistNameGen<<endl;
    TH1D* hMC_phi = (TH1D*) file_sigMC->Get(Form("%s/%s", FolderName.c_str(), HistName.c_str()));
    TH1D* hpp_phi = (TH1D*) file_sigMC->Get(Form("%s/%s", FolderName.c_str(), HistNameGen.c_str()));
    TH1D* hpp_bkg_phi = (TH1D*) file_ppbkgMC->Get(Form("%s/%s", FolderName.c_str(), HistName.c_str()));
