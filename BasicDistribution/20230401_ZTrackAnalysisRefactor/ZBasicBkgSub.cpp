@@ -134,13 +134,13 @@ void ZBasicBkgSub_single(int binnum=40,float ptL=20,float ptH=2000,float centL=0
    std::replace(FolderName.begin(), FolderName.end(), '.', 'p');
 
    std::string HistNameGen = HistName;
-   if(isgen==false)
-      HistNameGen.replace(HistNameGen.find('H'), 1, "HGen");
-      //std::replace(HistNameGen.begin(), HistNameGen.end(), 'H', 'HGen');
+   //if(isgen==false)
+   //   HistNameGen.replace(HistNameGen.find('H'), 1, "HGen");
+   //   //std::replace(HistNameGen.begin(), HistNameGen.end(), 'H', 'HGen');
 
    cout<<"HistNameGen = "<<HistNameGen<<endl;
    TH1D* hMC_phi = (TH1D*) file_sigMC->Get(Form("%s/%s", FolderName.c_str(), HistName.c_str()));
-   TH1D* hpp_phi = (TH1D*) file_sigMC->Get(Form("%s/%s", FolderName.c_str(), HistNameGen.c_str()));
+   TH1D* hpp_phi = (TH1D*) file_ppMC->Get(Form("%s/%s", FolderName.c_str(), HistNameGen.c_str()));
    TH1D* hpp_bkg_phi = (TH1D*) file_ppbkgMC->Get(Form("%s/%s", FolderName.c_str(), HistName.c_str()));
 
    hMC_phi->SetName("hMC_phi");
@@ -166,7 +166,7 @@ void ZBasicBkgSub_single(int binnum=40,float ptL=20,float ptH=2000,float centL=0
 
    TNamed *nM_tN  = (TNamed *) file_sigMC->Get(Form("%s/%s",FolderName.c_str(),NameEntryCount.c_str()));
    TNamed *nMb_tN = (TNamed *) file_bkgMC->Get(Form("%s/%s",FolderName.c_str(),NameEntryCount.c_str()));
-   TNamed *npM_tN = (TNamed *) file_sigMC->Get(Form("%s/GenEntryCount",FolderName.c_str()));
+   TNamed *npM_tN = (TNamed *) file_ppMC->Get(Form("%s/GenEntryCount",FolderName.c_str()));
    TNamed *npb_tN = (TNamed *) file_ppbkgMC->Get(Form("%s/%s",FolderName.c_str(),NameEntryCount.c_str()));
 
    std::string sM_tN  = (std::string) nM_tN->GetTitle();
@@ -475,7 +475,7 @@ int main(int argc, char *argv[]){
    if(isgen)
       file_ppMC  = TFile::Open("~/eos_base/BasicPlots/GraphPPMC0NPU_v18c_v2.root","read");
    else
-      file_ppMC  = TFile::Open("~/eos_base/BasicPlots/GraphPPMC0NPU_v18c_v2.root","read");
+      file_ppMC  = TFile::Open("~/eos_base/BasicPlots/GraphMCSignalGen0Sub_v18_mZ.root","read");
 
    if(selfmix)
       file_ppbkgMC  = TFile::Open("~/eos_base/BasicPlots/GraphPPMCSigBkg_v17d_PFmuon_143_10HF.root","read");
