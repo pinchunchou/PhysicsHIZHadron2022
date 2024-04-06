@@ -85,7 +85,9 @@ const char *typeofdata1 = "37_ov10_Reco";
 //const char *typeofdata1 = "350_ov20_pp10HF";
 
 bool selfmix = false;
-bool isgen = false;
+bool isgen   = false;
+bool drawlog = false;
+bool drawrat = true;
 
 void ZBasicBkgSub_single(int binnum=40,float ptL=20,float ptH=2000,float centL=0,float centH=90,float TptL=0,float TptH=10000, 
    string HistName="HPhi", string XTitleName = "#Delta#phi_{Z,track}", string YTitleName = "dN/d#Delta#phi", int rebinnum=1)
@@ -402,30 +404,58 @@ void ZBasicBkgSub_single(int binnum=40,float ptL=20,float ptH=2000,float centL=0
 
    c->SaveAs(Form("/eos/user/p/pchou/figs/track/%s/BasicBkgSub/%s/Ztrack_%s_com_%.0f_%.0f_%.0f_%.0f_%.0f_%.0f.png",typeofdata,HistName.c_str(),typeofdata1,ptL,ptH,centL,centH,TptL,TptH)); 
    
-   Pad->SetLogy();
+   if(drawrat){
+      RPad->Clear();
+      RPad->SetTopMargin(0);
+      RPad->cd();
 
-   if(min1>0){
-      hMC_phi->SetMinimum(0.5*min1);
-      hMC_bkg_phi->SetMinimum(0.5*min1);
-      hMC_sb_phi->SetMinimum(0.5*min1);
-      hpp_phi->SetMinimum(0.5*min1);
-   }else{
-      hMC_phi->SetMinimum(0.01);
-      hMC_bkg_phi->SetMinimum(0.01);
-      hMC_sb_phi->SetMinimum(0.01);
-      hpp_phi->SetMinimum(0.01);
+      TH1D *PbPb_rat_pp = (TH1D*) hMC_sb_phi->Clone("PbPb_rat_pp");
+      PbPb_rat_pp->Divide(hpp_phi);
+   
+      TH1D *horir_line = (TH1D*) hMC_sb_phi->Clone("horir_line");
+      horir_line->Divide(hMC_sb_phi);
+   
+      horir_line->SetLineColor(kBlack);
+      PbPb_rat_pp->SetLineColor(kRed);
+   
+      PbPb_rat_pp->SetXTitle(XTitleName.c_str());
+   
+      if(selfmix)
+         PbPb_rat_pp->SetYTitle("(PbPb r-b) / (pp r-b)");
+      else
+         PbPb_rat_pp->SetYTitle("(PbPb r-b) / PbPb pythia");
+         //PbPb_rat_pp->SetYTitle("(PbPb r-b) / pp");
+      
+   
+      PbPb_rat_pp->Draw("ep");
+      horir_line->Draw("hist same");
+   
+      c->SaveAs(Form("/eos/user/p/pchou/figs/track/%s/BasicBkgSub/%s/Ztrack_%s_com_%.0f_%.0f_%.0f_%.0f_%.0f_%.0f_rat.png",typeofdata,HistName.c_str(),typeofdata1,ptL,ptH,centL,centH,TptL,TptH)); 
+
    }
-
-   hMC_phi->SetMaximum(1000*max1);
-   hMC_bkg_phi->SetMaximum(1000*max1);
-   hMC_sb_phi->SetMaximum(1000*max1);
-   hpp_phi->SetMaximum(1000*max1);
-
-   c->SaveAs(Form("/eos/user/p/pchou/figs/track/%s/BasicBkgSub/%s/Ztrack_%s_comlog_%.0f_%.0f_%.0f_%.0f_%.0f_%.0f_log.png",typeofdata,HistName.c_str(),typeofdata1,ptL,ptH,centL,centH,TptL,TptH)); 
-   //c->SaveAs(Form("/eos/user/p/pchou/figs/track/%s/BasicBkgSub/%s/pdf/Ztrack_%s_com_%.0f_%.0f_%.0f_%.0f_%.0f_%.0f_Dphicom.pdf",typeofdata,typeofdata1,HistName.c_str(),ptL,ptH,centL,centH,TptL,TptH)); 
-   //c->SaveAs(Form("/eos/user/p/pchou/figs/track/%s/BasicBkgSub/%s/C/Ztrack_%s_com_%.0f_%.0f_%.0f_%.0f_%.0f_%.0f_Dphicom.C",typeofdata,typeofdata1,HistName.c_str(),ptL,ptH,centL,centH,TptL,TptH)); 
-
-   Pad->SetLogy(0);
+   if(drawlog){
+      Pad->SetLogy();
+   
+      if(min1>0){
+         hMC_phi->SetMinimum(0.5*min1);
+         hMC_bkg_phi->SetMinimum(0.5*min1);
+         hMC_sb_phi->SetMinimum(0.5*min1);
+         hpp_phi->SetMinimum(0.5*min1);
+      }else{
+         hMC_phi->SetMinimum(0.01);
+         hMC_bkg_phi->SetMinimum(0.01);
+         hMC_sb_phi->SetMinimum(0.01);
+         hpp_phi->SetMinimum(0.01);
+      }
+   
+      hMC_phi->SetMaximum(1000*max1);
+      hMC_bkg_phi->SetMaximum(1000*max1);
+      hMC_sb_phi->SetMaximum(1000*max1);
+      hpp_phi->SetMaximum(1000*max1);
+   
+      c->SaveAs(Form("/eos/user/p/pchou/figs/track/%s/BasicBkgSub/%s/Ztrack_%s_comlog_%.0f_%.0f_%.0f_%.0f_%.0f_%.0f_log.png",typeofdata,HistName.c_str(),typeofdata1,ptL,ptH,centL,centH,TptL,TptH)); 
+      Pad->SetLogy(0);
+   }
    c->Clear();
 
 }
