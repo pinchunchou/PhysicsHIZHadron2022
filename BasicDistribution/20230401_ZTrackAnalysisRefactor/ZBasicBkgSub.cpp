@@ -475,7 +475,7 @@ int main(int argc, char *argv[]){
    if(isgen)
       file_ppMC  = TFile::Open("~/eos_base/BasicPlots/GraphPPMC0NPU_v18c_v2.root","read");
    else
-      file_ppMC  = TFile::Open("~/eos_base/BasicPlots/GraphMCSignalGen0Sub_v18_mZ.root","read");
+      file_ppMC  = TFile::Open("~/eos_base/BasicPlots/GraphMCSignalGen0Sub_v18_mZ_v2.root","read");
 
    if(selfmix)
       file_ppbkgMC  = TFile::Open("~/eos_base/BasicPlots/GraphPPMCSigBkg_v17d_PFmuon_143_10HF.root","read");
