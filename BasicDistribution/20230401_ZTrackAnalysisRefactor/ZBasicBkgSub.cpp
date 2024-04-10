@@ -294,7 +294,7 @@ void ZBasicBkgSub_single(int binnum=40,float ptL=20,float ptH=2000,float centL=0
    if(selfmix)
       pptext = "#Sigma pp (raw-bkg)";
    else
-      pptext = "#Sigma pp";
+      pptext = "#Sigma sig pythia gen";
 
    TLatex *ptInt2 = new TLatex(0.15,0.40,Form("#Sigma (raw-bkg) = %.1f,  %s = %.1f",hMC_sb_phi->Integral()*bin_width*rebinnum,pptext.c_str(),hpp_phi->Integral()*bin_width*rebinnum));
    ptInt2->SetTextFont(42);
