@@ -45,6 +45,20 @@ TestRunCent10: Execute
 		--Background $(PbPbBackgroundMC)/HiForestMiniAOD_10.root,$(PbPbBackgroundMC)/HiForestMiniAOD_14.root,$(PbPbBackgroundMC)/HiForestMiniAOD_15.root,$(PbPbBackgroundMC)/HiForestMiniAOD_16.root \
 		--ReuseBackground true --WithProgressBar true
 
+TestRunNoHF: Execute
+	./Execute --Input $(CERNBOX)/OutputMC_v18c_PFmuon/Result10.root \
+		--Output TestNoHF.root --Fraction 1 \
+		`./Expand Setting.dh PbPbBackgroundMCNoHF Nominal` \
+		--Background $(PbPbBackgroundMC)/HiForestMiniAOD_10.root,$(PbPbBackgroundMC)/HiForestMiniAOD_14.root,$(PbPbBackgroundMC)/HiForestMiniAOD_15.root,$(PbPbBackgroundMC)/HiForestMiniAOD_16.root \
+		--ReuseBackground true --WithProgressBar true
+
+TestRunNoVZ: Execute
+	./Execute --Input $(CERNBOX)/OutputMC_v18c_PFmuon/Result10.root \
+		--Output TestNoVZ.root --Fraction 1 \
+		`./Expand Setting.dh PbPbBackgroundMCNoVZ Nominal` \
+		--Background $(PbPbBackgroundMC)/HiForestMiniAOD_10.root,$(PbPbBackgroundMC)/HiForestMiniAOD_14.root,$(PbPbBackgroundMC)/HiForestMiniAOD_15.root,$(PbPbBackgroundMC)/HiForestMiniAOD_16.root \
+		--ReuseBackground true --WithProgressBar true
+
 TestRunMCGenBackground: Execute
 	./Execute --Input ../20230310_ZHadronSkims/TestGenMC_v18c.root \
 		--Output TestMCGenBkg_v18b.root --Fraction 1 \
@@ -94,6 +108,16 @@ PrepareToRunRandomMCBackgroundCent10:
 	bash PrepareInputRandomBackground.sh \
 		$(CERNBOX)/OutputMC_v18c_PFmuon/ LogMCBackground_v18c_cent10_ov10/ $(EOSBase)/OutputMCBackground_v18c_cent10_ov10/ $(PbPbBackgroundMC)/ 37 \
 		`./Expand Setting.dh PbPbBackgroundMCCent10 Nominal`
+
+PrepareToRunRandomMCBackgroundNoHF:
+	bash PrepareInputRandomBackground.sh \
+		$(CERNBOX)/OutputMC_v18c_PFmuon/ LogMCBackground_v18c_NoHF/ $(EOSBase)/OutputMCBackground_v18c_NoHF/ $(PbPbBackgroundMC)/ 37 \
+		`./Expand Setting.dh PbPbBackgroundMCNoHF Nominal`
+
+PrepareToRunRandomMCBackgroundNoVZ:
+	bash PrepareInputRandomBackground.sh \
+		$(CERNBOX)/OutputMC_v18c_PFmuon/ LogMCBackground_v18c_NoVZ/ $(EOSBase)/OutputMCBackground_v18c_NoVZ/ $(PbPbBackgroundMC)/ 37 \
+		`./Expand Setting.dh PbPbBackgroundMCNoVZ Nominal`
 
 #PrepareToRunRandomPJMCBackground:
 #	bash PrepareInputRandomBackground.sh \
