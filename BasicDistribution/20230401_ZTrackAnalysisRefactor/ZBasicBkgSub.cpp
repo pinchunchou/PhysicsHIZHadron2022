@@ -74,7 +74,7 @@ TFile *file_ppMC;
 TFile *file_ppbkgMC;
 
 
-const char *typeofdata = "v18_PFmuon/20240416/Reco_v18c_NoHF";
+const char *typeofdata = "v18_PFmuon/20240416/Reco_v18c_NoVZ";
 //const char *typeofdata = "testBkgSub/20240204/v17d_No1Sub";
 //const char *typeofdata1 = "no1sub";
 //const char *typeofdata1 = "37_ov10_RECO_PP";
@@ -470,10 +470,14 @@ void ZBasicBkgSub_loop(int binnum=40,float ptL=20,float ptH=2000,float centL=0,f
       gentxt="Gen";
 
    //string HistName[] = {"HZEta", "HZPhi", "HTrackEta", "HTrackPhi", "HEta", "HPhi"};
-   string HistName[] = {Form("H%sZEta",gentxt.c_str()), Form("H%sZPhi",gentxt.c_str()), Form("H%sTrackEta",gentxt.c_str()), Form("H%sTrackPhi",gentxt.c_str()), Form("H%sEta",gentxt.c_str()), Form("H%sPhi",gentxt.c_str())};
-
-   string XTitleName[] = {"#eta_{Z}", "#phi_{Z}", "#eta_{track}", "#phi_{track}", "#Delta#eta_{Z,track}", "#Delta#phi_{Z,track}"};
-   string YTitleName[] = {"dN/d#eta", "dN/d#phi", "dN/d#eta", "dN/d#phi", "dN/d#Delta#eta", "dN/d#Delta#phi"};
+   //string HistName[] = {Form("H%sZEta",gentxt.c_str()), Form("H%sZPhi",gentxt.c_str()), Form("H%sTrackEta",gentxt.c_str()), Form("H%sTrackPhi",gentxt.c_str()), Form("H%sEta",gentxt.c_str()), Form("H%sPhi",gentxt.c_str())};
+   //string XTitleName[] = {"#eta_{Z}", "#phi_{Z}", "#eta_{track}", "#phi_{track}", "#Delta#eta_{Z,track}", "#Delta#phi_{Z,track}"};
+   //string YTitleName[] = {"dN/d#eta", "dN/d#phi", "dN/d#eta", "dN/d#phi", "dN/d#Delta#eta", "dN/d#Delta#phi"};
+   
+   string HistName[] = {Form("H%sPhi",gentxt.c_str())};
+   string XTitleName[] = {"#Delta#phi_{Z,track}"};
+   string YTitleName[] = {"dN/d#Delta#phi"};
+   
    int rebin_num[] = {2, 2, 2, 2, 1, 1};
 
    int i_draw = sizeof(HistName)/sizeof(HistName[0]);
@@ -497,9 +501,9 @@ int main(int argc, char *argv[]){
       file_bkgMC = TFile::Open("~/eos_base/BasicPlots/GraphMCSigBkg_v17d_PFmuon_350_10HF_ov20.root","read");
    else{
       if(isgen)
-         file_bkgMC = TFile::Open("~/eos_base/BasicPlots/GraphMCBackground_v18c_NoHF.root","read");
+         file_bkgMC = TFile::Open("~/eos_base/BasicPlots/GraphMCBackground_v18c_NoVZ.root","read");
       else
-         file_bkgMC = TFile::Open("~/eos_base/BasicPlots/GraphMCBackground_v18c_NoHF.root","read");
+         file_bkgMC = TFile::Open("~/eos_base/BasicPlots/GraphMCBackground_v18c_NoVZ.root","read");
    }
 
    if(isgen)
