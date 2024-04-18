@@ -59,7 +59,7 @@ int main(int argc, char *argv[])
    bool NoOneSub         = CL.GetBool("NoOneSub", false);
    bool DoGenCorrelation = CL.GetBool("DoGenCorrelation", false);
    bool DoSingleFile     = CL.GetBool("DoSingleFile", false);
-
+   bool DoNCollWeight    = CL.GetBool("DoNCollWeight", true);
    bool DoZWeight        = CL.GetBool("DoZWeight", true);
    bool DoVZWeight       = CL.GetBool("DoVZWeight", true);
    bool DoTrackWeight    = CL.GetBool("DoTrackWeight", true);
@@ -319,8 +319,11 @@ int main(int argc, char *argv[])
    Tree->SetBranchAddress("trackDeta",              &TrackDEta);
    Tree->SetBranchAddress("trackDphi",              &TrackDPhi);
 
-   Tree->SetBranchAddress("NCollWeight",            &NCollWeight);
-
+   if(DoNCollWeight)
+      Tree->SetBranchAddress("NCollWeight",            &NCollWeight);
+   else
+      NCollWeight=1;
+   
    if(DoZWeight)
       Tree->SetBranchAddress("ZWeight",                &ZWeight);
    else
