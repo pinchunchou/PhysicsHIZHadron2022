@@ -38,13 +38,6 @@ TestRunGenMatch: Execute
 		--Background $(PbPbBackgroundMC)/HiForestMiniAOD_10.root,$(PbPbBackgroundMC)/HiForestMiniAOD_14.root,$(PbPbBackgroundMC)/HiForestMiniAOD_15.root,$(PbPbBackgroundMC)/HiForestMiniAOD_16.root \
 		--ReuseBackground true --WithProgressBar true 
 
-TestRunCent10: Execute
-	./Execute --Input $(CERNBOX)/OutputMC_v18_PFmuon_mZ/Result11.root \
-		--Output TestCent10.root --Fraction 1 \
-		`./Expand Setting.dh PbPbBackgroundMCCent10 Nominal` \
-		--Background $(PbPbBackgroundMC)/HiForestMiniAOD_10.root,$(PbPbBackgroundMC)/HiForestMiniAOD_14.root,$(PbPbBackgroundMC)/HiForestMiniAOD_15.root,$(PbPbBackgroundMC)/HiForestMiniAOD_16.root \
-		--ReuseBackground true --WithProgressBar true
-
 TestRunNoHF: Execute
 	./Execute --Input $(CERNBOX)/OutputMC_v18c_PFmuon/Result10.root \
 		--Output TestNoHF.root --Fraction 1 \
@@ -56,6 +49,13 @@ TestRunNoVZ: Execute
 	./Execute --Input $(CERNBOX)/OutputMC_v18c_PFmuon/Result10.root \
 		--Output TestNoVZ.root --Fraction 1 \
 		`./Expand Setting.dh PbPbBackgroundMCNoVZ Nominal` \
+		--Background $(PbPbBackgroundMC)/HiForestMiniAOD_10.root,$(PbPbBackgroundMC)/HiForestMiniAOD_14.root,$(PbPbBackgroundMC)/HiForestMiniAOD_15.root,$(PbPbBackgroundMC)/HiForestMiniAOD_16.root \
+		--ReuseBackground true --WithProgressBar true
+
+TestRunNoHFVZ: Execute
+	./Execute --Input $(CERNBOX)/OutputMC_v18c_PFmuon/Result10.root \
+		--Output TestNoHFVZ.root --Fraction 1 \
+		`./Expand Setting.dh PbPbBackgroundMCNoHFVZ Nominal` \
 		--Background $(PbPbBackgroundMC)/HiForestMiniAOD_10.root,$(PbPbBackgroundMC)/HiForestMiniAOD_14.root,$(PbPbBackgroundMC)/HiForestMiniAOD_15.root,$(PbPbBackgroundMC)/HiForestMiniAOD_16.root \
 		--ReuseBackground true --WithProgressBar true
 
@@ -104,20 +104,25 @@ PrepareToRunRandomMCBackgroundGenMatch:
 		$(CERNBOX)/OutputMC_v18c_PFmuon/ LogMCBackground_v18c_GenMatch/ $(CERNBOX)/OutputMCBackground_v18c_GenMatch/ $(PbPbBackgroundMC)/ 37 \
 		`./Expand Setting.dh PbPbBackgroundMCGenMatch Nominal`
 
-PrepareToRunRandomMCBackgroundCent10:
-	bash PrepareInputRandomBackground.sh \
-		$(CERNBOX)/OutputMC_v18c_PFmuon/ LogMCBackground_v18c_cent10_ov10/ $(EOSBase)/OutputMCBackground_v18c_cent10_ov10/ $(PbPbBackgroundMC)/ 37 \
-		`./Expand Setting.dh PbPbBackgroundMCCent10 Nominal`
+#PrepareToRunRandomMCBackgroundCent10:
+#	bash PrepareInputRandomBackground.sh \
+#		$(CERNBOX)/OutputMC_v18c_PFmuon/ LogMCBackground_v18c_cent10_ov10/ $(EOSBase)/OutputMCBackground_v18c_cent10_ov10/ $(PbPbBackgroundMC)/ 37 \
+#		`./Expand Setting.dh PbPbBackgroundMCCent10 Nominal`
 
 PrepareToRunRandomMCBackgroundNoHF:
 	bash PrepareInputRandomBackground.sh \
-		$(CERNBOX)/OutputMC_v18c_PFmuon/ LogMCBackground_v18c_NoHF/ $(EOSBase)/OutputMCBackground_v18c_NoHF/ $(PbPbBackgroundMC)/ 37 \
+		$(CERNBOX)/OutputMC_v18c_PFmuon/ LogMCBackground_v18c_NoHF_cent100/ $(EOSBase)/OutputMCBackground_v18c_NoHF_cent100/ $(PbPbBackgroundMC)/ 37 \
 		`./Expand Setting.dh PbPbBackgroundMCNoHF Nominal`
 
 PrepareToRunRandomMCBackgroundNoVZ:
 	bash PrepareInputRandomBackground.sh \
 		$(CERNBOX)/OutputMC_v18c_PFmuon/ LogMCBackground_v18c_NoVZ/ $(EOSBase)/OutputMCBackground_v18c_NoVZ/ $(PbPbBackgroundMC)/ 37 \
 		`./Expand Setting.dh PbPbBackgroundMCNoVZ Nominal`
+
+PrepareToRunRandomMCBackgroundNoHFVZ:
+	bash PrepareInputRandomBackground.sh \
+		$(CERNBOX)/OutputMC_v18c_PFmuon/ LogMCBackground_v18c_NoHFVZ/ $(EOSBase)/OutputMCBackground_v18c_NoHFVZ/ $(PbPbBackgroundMC)/ 37 \
+		`./Expand Setting.dh PbPbBackgroundMCNoHFVZ Nominal`
 
 #PrepareToRunRandomPJMCBackground:
 #	bash PrepareInputRandomBackground.sh \
