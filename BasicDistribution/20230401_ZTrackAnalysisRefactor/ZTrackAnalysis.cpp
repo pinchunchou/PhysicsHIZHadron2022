@@ -135,6 +135,8 @@ int main(int argc, char *argv[])
    vector<TH1D *>           HGenZEta;
    vector<TH1D *>           HGenZPhi;
    vector<TH2D *>           HGenZEtaPhi;
+   vector<TH1D *>           HGenZPT;
+   vector<TH1D *>           HGenZY;
    vector<TH1D *>           HZMass;
    vector<TH1D *>           HTrackPT;
    vector<TH1D *>           HTrackEta;
@@ -143,6 +145,7 @@ int main(int argc, char *argv[])
    vector<TH1D *>           HGenTrackEta;
    vector<TH1D *>           HGenTrackPhi;
    vector<TH2D *>           HGenTrackEtaPhi;
+   vector<TH1D *>           HGenTrackPT;
    vector<TH1D *>           HTrackMuonDEta;
    vector<TH1D *>           HTrackMuonDPhi;
    vector<TH2D *>           HTrackMuonDEtaDPhi;
@@ -202,6 +205,8 @@ int main(int argc, char *argv[])
       HZEtaPhi.push_back(new TH2D("HZEtaPhi", "Z candidate eta phi", 100, -3.2, 3.2, 100, -M_PI, M_PI));
       HGenZEta.push_back(new TH1D("HGenZEta", "GEN Z eta", 100, -3.2, 3.2));
       HGenZPhi.push_back(new TH1D("HGenZPhi", "GEN Z phi", 100, -M_PI, M_PI));
+      HGenZPT.push_back(new TH1D("HGenZPT", "GEN Z PT", 100, 0, 200));
+      HGenZY.push_back(new TH1D("HGenZY", "GEN Z y", 100, -3.2, 3.2));
       HGenZEtaPhi.push_back(new TH2D("HGenZEtaPhi", "GEN Z eta phi", 100, -3.2, 3.2, 100, -M_PI, M_PI));
       HZMass.push_back(new TH1D("HZMass", "Z candidate mass", 100, 0, 150));
       HTrackPT.push_back(new TH1D("HTrackPT", "Track PT", 100, 0, 200));
@@ -210,6 +215,7 @@ int main(int argc, char *argv[])
       HTrackEtaPhi.push_back(new TH2D("HTrackEtaPhi", "Track eta phi", 100, -3.2, 3.2, 100, -M_PI, M_PI));
       HGenTrackEta.push_back(new TH1D("HGenTrackEta", "GEN Track eta", 100, -3.2, 3.2));
       HGenTrackPhi.push_back(new TH1D("HGenTrackPhi", "GEN Track phi", 100, -M_PI, M_PI));
+      HGenTrackPT.push_back(new TH1D("HGenTrackPT", "GEN Track PT", 100, 0, 200));
       HGenTrackEtaPhi.push_back(new TH2D("HGenTrackEtaPhi", "GEN Track eta phi", 100, -3.2, 3.2, 100, -M_PI, M_PI));
       
       HTrackMuonDEta.push_back(new TH1D("HTrackMuonDEta", "track-muon delta eta", 100, -3.2, 3.2));
@@ -323,7 +329,7 @@ int main(int argc, char *argv[])
       Tree->SetBranchAddress("NCollWeight",            &NCollWeight);
    else
       NCollWeight=1;
-   
+
    if(DoZWeight)
       Tree->SetBranchAddress("ZWeight",                &ZWeight);
    else
@@ -526,6 +532,7 @@ int main(int argc, char *argv[])
                   HGenTrackEta[iC]->Fill(TrackDEta->at(iT) + genZEta->at(0), weight);
                   HGenTrackPhi[iC]->Fill(PhiRangeSymmetric(TrackDPhi->at(iT) + genZPhi->at(0)), weight);
                   HGenTrackEtaPhi[iC]->Fill(TrackDEta->at(iT) + genZEta->at(0), PhiRangeSymmetric(TrackDPhi->at(iT) + genZPhi->at(0)), weight);
+                  HGenTrackPT[iC]->Fill(genTrackPT->at(iT), weight);
                }
 
                HEta[iC]->Fill(TrackDEta->at(iT), weight);
@@ -609,7 +616,8 @@ int main(int argc, char *argv[])
                HGenTrackEta[iC]->Fill(genTrackDEta->at(iT) + genZEta->at(0), weight);
                HGenTrackPhi[iC]->Fill(PhiRangeSymmetric(genTrackDPhi->at(iT) + genZPhi->at(0)), weight);
                HGenTrackEtaPhi[iC]->Fill(genTrackDEta->at(iT) + genZEta->at(0), PhiRangeSymmetric(genTrackDPhi->at(iT) + genZPhi->at(0)), weight);
-               
+               HGenTrackPT[iC]->Fill(genTrackPT->at(iT), weight);
+
                HGenEta[iC]->Fill(genTrackDEta->at(iT), weight);
                HGenPhi[iC]->Fill(PhiRangeCorrelation(+genTrackDPhi->at(iT)), 0.5*weight);
                HGenPhi[iC]->Fill(PhiRangeCorrelation(-genTrackDPhi->at(iT)), 0.5*weight);
@@ -627,6 +635,8 @@ int main(int argc, char *argv[])
          double zE = sqrt(zP*zP+ZMass_0*ZMass_0);
          double zY = 0.5*log((zE+zPz)/(zE-zPz));
          //double TrackDY = TrackEta - zY;
+
+         double GenZP, GenZPz, GenZE, GenZY;
 
         TotalZEventCount[iC] = TotalZEventCount[iC] + NCollWeight*ZWeight*VZWeight;
         HTotalZEventCount[iC]->Fill(0., NCollWeight*ZWeight*VZWeight);
@@ -649,6 +659,14 @@ int main(int argc, char *argv[])
                HGenZEta[iC]->Fill(genZEta->at(0), NCollWeight*ZWeight*VZWeight);
                HGenZPhi[iC]->Fill(genZPhi->at(0), NCollWeight*ZWeight*VZWeight);
                HGenZEtaPhi[iC]->Fill(genZEta->at(0), genZPhi->at(0), NCollWeight*ZWeight*VZWeight);
+               HGenZPT[iC]->Fill(genZPt->at(0), NCollWeight*ZWeight*VZWeight);
+
+               GenZP = genZPt->at(0) * cosh(genZEta->at(0));
+               GenZPz = genZPt->at(0) * sinh(genZEta->at(0));
+               GenZE = sqrt(GenZP*GenZP+genZMass->at(0)*genZMass->at(0));
+               GenZY = 0.5*log((GenZE+GenZPz)/(GenZE-GenZPz));
+               HGenZY[iC]->Fill(GenZY, NCollWeight*ZWeight*VZWeight);
+
             }
             
             if(fabs(maxDEta + ZEta_0)<M_PI/2)
@@ -669,7 +687,14 @@ int main(int argc, char *argv[])
             HGenEventCount[iC]->Fill(0., NCollWeight);
             HGenZEta[iC]->Fill(genZEta->at(0), NCollWeight);
             HGenZPhi[iC]->Fill(genZPhi->at(0), NCollWeight);
-            HGenZEtaPhi[iC]->Fill(genZEta->at(0), genZPhi->at(0), NCollWeight);        
+            HGenZEtaPhi[iC]->Fill(genZEta->at(0), genZPhi->at(0), NCollWeight);
+            HGenZPT[iC]->Fill(genZPt->at(0), NCollWeight);
+
+            GenZP = genZPt->at(0) * cosh(genZEta->at(0));
+            GenZPz = genZPt->at(0) * sinh(genZEta->at(0));
+            GenZE = sqrt(GenZP*GenZP+genZMass->at(0)*genZMass->at(0));
+            GenZY = 0.5*log((GenZE+GenZPz)/(GenZE-GenZPz));
+            HGenZY[iC]->Fill(GenZY, NCollWeight);
          }
       }
    }
@@ -700,6 +725,8 @@ int main(int argc, char *argv[])
       HGenZEta[iC]->Write();
       HGenZPhi[iC]->Write();
       HGenZEtaPhi[iC]->Write();
+      HGenZPT[iC]->Write();
+      HGenZY[iC]->Write();
       HZMass[iC]->Write();
       HTrackPT[iC]->Write();
       HTrackEta[iC]->Write();
@@ -708,6 +735,7 @@ int main(int argc, char *argv[])
       HGenTrackEta[iC]->Write();
       HGenTrackPhi[iC]->Write();
       HGenTrackEtaPhi[iC]->Write();
+      HGenTrackPT[iC]->Write();
       HGenEta[iC]->Write();
       HGenPhi[iC]->Write();
       HGenEtaPhi[iC]->Write();
