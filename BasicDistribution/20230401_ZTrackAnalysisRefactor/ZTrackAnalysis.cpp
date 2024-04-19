@@ -72,6 +72,10 @@ int main(int argc, char *argv[])
    C.push_back(Configuration(40, 30,  200,  0, 10, 1, 2));
    C.push_back(Configuration(40, 40,   60,  0, 10, 1, 2));
 
+   C.push_back(Configuration(40, 40,  200,  0, 10, 1, 1000));
+   C.push_back(Configuration(40, 30,  200,  0, 10, 1, 1000));
+   C.push_back(Configuration(40, 40,   60,  0, 10, 1, 1000));
+
    C.push_back(Configuration(40, 40,  200,  0,100, 1, 2));
    C.push_back(Configuration(40, 30,  200,  0,100, 1, 2));
    C.push_back(Configuration(40, 40,   60,  0,100, 1, 2));
@@ -198,24 +202,24 @@ int main(int argc, char *argv[])
       GenEventCount.push_back(0);
       HGenEventCount.push_back(new TH1D("HGenEventCount", "", 1, 0, 1));
       
-      HZPT.push_back(new TH1D("HZPT", "Z candidate PT", 100, 0, 200));
+      HZPT.push_back(new TH1D("HZPT", "Z candidate PT", 1000, 0, 200));
       HZY.push_back(new TH1D("HZY", "Z candidate y", 100, -3.2, 3.2));
       HZEta.push_back(new TH1D("HZEta", "Z candidate eta", 100, -3.2, 3.2));
       HZPhi.push_back(new TH1D("HZPhi", "Z candidate phi", 100, -M_PI, M_PI));
       HZEtaPhi.push_back(new TH2D("HZEtaPhi", "Z candidate eta phi", 100, -3.2, 3.2, 100, -M_PI, M_PI));
       HGenZEta.push_back(new TH1D("HGenZEta", "GEN Z eta", 100, -3.2, 3.2));
       HGenZPhi.push_back(new TH1D("HGenZPhi", "GEN Z phi", 100, -M_PI, M_PI));
-      HGenZPT.push_back(new TH1D("HGenZPT", "GEN Z PT", 100, 0, 200));
+      HGenZPT.push_back(new TH1D("HGenZPT", "GEN Z PT", 1000, 0, 200));
       HGenZY.push_back(new TH1D("HGenZY", "GEN Z y", 100, -3.2, 3.2));
       HGenZEtaPhi.push_back(new TH2D("HGenZEtaPhi", "GEN Z eta phi", 100, -3.2, 3.2, 100, -M_PI, M_PI));
       HZMass.push_back(new TH1D("HZMass", "Z candidate mass", 100, 0, 150));
-      HTrackPT.push_back(new TH1D("HTrackPT", "Track PT", 100, 0, 200));
+      HTrackPT.push_back(new TH1D("HTrackPT", "Track PT", 1000, 0, 200));
       HTrackEta.push_back(new TH1D("HTrackEta", "Track eta", 100, -3.2, 3.2));
       HTrackPhi.push_back(new TH1D("HTrackPhi", "Track phi", 100, -M_PI, M_PI));
       HTrackEtaPhi.push_back(new TH2D("HTrackEtaPhi", "Track eta phi", 100, -3.2, 3.2, 100, -M_PI, M_PI));
       HGenTrackEta.push_back(new TH1D("HGenTrackEta", "GEN Track eta", 100, -3.2, 3.2));
       HGenTrackPhi.push_back(new TH1D("HGenTrackPhi", "GEN Track phi", 100, -M_PI, M_PI));
-      HGenTrackPT.push_back(new TH1D("HGenTrackPT", "GEN Track PT", 100, 0, 200));
+      HGenTrackPT.push_back(new TH1D("HGenTrackPT", "GEN Track PT", 1000, 0, 200));
       HGenTrackEtaPhi.push_back(new TH2D("HGenTrackEtaPhi", "GEN Track eta phi", 100, -3.2, 3.2, 100, -M_PI, M_PI));
       
       HTrackMuonDEta.push_back(new TH1D("HTrackMuonDEta", "track-muon delta eta", 100, -3.2, 3.2));
