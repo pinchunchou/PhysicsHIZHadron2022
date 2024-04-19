@@ -74,7 +74,7 @@ TFile *file_ppMC;
 TFile *file_ppbkgMC;
 
 
-const char *typeofdata = "v18_PFmuon/20240417/Reco_v18c_NoVZ";
+const char *typeofdata = "v18_PFmuon/20240419/Reco_v18c_NoHFVZ";
 //const char *typeofdata = "testBkgSub/20240204/v17d_No1Sub";
 //const char *typeofdata1 = "no1sub";
 //const char *typeofdata1 = "37_ov10_RECO_PP";
@@ -136,9 +136,9 @@ void ZBasicBkgSub_single(int binnum=40,float ptL=20,float ptH=2000,float centL=0
    std::replace(FolderName.begin(), FolderName.end(), '.', 'p');
 
    std::string HistNameGen = HistName;
-   //if(isgen==false)
-   //   HistNameGen.replace(HistNameGen.find('H'), 1, "HGen");
-   //   //std::replace(HistNameGen.begin(), HistNameGen.end(), 'H', 'HGen');
+   if(isgen==false)
+      HistNameGen.replace(HistNameGen.find('H'), 1, "HGen");
+      //std::replace(HistNameGen.begin(), HistNameGen.end(), 'H', 'HGen');
 
    cout<<"HistNameGen = "<<HistNameGen<<endl;
    TH1D* hMC_phi = (TH1D*) file_sigMC->Get(Form("%s/%s", FolderName.c_str(), HistName.c_str()));
@@ -345,7 +345,7 @@ void ZBasicBkgSub_single(int binnum=40,float ptL=20,float ptH=2000,float centL=0
    if(selfmix)
       leg1.AddEntry(hpp_phi ,Form("pp raw-bkg%s",genlegtxt.c_str()),"l");
    else
-      leg1.AddEntry(hpp_phi ,"sig GEN (pythia)","lep");
+      leg1.AddEntry(hpp_phi ,"sig GEN (sube=0)","lep");
       //leg1.AddEntry(hpp_phi ,Form("pp%s (NPU=0)",genlegtxt.c_str()),"l");
       //leg1.AddEntry(hpp_phi ,"sig GEN","l");
    leg1.SetFillColorAlpha(kWhite,0);
@@ -501,9 +501,9 @@ int main(int argc, char *argv[]){
       file_bkgMC = TFile::Open("~/eos_base/BasicPlots/GraphMCSigBkg_v17d_PFmuon_350_10HF_ov20.root","read");
    else{
       if(isgen)
-         file_bkgMC = TFile::Open("~/eos_base/BasicPlots/GraphMCBackground_v18c_NoVZ_v3.root","read");
+         file_bkgMC = TFile::Open("~/eos_base/BasicPlots/GraphMCBackground_v18c_NoHFVZ_v3.root","read");
       else
-         file_bkgMC = TFile::Open("~/eos_base/BasicPlots/GraphMCBackground_v18c_NoVZ_v3.root","read");
+         file_bkgMC = TFile::Open("~/eos_base/BasicPlots/GraphMCBackground_v18c_NoHFVZ_v3.root","read");
    }
 
    if(isgen)
@@ -523,9 +523,9 @@ int main(int argc, char *argv[]){
    //file_bkgMC = TFile::Open("~/eos_base/BasicPlots/GraphMCGenbkg_v17d_10HF_No1Sub.root","read");
 
    //ZBasicBkgSub_loop(40, 40, 200,  0, 10,  1, 1000);
-   ZBasicBkgSub_loop(40, 30, 200,  0, 10,  1, 2);
-   ZBasicBkgSub_loop(40, 40, 200,  0, 10,  1, 2);
-   ZBasicBkgSub_loop(40, 40, 60,  0, 10,  1, 2);
+   ZBasicBkgSub_loop(40, 30, 200,  0, 100,  1, 2);
+   ZBasicBkgSub_loop(40, 40, 200,  0, 100,  1, 2);
+   ZBasicBkgSub_loop(40, 40, 60,  0, 100,  1, 2);
    //ZBasicBkgSub_loop(40, 40, 200,  0, 10,  2, 4);
    //ZBasicBkgSub_loop(40, 40, 200,  0, 10,  4, 10);
 
