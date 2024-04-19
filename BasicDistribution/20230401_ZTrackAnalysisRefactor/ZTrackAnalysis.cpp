@@ -658,6 +658,7 @@ int main(int argc, char *argv[])
             HZEtaPhi[iC]->Fill(ZEta_0, ZPhi_0, NCollWeight*ZWeight*VZWeight);
 
             if(genZEta->size() > 0 && genTrackPT == nullptr){
+               std::cout<<"genTrackPT == nullptr"<<std::endl;
                GenEventCount[iC] = GenEventCount[iC] + NCollWeight*ZWeight*VZWeight;
                HGenEventCount[iC]->Fill(0., NCollWeight*ZWeight*VZWeight);
                HGenZEta[iC]->Fill(genZEta->at(0), NCollWeight*ZWeight*VZWeight);
@@ -687,6 +688,7 @@ int main(int argc, char *argv[])
          }
          if(GenSomethingPassed == true && genTrackPT != nullptr)
          {
+            std::cout<<"genTrackPT != nullptr"<<std::endl;
             GenEventCount[iC] = GenEventCount[iC] + NCollWeight;
             HGenEventCount[iC]->Fill(0., NCollWeight);
             HGenZEta[iC]->Fill(genZEta->at(0), NCollWeight);
