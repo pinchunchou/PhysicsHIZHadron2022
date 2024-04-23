@@ -1725,8 +1725,8 @@ bool PbPbTrackTreeMessenger::PassZHadron2022CutNoVZ(int index)
    double ECAL = -1, HCAL = -1;
    if(PFEcal != nullptr && PFEcal->size() > index)   ECAL = PFEcal->at(index);
    if(PFHcal != nullptr && PFHcal->size() > index)   HCAL = PFHcal->at(index);
-   // if(TrackPT->at(index) > 20 && ((ECAL + HCAL) / cosh(TrackEta->at(index)) < 0.5 * TrackPT->at(index)))
-   //    return false;
+   if(TrackPT->at(index) > 20 && ((ECAL + HCAL) / cosh(TrackEta->at(index)) < 0.5 * TrackPT->at(index)))
+       return false;
 
    if(fabs(TrackEta->at(index)) > 2.4)
       return false;
@@ -1767,8 +1767,8 @@ bool PbPbTrackTreeMessenger::PassZHadron2022CutLoose(int index)
    double ECAL = -1, HCAL = -1;
    if(PFEcal != nullptr && PFEcal->size() > index)   ECAL = PFEcal->at(index);
    if(PFHcal != nullptr && PFHcal->size() > index)   HCAL = PFHcal->at(index);
-   // if(TrackPT->at(index) > 20 && ((ECAL + HCAL) / cosh(TrackEta->at(index)) < 0.5 * TrackPT->at(index)))
-   //    return false;
+   if(TrackPT->at(index) > 20 && ((ECAL + HCAL) / cosh(TrackEta->at(index)) < 0.5 * TrackPT->at(index)))
+       return false;
 
    if(fabs(TrackEta->at(index)) > 2.4)
       return false;
@@ -1809,8 +1809,8 @@ bool PbPbTrackTreeMessenger::PassZHadron2022CutTight(int index)
    double ECAL = -1, HCAL = -1;
    if(PFEcal != nullptr && PFEcal->size() > index)   ECAL = PFEcal->at(index);
    if(PFHcal != nullptr && PFHcal->size() > index)   HCAL = PFHcal->at(index);
-   // if(TrackPT->at(index) > 20 && ((ECAL + HCAL) / cosh(TrackEta->at(index)) < 0.5 * TrackPT->at(index)))
-   //    return false;
+   if(TrackPT->at(index) > 20 && ((ECAL + HCAL) / cosh(TrackEta->at(index)) < 0.5 * TrackPT->at(index)))
+       return false;
 
    if(fabs(TrackEta->at(index)) > 2.4)
       return false;
