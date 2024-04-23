@@ -517,12 +517,12 @@ int main(int argc, char *argv[])
                   if(IsPP == true)
                      TrackCorrection = TrackEfficiencyPP->getCorrection(TrackPT, TrackEta);
                   else
-                     TrackCorrection = TrackEfficiencyPbPb->getCorrection(TrackPT, TrackEta, MZHadron.hiBin);
+                     TrackCorrection = TrackEfficiencyPbPb->getCorrection(TrackPT, TrackEta, MZHadron.hiBin + MCHiBinShift);
                }
                double TrackResidualCorrection = 1;
                if(DoTrackResidual == true && DoGenCorrelation == false)
                {
-                  TrackResidualCorrection = TrackResidual.GetCorrectionFactor(TrackPT, TrackEta, TrackPhi, MZHadron.hiBin);
+                  TrackResidualCorrection = TrackResidual.GetCorrectionFactor(TrackPT, TrackEta, TrackPhi, MZHadron.hiBin + MCHiBinShift);
                }
                MZHadron.trackWeight->push_back(TrackCorrection);
                MZHadron.trackResidualWeight->push_back(TrackResidualCorrection);
