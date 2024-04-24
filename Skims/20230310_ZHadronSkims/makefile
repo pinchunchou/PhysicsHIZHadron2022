@@ -108,7 +108,7 @@ PrepareToRun:
 PrepareToRunMC:
 	bash PrepareInput.sh \
 		$(PbPbSignalMC)/ \
-		5 LogMC_v18c_PFmuon/ $(CERNBOX)/OutputMC_v18c_PFmuon/ \
+		5 LogMC_v18d_PFmuon/ $(CERNBOX)/OutputMC_v18d_PFmuon/ \
 		--Fraction 1 `./Expand Setting.dh PbPbSignalMC Nominal`
 
 PrepareToRunLoose:
