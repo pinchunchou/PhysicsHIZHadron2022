@@ -142,8 +142,11 @@ void ZBasicBkgSub_single(int binnum=40,float ptL=20,float ptH=2000,float centL=0
 
    cout<<"HistNameGen = "<<HistNameGen<<endl;
    TH1D* hMC_phi = (TH1D*) file_sigMC->Get(Form("%s/%s", FolderName.c_str(), HistName.c_str()));
+   cout<<"a"<<endl;
    TH1D* hpp_phi = (TH1D*) file_ppMC->Get(Form("%s/%s", FolderName.c_str(), HistName.c_str()));//HistNameGen
+cout<<"b"<<endl;
    TH1D* hpp_bkg_phi = (TH1D*) file_ppbkgMC->Get(Form("%s/%s", FolderName.c_str(), HistName.c_str()));
+cout<<"c"<<endl;
 
    hMC_phi->SetName("hMC_phi");
    hpp_phi->SetName("hpp_phi");
