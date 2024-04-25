@@ -272,6 +272,7 @@ void ZBasicBkgSub_single(int binnum=40,float ptL=20,float ptH=2000,float centL=0
 
    double max1 = hMC_phi->GetMaximum();
    double max2 = hMC_bkg_phi->GetMaximum();
+   double max3 = hpp_phi->GetMaximum();
 
    hMC_phi->SetMarkerColor(kBlack);
    hMC_bkg_phi->SetMarkerColor(kBlue);
@@ -457,7 +458,7 @@ void ZBasicBkgSub_single(int binnum=40,float ptL=20,float ptH=2000,float centL=0
       Pad->SetLogy(0);
    }
    
-   double max3 = hpp_phi->GetMaximum();
+   
 
    hMC_phi->SetMaximum(1.2*max3);
    hMC_bkg_phi->SetMaximum(1.2*max3);
