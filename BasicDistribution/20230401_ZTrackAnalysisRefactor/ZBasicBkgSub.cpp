@@ -86,7 +86,7 @@ const char *typeofdata1 = "37_ov1_Reco";
 
 bool selfmix = false;
 bool isgen   = false;
-bool drawlog = false;
+bool drawlog = true;
 bool drawrat = true;
 
 void ZBasicBkgSub_single(int binnum=40,float ptL=20,float ptH=2000,float centL=0,float centH=90,float TptL=0,float TptH=10000, 
@@ -457,6 +457,15 @@ void ZBasicBkgSub_single(int binnum=40,float ptL=20,float ptH=2000,float centL=0
       Pad->SetLogy(0);
    }
    c->Clear();
+
+   double max3 = hpp_phi->GetMaximum();
+
+   hMC_phi->SetMaximum(1.2*max3);
+   hMC_bkg_phi->SetMaximum(1.2*max3);
+
+   c->SaveAs(Form("/eos/user/p/pchou/figs/track/%s/BasicBkgSub/%s/Ztrack_%s_com_%.0f_%.0f_%.0f_%.0f_%.0f_%.0f_pp.png",typeofdata,HistName.c_str(),typeofdata1,ptL,ptH,centL,centH,TptL,TptH)); 
+   
+
 
 }
 
