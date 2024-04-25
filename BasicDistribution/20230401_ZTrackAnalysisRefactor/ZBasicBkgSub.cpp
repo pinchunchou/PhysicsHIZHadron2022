@@ -533,7 +533,7 @@ int main(int argc, char *argv[]){
 
    //ZBasicBkgSub_loop(40, 40, 200,  0, 10,  1, 1000);
    //ZBasicBkgSub_loop(40, 30, 200,  0, 100,  1, 2);
-   ZBasicBkgSub_loop(40, 40, 200,  0, 100,  1, 2);
+   //ZBasicBkgSub_loop(40, 40, 200,  0, 100,  1, 2);
    ZBasicBkgSub_loop(40, 40, 200,  0, 10,  1, 2);
    //ZBasicBkgSub_loop(40, 40, 60,  0, 100,  1, 2);
    //ZBasicBkgSub_loop(40, 40, 200,  0, 10,  2, 4);
