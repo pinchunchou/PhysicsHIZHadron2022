@@ -87,7 +87,7 @@ const char *typeofdata1 = "37_ov1_Reco";
 bool selfmix = false;
 bool isgen   = false;
 bool drawlog = true;
-bool drawrat = true;
+bool drawrat = false;
 
 void ZBasicBkgSub_single(int binnum=40,float ptL=20,float ptH=2000,float centL=0,float centH=90,float TptL=0,float TptH=10000, 
    string HistName="HPhi", string XTitleName = "#Delta#phi_{Z,track}", string YTitleName = "dN/d#Delta#phi", int rebinnum=1)
