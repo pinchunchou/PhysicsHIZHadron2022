@@ -456,8 +456,7 @@ void ZBasicBkgSub_single(int binnum=40,float ptL=20,float ptH=2000,float centL=0
       c->SaveAs(Form("/eos/user/p/pchou/figs/track/%s/BasicBkgSub/%s/Ztrack_%s_comlog_%.0f_%.0f_%.0f_%.0f_%.0f_%.0f_log.png",typeofdata,HistName.c_str(),typeofdata1,ptL,ptH,centL,centH,TptL,TptH)); 
       Pad->SetLogy(0);
    }
-   c->Clear();
-
+   
    double max3 = hpp_phi->GetMaximum();
 
    hMC_phi->SetMaximum(1.2*max3);
@@ -465,7 +464,7 @@ void ZBasicBkgSub_single(int binnum=40,float ptL=20,float ptH=2000,float centL=0
 
    c->SaveAs(Form("/eos/user/p/pchou/figs/track/%s/BasicBkgSub/%s/Ztrack_%s_com_%.0f_%.0f_%.0f_%.0f_%.0f_%.0f_pp.png",typeofdata,HistName.c_str(),typeofdata1,ptL,ptH,centL,centH,TptL,TptH)); 
    
-
+   c->Clear(); 
 
 }
 
