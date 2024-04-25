@@ -142,7 +142,7 @@ void ZBasicBkgSub_single(int binnum=40,float ptL=20,float ptH=2000,float centL=0
 
    cout<<"HistNameGen = "<<HistNameGen<<endl;
    TH1D* hMC_phi = (TH1D*) file_sigMC->Get(Form("%s/%s", FolderName.c_str(), HistName.c_str()));
-   TH1D* hpp_phi = (TH1D*) file_ppMC->Get(Form("%s/%s", FolderName.c_str(), HistNameGen.c_str()));
+   TH1D* hpp_phi = (TH1D*) file_ppMC->Get(Form("%s/%s", FolderName.c_str(), HistName.c_str()));//HistNameGen
    TH1D* hpp_bkg_phi = (TH1D*) file_ppbkgMC->Get(Form("%s/%s", FolderName.c_str(), HistName.c_str()));
 
    hMC_phi->SetName("hMC_phi");
@@ -168,7 +168,7 @@ void ZBasicBkgSub_single(int binnum=40,float ptL=20,float ptH=2000,float centL=0
 
    TNamed *nM_tN  = (TNamed *) file_sigMC->Get(Form("%s/%s",FolderName.c_str(),NameEntryCount.c_str()));
    TNamed *nMb_tN = (TNamed *) file_bkgMC->Get(Form("%s/%s",FolderName.c_str(),NameEntryCount.c_str()));
-   TNamed *npM_tN = (TNamed *) file_ppMC->Get(Form("%s/GenEntryCount",FolderName.c_str()));
+   TNamed *npM_tN = (TNamed *) file_ppMC->Get(Form("%s/%s",FolderName.c_str()));//GenEntryCount
    TNamed *npb_tN = (TNamed *) file_ppbkgMC->Get(Form("%s/%s",FolderName.c_str(),NameEntryCount.c_str()));
 
    std::string sM_tN  = (std::string) nM_tN->GetTitle();
@@ -295,7 +295,7 @@ void ZBasicBkgSub_single(int binnum=40,float ptL=20,float ptH=2000,float centL=0
    if(selfmix)
       pptext = "#Sigma pp (raw-bkg)";
    else
-      pptext = "#Sigma sig pythia gen";
+      pptext = "#Sigma pp";//sig pythia gen
 
    TLatex *ptInt2 = new TLatex(0.15,0.40,Form("#Sigma (raw-bkg) = %.1f,  %s = %.1f",hMC_sb_phi->Integral()*bin_width*rebinnum,pptext.c_str(),hpp_phi->Integral()*bin_width*rebinnum));
    ptInt2->SetTextFont(42);
@@ -346,8 +346,8 @@ void ZBasicBkgSub_single(int binnum=40,float ptL=20,float ptH=2000,float centL=0
    if(selfmix)
       leg1.AddEntry(hpp_phi ,Form("pp raw-bkg%s",genlegtxt.c_str()),"l");
    else
-      leg1.AddEntry(hpp_phi ,"sig GEN (sube=0)","lep");
-      //leg1.AddEntry(hpp_phi ,Form("pp%s (NPU=0)",genlegtxt.c_str()),"l");
+      //leg1.AddEntry(hpp_phi ,"sig GEN (sube=0)","lep");
+      leg1.AddEntry(hpp_phi ,Form("pp%s (NPU=0)",genlegtxt.c_str()),"l");
       //leg1.AddEntry(hpp_phi ,"sig GEN","l");
    leg1.SetFillColorAlpha(kWhite,0);
    leg1.SetLineColor(kBlack);
@@ -394,9 +394,9 @@ void ZBasicBkgSub_single(int binnum=40,float ptL=20,float ptH=2000,float centL=0
    PbPb_to_pp->SetXTitle(XTitleName.c_str());
 
    if(selfmix)
-      PbPb_to_pp->SetYTitle("(PbPb r-b) - (pp r-b)");
+      PbPb_to_pp->SetYTitle("Difference");
    else
-      PbPb_to_pp->SetYTitle("(PbPb r-b) - PbPb pythia");
+      PbPb_to_pp->SetYTitle("Difference");
       //PbPb_to_pp->SetYTitle("(PbPb r-b) - pp");
    
 
@@ -422,9 +422,9 @@ void ZBasicBkgSub_single(int binnum=40,float ptL=20,float ptH=2000,float centL=0
       PbPb_rat_pp->SetXTitle(XTitleName.c_str());
    
       if(selfmix)
-         PbPb_rat_pp->SetYTitle("(PbPb r-b) / (pp r-b)");
+         PbPb_rat_pp->SetYTitle("Ratio");
       else
-         PbPb_rat_pp->SetYTitle("(PbPb r-b) / PbPb pythia");
+         PbPb_rat_pp->SetYTitle("Ratio");
          //PbPb_rat_pp->SetYTitle("(PbPb r-b) / pp");
       
    
@@ -516,9 +516,9 @@ int main(int argc, char *argv[]){
    }
 
    if(isgen)
-      file_ppMC  = TFile::Open("~/eos_base/BasicPlots/GraphMCSignalGen0Sub_v18c_v3.root","read");
+      file_ppMC  = TFile::Open("~/eos_base/BasicPlots/GraphPPMC0NPU_v18c_v3.root","read");
    else
-      file_ppMC  = TFile::Open("~/eos_base/BasicPlots/GraphMCSignalGen0Sub_v18c_v3.root","read");
+      file_ppMC  = TFile::Open("~/eos_base/BasicPlots/GraphPPMC0NPU_v18c_v3.root","read");
 
    if(selfmix)
       file_ppbkgMC  = TFile::Open("~/eos_base/BasicPlots/GraphPPMCSigBkg_v17d_PFmuon_143_10HF.root","read");
