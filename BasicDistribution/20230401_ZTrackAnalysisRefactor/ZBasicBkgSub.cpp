@@ -291,10 +291,10 @@ void ZBasicBkgSub_single(int binnum=40,float ptL=20,float ptH=2000,float centL=0
    double sig_int=0, bkg_int=0, sb_int=0, pp_int=0;
    double sig_err=0, bkg_err=0, sb_err=0, pp_err=0;
 
-   sig_int = hMC_phi->Integral(1,hMC_phi->GetNbinsX(),sig_err,"width");
-   bkg_int = hMC_bkg_phi->Integral(1,hMC_bkg_phi->GetNbinsX(),bkg_err,"width");
-   sb_int = hMC_sb_phi->Integral(1,hMC_sb_phi->GetNbinsX(),sb_err,"width");
-   pp_int = hpp_phi->Integral(1,hpp_phi->GetNbinsX(),pp_err,"width");
+   sig_int = hMC_phi->IntegralAndError(1,hMC_phi->GetNbinsX(),sig_err,"width");
+   bkg_int = hMC_bkg_phi->IntegralAndError(1,hMC_bkg_phi->GetNbinsX(),bkg_err,"width");
+   sb_int = hMC_sb_phi->IntegralAndError(1,hMC_sb_phi->GetNbinsX(),sb_err,"width");
+   pp_int = hpp_phi->IntegralAndError(1,hpp_phi->GetNbinsX(),pp_err,"width");
 
 
    TLatex *ptInt1 = new TLatex(0.15,0.46,Form("#Sigma raw = %.1f #pm %.1f,  #Sigma bkg = %.1f #pm %.1f",sig_int,sig_err,bkg_int,bkg_err));
