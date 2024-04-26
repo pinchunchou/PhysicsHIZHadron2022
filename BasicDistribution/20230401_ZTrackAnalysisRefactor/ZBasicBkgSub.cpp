@@ -288,7 +288,16 @@ void ZBasicBkgSub_single(int binnum=40,float ptL=20,float ptH=2000,float centL=0
    std::cout<< ", hMC_sb_phi->Integral() = "<< hMC_sb_phi->Integral();
    std::cout<< ", hpp_phi->Integral() = "<< hpp_phi->Integral()<<std::endl;
 
-   TLatex *ptInt1 = new TLatex(0.15,0.46,Form("#Sigma raw = %.1f,  #Sigma bkg = %.1f",hMC_phi->Integral()*bin_width*rebinnum,hMC_bkg_phi->Integral()*bin_width*rebinnum));
+   double sig_int=0, bkg_int=0, sb_int=0, pp_int=0;
+   double sig_err=0, bkg_err=0, sb_err=0, pp_err=0;
+
+   sig_int = hMC_phi->Integral(1,hMC_phi->GetNbinsX(),sig_err,"width");
+   bkg_int = hMC_bkg_phi->Integral(1,hMC_bkg_phi->GetNbinsX(),bkg_err,"width");
+   sb_int = hMC_sb_phi->Integral(1,hMC_sb_phi->GetNbinsX(),sb_err,"width");
+   pp_int = hpp_phi->Integral(1,hpp_phi->GetNbinsX(),pp_err,"width");
+
+
+   TLatex *ptInt1 = new TLatex(0.15,0.46,Form("#Sigma raw = %.1f #pm %.1f,  #Sigma bkg = %.1f #pm %.1f",sig_int,sig_err,bkg_int,bkg_err));
    ptInt1->SetTextFont(42);
    ptInt1->SetTextSize(0.03);
    ptInt1->SetNDC(kTRUE);
@@ -300,7 +309,7 @@ void ZBasicBkgSub_single(int binnum=40,float ptL=20,float ptH=2000,float centL=0
    else
       pptext = "#Sigma pp";//sig pythia gen
 
-   TLatex *ptInt2 = new TLatex(0.15,0.40,Form("#Sigma (raw-bkg) = %.1f,  %s = %.1f",hMC_sb_phi->Integral()*bin_width*rebinnum,pptext.c_str(),hpp_phi->Integral()*bin_width*rebinnum));
+   TLatex *ptInt2 = new TLatex(0.15,0.40,Form("#Sigma (raw-bkg) = %.1f #pm %.1f,  %s = %.1f #pm %.1f",sb_int,sb_err,pptext.c_str(),pp_int,pp_err));
    ptInt2->SetTextFont(42);
    ptInt2->SetTextSize(0.03);
    ptInt2->SetNDC(kTRUE);
