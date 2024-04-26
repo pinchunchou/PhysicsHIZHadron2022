@@ -297,7 +297,7 @@ void ZBasicBkgSub_single(int binnum=40,float ptL=20,float ptH=2000,float centL=0
    pp_int = hpp_phi->IntegralAndError(1,hpp_phi->GetNbinsX(),pp_err,"width");
 
 
-   TLatex *ptInt1 = new TLatex(0.15,0.46,Form("#Sigma raw = %.1f #pm %.1f,  #Sigma bkg = %.1f #pm %.1f",sig_int,sig_err,bkg_int,bkg_err));
+   TLatex *ptInt1 = new TLatex(0.15,0.56,Form("#Sigma raw = %.2f #pm %.2f,  #Sigma bkg = %.2f #pm %.2f",sig_int,sig_err,bkg_int,bkg_err));
    ptInt1->SetTextFont(42);
    ptInt1->SetTextSize(0.03);
    ptInt1->SetNDC(kTRUE);
@@ -309,7 +309,7 @@ void ZBasicBkgSub_single(int binnum=40,float ptL=20,float ptH=2000,float centL=0
    else
       pptext = "#Sigma pp";//sig pythia gen
 
-   TLatex *ptInt2 = new TLatex(0.15,0.40,Form("#Sigma (raw-bkg) = %.1f #pm %.1f,  %s = %.1f #pm %.1f",sb_int,sb_err,pptext.c_str(),pp_int,pp_err));
+   TLatex *ptInt2 = new TLatex(0.15,0.50,Form("#Sigma (raw-bkg) = %.2f #pm %.2f,  %s = %.2f #pm %.2f",sb_int,sb_err,pptext.c_str(),pp_int,pp_err));
    ptInt2->SetTextFont(42);
    ptInt2->SetTextSize(0.03);
    ptInt2->SetNDC(kTRUE);
