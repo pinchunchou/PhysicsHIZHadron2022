@@ -85,7 +85,7 @@ const char *typeofdata1 = "37_ov1_Reco";
 //const char *typeofdata1 = "350_ov20_pp10HF";
 
 bool selfmix = false;
-bool isgen   = false;
+bool isgen   = true;
 bool drawlog = true;
 bool drawrat = false;
 
