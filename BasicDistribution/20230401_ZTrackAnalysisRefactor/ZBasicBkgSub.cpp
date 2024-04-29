@@ -535,7 +535,7 @@ int main(int argc, char *argv[]){
    if(selfmix)
       file_ppbkgMC  = TFile::Open("~/eos_base/BasicPlots/GraphPPMCSigBkg_v17d_PFmuon_143_10HF.root","read");
    else
-      file_ppbkgMC  = TFile::Open("~/eos_base/BasicPlots/GraphPPMC_v18c_v3.root","read");
+      file_ppbkgMC  = TFile::Open("~/eos_base/BasicPlots/GraphPPMC_v18c_v2.root","read");
 
    //file_ppbkgMC  = TFile::Open("~/eos_base/BasicPlots/GraphPPMCSigBkg_v17d_Cent10_143.root","read");
 
@@ -549,7 +549,7 @@ int main(int argc, char *argv[]){
    ZBasicBkgSub_loop(40, 40, 200,  0, 10,  1, 2);
    ZBasicBkgSub_loop(40, 40, 200,  10, 30,  1, 2);
    ZBasicBkgSub_loop(40, 40, 200,  30, 50,  1, 2);
-   ZBasicBkgSub_loop(40, 40, 200,  50, 100,  1, 2);
+   ZBasicBkgSub_loop(40, 40, 200,  50, 90,  1, 2);
    //ZBasicBkgSub_loop(40, 40, 60,  0, 100,  1, 2);
    //ZBasicBkgSub_loop(40, 40, 200,  0, 10,  2, 4);
    //ZBasicBkgSub_loop(40, 40, 200,  0, 10,  4, 10);
