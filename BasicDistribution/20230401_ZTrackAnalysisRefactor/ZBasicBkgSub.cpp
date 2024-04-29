@@ -79,13 +79,13 @@ const char *typeofdata = "v18_PFmuon/20240429/Reco_v18d_v2";
 //const char *typeofdata1 = "no1sub";
 //const char *typeofdata1 = "37_ov10_RECO_PP";
 //const char *typeofdata1 = "SigNo0Sub";
-const char *typeofdata1 = "37_ov1_Gen";
+const char *typeofdata1 = "37_ov1_Reco";
 
 //const char *typeofdata = "v17d_PFMuon/20240204/SigBkg_ov20_10HF";
 //const char *typeofdata1 = "350_ov20_pp10HF";
 
 bool selfmix = false;
-bool isgen   = true;
+bool isgen   = false;
 bool drawlog = true;
 bool drawrat = false;
 
