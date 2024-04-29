@@ -84,13 +84,13 @@ int main(int argc, char *argv[])
    C.push_back(Configuration(40, 30,  200,  0,100, 1, 1000));
    C.push_back(Configuration(40, 40,   60,  0,100, 1, 1000));
 
-   C.push_back(Configuration(40, 40,   60,  10, 30, 1, 2));
-   C.push_back(Configuration(40, 40,   60,  30, 50, 1, 2));
-   C.push_back(Configuration(40, 40,   60,  50, 90, 1, 2));
+   C.push_back(Configuration(40, 40,  200,  10, 30, 1, 2));
+   C.push_back(Configuration(40, 40,  200,  30, 50, 1, 2));
+   C.push_back(Configuration(40, 40,  200,  50, 90, 1, 2));
 
-   C.push_back(Configuration(40, 40,   60,  10, 30, 1, 1000));
-   C.push_back(Configuration(40, 40,   60,  30, 50, 1, 1000));
-   C.push_back(Configuration(40, 40,   60,  50, 90, 1, 1000));
+   C.push_back(Configuration(40, 40,  200,  10, 30, 1, 1000));
+   C.push_back(Configuration(40, 40,  200,  30, 50, 1, 1000));
+   C.push_back(Configuration(40, 40,  200,  50, 90, 1, 1000));
    
    /*
    C.push_back(Configuration(40, 40,  200,  0, 30, 1, 1000));
