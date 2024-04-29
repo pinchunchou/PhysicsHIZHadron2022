@@ -114,6 +114,7 @@ int main(int argc, char *argv[])
    double MinTrackPT                  = CL.GetDouble("MinTrackPT", 1.00);
    double MinGenTrackPT               = CL.GetDouble("MinGenTrackPT", 0.40);
    double MinPFPT                     = CL.GetDouble("MinPFPT", 0);
+   bool FirstZ                        = CL.GetBool("FirstZ", false);
    bool IsData                        = CL.GetBool("IsData", false);
    bool IsPP                          = CL.GetBool("IsPP", false);
    bool DoGenCorrelation              = CL.GetBool("DoGenCorrelation", false);
@@ -292,6 +293,7 @@ int main(int argc, char *argv[])
    Key = "ToleranceFraction";       Value = InfoString(HFToleranceFraction);     InfoTree.Fill();
    Key = "HFCeiling";               Value = InfoString(HFCeiling);               InfoTree.Fill();
    Key = "Oversample";              Value = InfoString(Oversample);              InfoTree.Fill();
+   Key = "FirstZ";                  Value = InfoString(FirstZ);              InfoTree.Fill();
 
    TH2D H2D("H2D", "", 100, -6, 6, 100, -M_PI, M_PI);
 
@@ -526,8 +528,11 @@ int main(int argc, char *argv[])
             }
    
             // Loop over reco dimuon pairs
+            int N_pairs = MSignalMu.NDi ;
+            if(FirstZ) N_pairs = 1;
+
             //for(int ipair = 0; ipair < 1; ipair++)
-            for(int ipair = 0; ipair < MSignalMu.NDi; ipair++)
+            for(int ipair = 0; ipair < N_pairs; ipair++)
             {
                //if(MSignalMu.NDi < 1) continue;
                // We want opposite-charge muons with some basic kinematic cuts
