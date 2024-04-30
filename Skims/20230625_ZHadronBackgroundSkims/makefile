@@ -111,7 +111,7 @@ PrepareToRunRandomMCBackgroundGenMatch:
 
 PrepareToRunRandomMCBackgroundNoHF:
 	bash PrepareInputRandomBackground.sh \
-		$(CERNBOX)/OutputMC_v18c_PFmuon/ LogMCBackground_v18c_NoHF_cent100/ $(EOSBase)/OutputMCBackground_v18c_NoHF_cent100/ $(PbPbBackgroundMC)/ 37 \
+		$(CERNBOX)/OutputMC_v18d_PFmuon/ LogMCBackground_v18d_NoHF/ $(EOSBase)/OutputMCBackground_v18d_NoHF/ $(PbPbBackgroundMC)/ 37 \
 		`./Expand Setting.dh PbPbBackgroundMCNoHF Nominal`
 
 PrepareToRunRandomMCBackgroundNoVZ:
