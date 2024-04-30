@@ -524,7 +524,7 @@ int main(int argc, char *argv[]){
       if(isgen)
          file_bkgMC = TFile::Open("~/eos_base/BasicPlots/GraphMCBackground_v18d_ov1_v2.root","read");
       else
-         file_bkgMC = TFile::Open("~/eos_base/BasicPlots/GraphMCBackground_v18d_ov1_v.root","read");
+         file_bkgMC = TFile::Open("~/eos_base/BasicPlots/GraphMCBackground_v18d_ov1_v2.root","read");
    }
 
    if(isgen)
