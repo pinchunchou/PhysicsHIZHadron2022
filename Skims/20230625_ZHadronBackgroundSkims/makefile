@@ -116,12 +116,12 @@ PrepareToRunRandomMCBackgroundNoHF:
 
 PrepareToRunRandomMCBackgroundNoVZ:
 	bash PrepareInputRandomBackground.sh \
-		$(CERNBOX)/OutputMC_v18c_PFmuon/ LogMCBackground_v18c_NoVZ/ $(EOSBase)/OutputMCBackground_v18c_NoVZ/ $(PbPbBackgroundMC)/ 37 \
+		$(CERNBOX)/OutputMC_v18d_PFmuon/ LogMCBackground_v18d_NoVZ/ $(CERNBOX)/OutputMCBackground_v18d_NoVZ/ $(PbPbBackgroundMC)/ 37 \
 		`./Expand Setting.dh PbPbBackgroundMCNoVZ Nominal`
 
 PrepareToRunRandomMCBackgroundNoHFVZ:
 	bash PrepareInputRandomBackground.sh \
-		$(CERNBOX)/OutputMC_v18c_PFmuon/ LogMCBackground_v18c_NoHFVZ/ $(EOSBase)/OutputMCBackground_v18c_NoHFVZ/ $(PbPbBackgroundMC)/ 37 \
+		$(CERNBOX)/OutputMC_v18d_PFmuon/ LogMCBackground_v18d_NoHFVZ/ $(CERNBOX)/OutputMCBackground_v18d_NoHFVZ/ $(PbPbBackgroundMC)/ 37 \
 		`./Expand Setting.dh PbPbBackgroundMCNoHFVZ Nominal`
 
 #PrepareToRunRandomPJMCBackground:
