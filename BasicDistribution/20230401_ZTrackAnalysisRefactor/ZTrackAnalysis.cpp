@@ -50,6 +50,7 @@ int main(int argc, char *argv[])
    string InputBase      = CL.Get("InputBase", "/eos/cms/store/group/phys_heavyions/pchou/OutputMC_v16/");
    string OutputFileName = CL.Get("Output", "Plots.root");
    double Fraction       = CL.GetDouble("Fraction", 1.00);
+   double InitFrac       = CL.GetDouble("InitFrac", 0.00);
    bool IgnoreCentrality = CL.GetBool("IgnoreCentrality", false);
    bool OnlyZeroSub      = CL.GetBool("OnlyZeroSub", false);
    bool OnlyZeroNPU      = CL.GetBool("OnlyZeroNPU", false);
@@ -386,13 +387,15 @@ int main(int argc, char *argv[])
    ProgressBar Bar(cout, EntryCount);
    Bar.SetStyle(-1);
 
+   int StartEntry = Tree->GetEntries() * InitFrac;
+
    //std::cout<<"TrackPT, TrackEta, TrackPhi, NCollWeight, trackWeight, trackResidualWeight, ZWeight, zPt, ZEta, ZMass"<<std::endl;
             
-   for(int iE = 0; iE < EntryCount; iE++)
+   for(int iE = StartEntry; iE < EntryCount+StartEntry; iE++)
    {
-      if(EntryCount < 500 || (iE % (EntryCount / 300)) == 0)
+      if(EntryCount < 500 || ((iE-StartEntry) % (EntryCount / 300)) == 0)
       {
-         Bar.Update(iE);
+         Bar.Update(iE-StartEntry);
          Bar.Print();
       }
 
