@@ -53,11 +53,18 @@ TestRunNoVZ: Execute
 		--ReuseBackground true --WithProgressBar true
 
 TestRunNoHFVZ: Execute
-	./Execute --Input $(CERNBOX)/OutputMC_v18c_PFmuon/Result10.root \
-		--Output TestNoHFVZ.root --Fraction 1 \
+	./Execute --Input $(CERNBOX)/OutputMC_v18d_PFmuon/Result10.root \
+		--Output TestNoHFVZ_10_checksig.root --Fraction 1 \
 		`./Expand Setting.dh PbPbBackgroundMCNoHFVZ Nominal` \
 		--Background $(PbPbBackgroundMC)/HiForestMiniAOD_10.root,$(PbPbBackgroundMC)/HiForestMiniAOD_14.root,$(PbPbBackgroundMC)/HiForestMiniAOD_15.root,$(PbPbBackgroundMC)/HiForestMiniAOD_16.root \
 		--ReuseBackground true --WithProgressBar true
+
+TestRunNoHFVZFull: Execute
+	./Execute --Input $(CERNBOX)/OutputMC_v18d_PFmuon_merged.root \
+		--Output TestNoHFVZ_10_checkbkg.root --Fraction 1 \
+		`./Expand Setting.dh PbPbBackgroundMCNoHFVZ Nominal` \
+		--Background $(PbPbBackgroundMC)/HiForestMiniAOD_10.root \
+		--ReuseBackground false --WithProgressBar true
 
 TestRunMCGenBackground: Execute
 	./Execute --Input ../20230310_ZHadronSkims/TestGenMC_v18c.root \
