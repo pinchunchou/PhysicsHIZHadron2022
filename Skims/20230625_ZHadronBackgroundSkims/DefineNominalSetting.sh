@@ -94,9 +94,9 @@ SigBkgMCCent10="   --DoBackground true --CheckForBackgroundZ true --HFShift 0  -
 
 #BackgroundGenMCCent10="--DoBackground true --HFShift 816.7 --Tolerance 10000000 --ToleranceFraction 0.001 --Oversample 1 --HFCeiling 156000 --VZTolerance 10000000 --MaximumCentrality 10"
 #BackgroundMCCent10="--DoBackground true --HFShift 663 --Tolerance 10000000 --ToleranceFraction 0.001 --Oversample 1 --HFCeiling 134000 --VZTolerance 10000000 --MaximumCentrality 10"
-BackgroundMCNoHF="--DoBackground true --HFShift 663 --Tolerance 10000000 --ToleranceFraction 0.001 --Oversample 1 --HFCeiling 134000 --VZTolerance 2"
+BackgroundMCNoHF="--DoBackground true --HFShift 0 --Tolerance 10000000 --ToleranceFraction 0.001 --Oversample 1 --HFCeiling 134000 --VZTolerance 2"
 BackgroundMCNoVZ="--DoBackground true --HFShift 663 --Tolerance 671 --ToleranceFraction 0.001 --Oversample 1 --HFCeiling 134000 --VZTolerance 10000000"
-BackgroundMCNoHFVZ="--DoBackground true --HFShift 663 --Tolerance 10000000 --ToleranceFraction 0.001 --Oversample 1 --HFCeiling 134000 --VZTolerance 10000000"
+BackgroundMCNoHFVZ="--DoBackground true --HFShift 0 --Tolerance 10000000 --ToleranceFraction 0.001 --Oversample 1 --HFCeiling 134000 --VZTolerance 10000000"
 
 DHSet Setting.dh PbPbBackgroundMCGenMatch Nominal string "$Common $MC --IsPP false $MiniAODPF $PbPbJetMC  $PbPbRecoTrack  $BackgroundGenMC --ForceGenMatch true"
 DHSet Setting.dh PPSignalMCCent10    Nominal string "$Common $MC    --IsPP true  $AODPF     $PPJetMC      $PbPbRecoTrack  $PPSigBkgMCCent10"
