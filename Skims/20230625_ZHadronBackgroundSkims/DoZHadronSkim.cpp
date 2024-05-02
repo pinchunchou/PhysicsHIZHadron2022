@@ -58,7 +58,7 @@ public:
 
 int main(int argc, char *argv[])
 {
-   string Version = "V18d";
+   string Version = "V18e";
 
    CommandLine CL(argc, argv);
 
@@ -176,9 +176,9 @@ int main(int argc, char *argv[])
 
       // Too small signal HF.  Too peripheral.  Won't attempt to match it
 
-      if(ForceGenMatch && MSignalZHadron.SignalGenHF < HFShift){
+      if(ForceGenMatch && MSignalZHadron.SignalGenHF < (HFShift - HFTolerance) ){
          continue;
-      }else if(!ForceGenMatch &&MSignalZHadron.SignalHF < HFShift){
+      }else if(!ForceGenMatch &&MSignalZHadron.SignalHF < (HFShift - HFTolerance) ){
          continue;
       }
 
@@ -420,11 +420,11 @@ int main(int argc, char *argv[])
 
             for(int itrack = 0; itrack < NTrack; itrack++)
             {
-
+               /*
                if(DoGenCorrelation == true && IsData == false && IsPP == false){
                   if(MGen.PT->at(itrack) < MinGenTrackPT )
                      continue;
-               }
+               }*/
 
                if(DoGenCorrelation == false)   // track selection on reco
                {
