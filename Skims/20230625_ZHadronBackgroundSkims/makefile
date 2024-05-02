@@ -103,8 +103,18 @@ TestRunPPDataSigBkg: Execute
 
 PrepareToRunRandomMCBackground:
 	bash PrepareInputRandomBackground.sh \
-		$(CERNBOX)/OutputMC_v18d_PFmuon/ LogMCBackground_v18e_ov1_v2/ $(CERNBOX)/OutputMCBackground_v18e_ov1_v2/ $(PbPbBackgroundMC)/ 37 \
+		$(CERNBOX)/OutputMC_v18d_PFmuon/ LogMCBackground_v18e_770_ov1/ $(CERNBOX)/OutputMCBackground_v18e_770_ov1/ $(PbPbBackgroundMC)/ 37 \
 		`./Expand Setting.dh PbPbBackgroundMC Nominal`
+
+PrepareToRunRandomMCBackground1:
+	bash PrepareInputRandomBackground.sh \
+		$(CERNBOX)/OutputMC_v18d_PFmuon/ LogMCBackground_v18e_663_187_ov1/ $(CERNBOX)/OutputMCBackground_v18e_663_187_ov1/ $(PbPbBackgroundMC)/ 37 \
+		`./Expand Setting.dh PbPbBackgroundMC1 Nominal`
+
+PrepareToRunRandomMCBackground2:
+	bash PrepareInputRandomBackground.sh \
+		$(CERNBOX)/OutputMC_v18d_PFmuon/ LogMCBackground_v18e_663_1500_ov1/ $(CERNBOX)/OutputMCBackground_v18e_663_1500_ov1/ $(PbPbBackgroundMC)/ 37 \
+		`./Expand Setting.dh PbPbBackgroundMC2 Nominal`
 
 PrepareToRunRandomMCBackgroundGenMatch:
 	bash PrepareInputRandomBackground.sh \
@@ -118,17 +128,17 @@ PrepareToRunRandomMCBackgroundGenMatch:
 
 PrepareToRunRandomMCBackgroundNoHF:
 	bash PrepareInputRandomBackground.sh \
-		$(CERNBOX)/OutputMC_v18d_PFmuon/ LogMCBackground_v18d_NoHF/ $(EOSBase)/OutputMCBackground_v18d_NoHF/ $(PbPbBackgroundMC)/ 37 \
+		$(CERNBOX)/OutputMC_v18d_PFmuon/ LogMCBackground_v18e_NoHF/ $(EOSBase)/OutputMCBackground_v18e_NoHF/ $(PbPbBackgroundMC)/ 37 \
 		`./Expand Setting.dh PbPbBackgroundMCNoHF Nominal`
 
 PrepareToRunRandomMCBackgroundNoVZ:
 	bash PrepareInputRandomBackground.sh \
-		$(CERNBOX)/OutputMC_v18d_PFmuon/ LogMCBackground_v18d_NoVZ/ $(CERNBOX)/OutputMCBackground_v18d_NoVZ/ $(PbPbBackgroundMC)/ 37 \
+		$(CERNBOX)/OutputMC_v18d_PFmuon/ LogMCBackground_v18e_NoVZ/ $(CERNBOX)/OutputMCBackground_v18e_NoVZ/ $(PbPbBackgroundMC)/ 37 \
 		`./Expand Setting.dh PbPbBackgroundMCNoVZ Nominal`
 
 PrepareToRunRandomMCBackgroundNoHFVZ:
 	bash PrepareInputRandomBackground.sh \
-		$(CERNBOX)/OutputMC_v18d_PFmuon/ LogMCBackground_v18e_NoHFVZ/ $(CERNBOX)/OutputMCBackground_v18e_NoHFVZ/ $(PbPbBackgroundMC)/ 37 \
+		$(CERNBOX)/OutputMC_v18d_PFmuon/ LogMCBackground_v18e_NoHFVZ_ov10/ $(CERNBOX)/OutputMCBackground_v18e_NoHFVZ_ov10/ $(PbPbBackgroundMC)/ 37 \
 		`./Expand Setting.dh PbPbBackgroundMCNoHFVZ Nominal`
 
 #PrepareToRunRandomPJMCBackground:

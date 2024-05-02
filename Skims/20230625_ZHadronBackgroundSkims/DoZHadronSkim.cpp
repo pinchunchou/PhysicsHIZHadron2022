@@ -322,7 +322,7 @@ int main(int argc, char *argv[])
          }
 
          //cout<<"MEvent.vz = "<<MEvent.vz<<", MEvent.hiBin = "<<MEvent.hiBin<<", MEvent.hiHF = "<<MEvent.hiHF<<endl;
-/*
+
          if(IsPP == false && IsData == false && DoMCHiBinShift == true)   // PbPb MC, we shift 1.5% as per Kaya
          {
             MEvent.hiBin = MEvent.hiBin - MCHiBinShift;
@@ -332,7 +332,7 @@ int main(int argc, char *argv[])
 
          if(MEvent.hiBin > MaximumCentrality * 2)
             continue;
-*/
+
          int i_gen1 = -1, i_gen2 = -1, i_pair = -1;
 
          bool Z_passed;

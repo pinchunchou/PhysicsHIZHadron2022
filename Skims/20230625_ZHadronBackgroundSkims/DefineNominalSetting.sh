@@ -27,7 +27,10 @@ GenTrack="--DoTrackEfficiency false --TrackEfficiencyPath ${ProjectBase}/CommonC
 PPRecoTrack="--DoTrackEfficiency true --TrackEfficiencyPath ${ProjectBase}/CommonCode/root/ --DoTrackResidual true --TrackResidualPath $TrackResidualPathPP"
 PbPbRecoTrack="--DoTrackEfficiency true --TrackEfficiencyPath ${ProjectBase}/CommonCode/root/ --DoTrackResidual true --TrackResidualPath $TrackResidualPathPbPb"
 
-BackgroundMC="   --DoBackground true --HFShift 663  --Tolerance 671 --ToleranceFraction 0.001 --Oversample 1 --HFCeiling 134000" # --MaximumCentrality 10
+BackgroundMC="   --DoBackground true --HFShift 770.4  --Tolerance 770.4 --ToleranceFraction 0.001 --Oversample 1 --HFCeiling 134000" # --MaximumCentrality 10
+BackgroundMC1="   --DoBackground true --HFShift 663  --Tolerance 187.5 --ToleranceFraction 0.001 --Oversample 1 --HFCeiling 134000" # --MaximumCentrality 10
+BackgroundMC2="   --DoBackground true --HFShift 663  --Tolerance 1500 --ToleranceFraction 0.001 --Oversample 1 --HFCeiling 134000" # --MaximumCentrality 10
+#BackgroundMC="   --DoBackground true --HFShift 663  --Tolerance 671 --ToleranceFraction 0.001 --Oversample 1 --HFCeiling 134000" # --MaximumCentrality 10
 #BackgroundMC="   --DoBackground true --HFShift 682  --Tolerance 187.5 --ToleranceFraction 0.001 --Oversample 1 --HFCeiling 134000"
 BackgroundGenMC="--DoBackground true --HFShift 816.7 --Tolerance 187.5 --ToleranceFraction 0.001 --Oversample 1 --HFCeiling 156000 --VZTolerance 2"
 BackgroundData=" --DoBackground true --HFShift 660  --Tolerance 150.0   --ToleranceFraction 0.001 --Oversample 25 --HFCeiling  70000"
@@ -96,7 +99,7 @@ SigBkgMCCent10="   --DoBackground true --CheckForBackgroundZ true --HFShift 0  -
 #BackgroundMCCent10="--DoBackground true --HFShift 663 --Tolerance 10000000 --ToleranceFraction 0.001 --Oversample 1 --HFCeiling 134000 --VZTolerance 10000000 --MaximumCentrality 10"
 BackgroundMCNoHF="--DoBackground true --HFShift 0 --Tolerance 10000000 --ToleranceFraction 0.001 --Oversample 1 --HFCeiling 134000 --VZTolerance 2"
 BackgroundMCNoVZ="--DoBackground true --HFShift 663 --Tolerance 671 --ToleranceFraction 0.001 --Oversample 1 --HFCeiling 134000 --VZTolerance 10000000"
-BackgroundMCNoHFVZ="--DoBackground true --HFShift 0 --Tolerance 10000000 --ToleranceFraction 0.001 --Oversample 1 --HFCeiling 134000 --VZTolerance 10000000"
+BackgroundMCNoHFVZ="--DoBackground true --HFShift 0 --Tolerance 10000000 --ToleranceFraction 0.001 --Oversample 10 --HFCeiling 134000 --VZTolerance 10000000"
 
 DHSet Setting.dh PbPbBackgroundMCGenMatch Nominal string "$Common $MC --IsPP false $MiniAODPF $PbPbJetMC  $PbPbRecoTrack  $BackgroundGenMC --ForceGenMatch true"
 DHSet Setting.dh PPSignalMCCent10    Nominal string "$Common $MC    --IsPP true  $AODPF     $PPJetMC      $PbPbRecoTrack  $PPSigBkgMCCent10"
@@ -113,6 +116,8 @@ DHSet Setting.dh PbPbSignalMC        Nominal string "$Common $MC    --IsPP false
 DHSet Setting.dh PbPbSignalGenMC     Nominal string "$Common $MCGen --IsPP false $MiniAODPF $PbPbJetMC    $GenTrack       $SigBkgGenMC"
 DHSet Setting.dh PbPbSignalData      Nominal string "$Common $Data  --IsPP false $MiniAODPF $PbPbJetData  $PbPbRecoTrack  $SigBkgData"
 DHSet Setting.dh PbPbBackgroundMC    Nominal string "$Common $MC    --IsPP false $MiniAODPF $PbPbJetMC    $PbPbRecoTrack  $BackgroundMC"
+DHSet Setting.dh PbPbBackgroundMC1    Nominal string "$Common $MC    --IsPP false $MiniAODPF $PbPbJetMC    $PbPbRecoTrack  $BackgroundMC1"
+DHSet Setting.dh PbPbBackgroundMC2    Nominal string "$Common $MC    --IsPP false $MiniAODPF $PbPbJetMC    $PbPbRecoTrack  $BackgroundMC2"
 DHSet Setting.dh PbPbBackgroundGenMC Nominal string "$Common $MCGen --IsPP false $MiniAODPF $PbPbJetMC    $GenTrack       $BackgroundGenMC"
 DHSet Setting.dh PbPbBackgroundData  Nominal string "$Common $Data  --IsPP false $MiniAODPF $PbPbJetData  $PbPbRecoTrack  $BackgroundData"
 DHSet Setting.dh PbPbBackgroundMC    UEUp25   string "$Common $MC    --IsPP false $MiniAODPF $PbPbJetMC    $PbPbRecoTrack  $BackgroundMCUEUp25"
