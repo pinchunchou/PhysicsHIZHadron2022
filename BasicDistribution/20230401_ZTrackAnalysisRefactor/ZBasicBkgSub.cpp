@@ -74,7 +74,7 @@ TFile *file_ppMC;
 TFile *file_ppbkgMC;
 
 
-const char *typeofdata = "v18_PFmuon/20240502/Reco_v18e_ov1_NoNcoll";
+const char *typeofdata = "v18_PFmuon/20240502/Reco_v18e_663_187_ov1";
 //const char *typeofdata = "testBkgSub/20240204/v17d_No1Sub";
 //const char *typeofdata1 = "no1sub";
 //const char *typeofdata1 = "37_ov10_RECO_PP";
@@ -196,6 +196,10 @@ void ZBasicBkgSub_single(int binnum=40,float ptL=20,float ptH=2000,float centL=0
 
    double bin_width = hMC_phi->GetBinWidth(1);
 
+   hMC_phi->Sumw2();
+   hMC_bkg_phi->Sumw2();
+   hpp_phi->Sumw2();
+
    hMC_phi->Scale(1./tM_tN/bin_width);
    hMC_bkg_phi->Scale(1./tMb_tN/bin_width);
    hpp_phi->Scale(1./tpM_tN/bin_width);
@@ -298,6 +302,7 @@ void ZBasicBkgSub_single(int binnum=40,float ptL=20,float ptH=2000,float centL=0
 
 
    TLatex *ptInt1 = new TLatex(0.15,0.56,Form("#Sigma raw = %.2f #pm %.2f,  #Sigma bkg = %.2f #pm %.2f",sig_int,sig_err,bkg_int,bkg_err));
+   //TLatex *ptInt1 = new TLatex(0.15,0.56,Form("#Sigma raw = %.2f,  #Sigma bkg = %.2f",sig_int,bkg_int));
    ptInt1->SetTextFont(42);
    ptInt1->SetTextSize(0.03);
    ptInt1->SetNDC(kTRUE);
@@ -310,6 +315,7 @@ void ZBasicBkgSub_single(int binnum=40,float ptL=20,float ptH=2000,float centL=0
       pptext = "#Sigma pp";//sig pythia gen
 
    TLatex *ptInt2 = new TLatex(0.15,0.50,Form("#Sigma (raw-bkg) = %.2f #pm %.2f,  %s = %.2f #pm %.2f",sb_int,sb_err,pptext.c_str(),pp_int,pp_err));
+   //TLatex *ptInt2 = new TLatex(0.15,0.50,Form("#Sigma (raw-bkg) = %.2f,  %s = %.2f",sb_int,pptext.c_str(),pp_int));
    ptInt2->SetTextFont(42);
    ptInt2->SetTextSize(0.03);
    ptInt2->SetNDC(kTRUE);
@@ -514,17 +520,17 @@ int main(int argc, char *argv[]){
    style();
 
    if(isgen)
-      file_sigMC = TFile::Open("~/eos_base/BasicPlots/GraphMCSignal_v18d_PFmuon_v2_NoNcoll.root","read");
+      file_sigMC = TFile::Open("~/eos_base/BasicPlots/GraphMCSignal_v18d_PFmuon_v2.root","read");
    else
-      file_sigMC = TFile::Open("~/eos_base/BasicPlots/GraphMCSignal_v18d_PFmuon_v2_NoNcoll.root","read");
+      file_sigMC = TFile::Open("~/eos_base/BasicPlots/GraphMCSignal_v18d_PFmuon_v2.root","read");
    
    if(selfmix)
       file_bkgMC = TFile::Open("~/eos_base/BasicPlots/GraphMCSigBkg_v17d_PFmuon_350_10HF_ov20.root","read");
    else{
       if(isgen)
-         file_bkgMC = TFile::Open("~/eos_base/BasicPlots/GraphMCBackground_v18e_ov1_NoNcoll.root","read");
+         file_bkgMC = TFile::Open("~/eos_base/BasicPlots/GraphMCBackground_v18e_663_187_ov1.root","read");
       else
-         file_bkgMC = TFile::Open("~/eos_base/BasicPlots/GraphMCBackground_v18e_ov1_NoNcoll.root","read");
+         file_bkgMC = TFile::Open("~/eos_base/BasicPlots/GraphMCBackground_v18e_663_187_ov1.root","read");
    }
 
    if(isgen)
