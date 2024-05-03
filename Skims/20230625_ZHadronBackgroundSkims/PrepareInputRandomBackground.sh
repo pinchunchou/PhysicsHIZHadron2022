@@ -34,7 +34,7 @@ echo "Universe              = vanilla"                         > $Condor
 echo "Executable            = $PWD/RunCondor.sh"               >> $Condor
 echo "should_transfer_files = NO"                              >> $Condor
 echo "requirements = (OpSysAndVer =?= \"AlmaLinux9\")"         >> $Condor
-echo "+JobFlavour           = \"longlunch\""                    >> $Condor
+echo "+JobFlavour           = \"tomorrow\""                    >> $Condor
 echo                                                           >> $Condor
 
 Count=0
