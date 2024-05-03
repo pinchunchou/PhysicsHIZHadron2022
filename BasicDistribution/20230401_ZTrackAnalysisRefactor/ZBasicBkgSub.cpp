@@ -74,7 +74,7 @@ TFile *file_ppMC;
 TFile *file_ppbkgMC;
 
 
-const char *typeofdata = "v18_PFmuon/20240502/Reco_v18e_663_187_ov1";
+const char *typeofdata = "v18_PFmuon/20240502/Reco_v18e_663_1500_ov1";
 //const char *typeofdata = "testBkgSub/20240204/v17d_No1Sub";
 //const char *typeofdata1 = "no1sub";
 //const char *typeofdata1 = "37_ov10_RECO_PP";
@@ -301,8 +301,8 @@ void ZBasicBkgSub_single(int binnum=40,float ptL=20,float ptH=2000,float centL=0
    pp_int = hpp_phi->IntegralAndError(1,hpp_phi->GetNbinsX(),pp_err,"width");
 
 
-   TLatex *ptInt1 = new TLatex(0.15,0.56,Form("#Sigma raw = %.2f #pm %.2f,  #Sigma bkg = %.2f #pm %.2f",sig_int,sig_err,bkg_int,bkg_err));
-   //TLatex *ptInt1 = new TLatex(0.15,0.56,Form("#Sigma raw = %.2f,  #Sigma bkg = %.2f",sig_int,bkg_int));
+   //TLatex *ptInt1 = new TLatex(0.15,0.56,Form("#Sigma raw = %.2f #pm %.2f,  #Sigma bkg = %.2f #pm %.2f",sig_int,sig_err,bkg_int,bkg_err));
+   TLatex *ptInt1 = new TLatex(0.15,0.56,Form("#Sigma raw = %.2f,  #Sigma bkg = %.2f",sig_int,bkg_int));
    ptInt1->SetTextFont(42);
    ptInt1->SetTextSize(0.03);
    ptInt1->SetNDC(kTRUE);
@@ -314,8 +314,8 @@ void ZBasicBkgSub_single(int binnum=40,float ptL=20,float ptH=2000,float centL=0
    else
       pptext = "#Sigma pp";//sig pythia gen
 
-   TLatex *ptInt2 = new TLatex(0.15,0.50,Form("#Sigma (raw-bkg) = %.2f #pm %.2f,  %s = %.2f #pm %.2f",sb_int,sb_err,pptext.c_str(),pp_int,pp_err));
-   //TLatex *ptInt2 = new TLatex(0.15,0.50,Form("#Sigma (raw-bkg) = %.2f,  %s = %.2f",sb_int,pptext.c_str(),pp_int));
+   //TLatex *ptInt2 = new TLatex(0.15,0.50,Form("#Sigma (raw-bkg) = %.2f #pm %.2f,  %s = %.2f #pm %.2f",sb_int,sb_err,pptext.c_str(),pp_int,pp_err));
+   TLatex *ptInt2 = new TLatex(0.15,0.50,Form("#Sigma (raw-bkg) = %.2f,  %s = %.2f",sb_int,pptext.c_str(),pp_int));
    ptInt2->SetTextFont(42);
    ptInt2->SetTextSize(0.03);
    ptInt2->SetNDC(kTRUE);
@@ -528,9 +528,9 @@ int main(int argc, char *argv[]){
       file_bkgMC = TFile::Open("~/eos_base/BasicPlots/GraphMCSigBkg_v17d_PFmuon_350_10HF_ov20.root","read");
    else{
       if(isgen)
-         file_bkgMC = TFile::Open("~/eos_base/BasicPlots/GraphMCBackground_v18e_663_187_ov1.root","read");
+         file_bkgMC = TFile::Open("~/eos_base/BasicPlots/GraphMCBackground_v18e_663_1500_ov1.root","read");
       else
-         file_bkgMC = TFile::Open("~/eos_base/BasicPlots/GraphMCBackground_v18e_663_187_ov1.root","read");
+         file_bkgMC = TFile::Open("~/eos_base/BasicPlots/GraphMCBackground_v18e_663_1500_ov1.root","read");
    }
 
    if(isgen)
