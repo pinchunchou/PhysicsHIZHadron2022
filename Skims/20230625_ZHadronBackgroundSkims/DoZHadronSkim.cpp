@@ -237,7 +237,8 @@ int main(int argc, char *argv[])
    Key = "CheckForBackgroundZ";     Value = InfoString(CheckForBackgroundZ);     InfoTree.Fill();
    Key = "MaximumCentrality";       Value = InfoString(MaximumCentrality);       InfoTree.Fill();
    Key = "ForceGenMatch";           Value = InfoString(ForceGenMatch);           InfoTree.Fill();
-
+   Key = "MCHiBinShift";            Value = InfoString(MCHiBinShift);            InfoTree.Fill();
+   
    TH2D H2D("H2D", "", 100, -6, 6, 100, -M_PI, M_PI);
 
    ZHadronMessenger MZHadron;

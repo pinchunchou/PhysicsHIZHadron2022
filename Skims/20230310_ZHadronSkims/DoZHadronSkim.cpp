@@ -293,7 +293,8 @@ int main(int argc, char *argv[])
    Key = "ToleranceFraction";       Value = InfoString(HFToleranceFraction);     InfoTree.Fill();
    Key = "HFCeiling";               Value = InfoString(HFCeiling);               InfoTree.Fill();
    Key = "Oversample";              Value = InfoString(Oversample);              InfoTree.Fill();
-   Key = "FirstZ";                  Value = InfoString(FirstZ);              InfoTree.Fill();
+   Key = "FirstZ";                  Value = InfoString(FirstZ);                  InfoTree.Fill();
+   Key = "MCHiBinShift";            Value = InfoString(MCHiBinShift);            InfoTree.Fill();
 
    TH2D H2D("H2D", "", 100, -6, 6, 100, -M_PI, M_PI);
 

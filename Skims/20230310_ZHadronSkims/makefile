@@ -111,6 +111,12 @@ PrepareToRunMC:
 		5 LogMC_v18d_PFmuon_FirstZ/ $(CERNBOX)/OutputMC_v18d_PFmuon_FirstZ/ \
 		--Fraction 1 `./Expand Setting.dh PbPbSignalMC Nominal`
 
+PrepareToRunMCHiBin0:
+	bash PrepareInput.sh \
+		$(PbPbSignalMC)/ \
+		5 LogMC_v18d_PFmuon_hibin0/ $(EOSBase)/OutputMC_v18d_PFmuon_hibin0/ \
+		--Fraction 1 --DoMCHiBinShift false `./Expand Setting.dh PbPbSignalMC Nominal`
+
 PrepareToRunLoose:
 	bash PrepareInput.sh \
 		'$(PbPbSignalSingleMuon)/*/' \
