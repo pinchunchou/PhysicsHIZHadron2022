@@ -74,7 +74,7 @@ TFile *file_ppMC;
 TFile *file_ppbkgMC;
 
 
-const char *typeofdata = "v18_PFmuon/20240505/Reco_v18e_722_386_ov1_hibin3";
+const char *typeofdata = "v18_PFmuon/20240505/Reco_v18e_740_391_ov1_hibin3";
 //const char *typeofdata = "testBkgSub/20240204/v17d_No1Sub";
 //const char *typeofdata1 = "no1sub";
 //const char *typeofdata1 = "37_ov10_RECO_PP";
@@ -531,7 +531,7 @@ int main(int argc, char *argv[]){
       if(isgen)
          file_bkgMC = TFile::Open("~/eos_base/BasicPlots/GraphMCBackground_v18e_880_671_ov1.root","read");
       else
-         file_bkgMC = TFile::Open("~/eos_base/BasicPlots/GraphMCBackground_v18e_722_386_ov1_hibin3.root","read");
+         file_bkgMC = TFile::Open("~/eos_base/BasicPlots/GraphMCBackground_v18e_740_391_ov1_hibin3.root","read");
    }
 
    if(isgen)
