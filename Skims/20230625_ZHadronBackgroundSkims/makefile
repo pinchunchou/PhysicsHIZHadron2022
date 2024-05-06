@@ -103,8 +103,8 @@ TestRunPPDataSigBkg: Execute
 
 PrepareToRunRandomMCBackground:
 	bash PrepareInputRandomBackground.sh \
-		$(CERNBOX)/OutputMC_v18d_PFmuon/ LogMCBackground_v18e_740_391_ov1_hibin3/ $(EOSBase)/OutputMCBackground_v18e_740_391_ov1_hibin3/ $(PbPbBackgroundMC)/ 37 \
-		`./Expand Setting.dh PbPbBackgroundMC Nominal`
+		$(EOSBase)/OutputMC_v18d_PFmuon_hibin0/ LogMCBackground_v18e_663_671_ov1_nohiBinshift/ $(EOSBase)/OutputMCBackground_v18e_663_671_ov1_nohiBinshift/ $(PbPbBackgroundMC)/ 37 \
+		--DoMCHiBinShift false `./Expand Setting.dh PbPbBackgroundMC Nominal`
 
 PrepareToRunRandomMCBackground1:
 	bash PrepareInputRandomBackground.sh \
@@ -148,8 +148,8 @@ PrepareToRunRandomMCBackgroundNoHFVZ:
 
 PrepareToRunRandomMCBackgroundNoHFVZ1:
 	bash PrepareInputRandomBackground.sh \
-		$(CERNBOX)/OutputMC_v18d_PFmuon/ LogMCBackground_v18e_NoHFVZ_ov10_hiBin0/ $(EOSBase)/OutputMCBackground_v18e_NoHFVZ_ov10_hiBin0/ $(PbPbBackgroundMC)/ 37 \
-		`./Expand Setting.dh PbPbBackgroundMCNoHFVZ_NoHiBinShift Nominal`
+		$(EOSBase)/OutputMC_v18d_PFmuon_hibin0/ LogMCBackground_v18e_NoHFVZ_ov1_nohiBinshift/ $(EOSBase)/OutputMCBackground_v18e_NoHFVZ_ov1_nohiBinshift/ $(PbPbBackgroundMC)/ 37 \
+		--DoMCHiBinShift false `./Expand Setting.dh PbPbBackgroundMCNoHFVZ Nominal`
 
 #PrepareToRunRandomPJMCBackground:
 #	bash PrepareInputRandomBackground.sh \
