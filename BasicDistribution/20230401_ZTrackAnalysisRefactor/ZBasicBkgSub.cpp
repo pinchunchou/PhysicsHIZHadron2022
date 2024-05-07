@@ -74,12 +74,12 @@ TFile *file_ppMC;
 TFile *file_ppbkgMC;
 
 
-const char *typeofdata = "v18_PFmuon/20240507/Reco_v18e_NoHFVZ_ov10_hiBin0";
+const char *typeofdata = "v18_PFmuon/20240507/Reco_v18e_NoHFVZ_ov1_nohiBinshift";
 //const char *typeofdata = "testBkgSub/20240204/v17d_No1Sub";
 //const char *typeofdata1 = "no1sub";
 //const char *typeofdata1 = "37_ov10_RECO_PP";
 //const char *typeofdata1 = "SigNo0Sub";
-const char *typeofdata1 = "37_ov10_Reco";
+const char *typeofdata1 = "37_ov1_Reco";
 
 //const char *typeofdata = "v17d_PFMuon/20240204/SigBkg_ov20_10HF";
 //const char *typeofdata1 = "350_ov20_pp10HF";
@@ -523,7 +523,7 @@ int main(int argc, char *argv[]){
       file_sigMC = TFile::Open("~/eos_base/BasicPlots/GraphMCSignal_v18d_PFmuon_v2.root","read");
    else
       //file_sigMC = TFile::Open("~/eos_base/BasicPlots/GraphMCSignal_v18d_PFmuon_v2.root","read");
-      file_sigMC = TFile::Open("~/eos_base/BasicPlots/GraphMCSignal_v18d_PFmuon_v2_NoNcoll.root","read");
+      file_sigMC = TFile::Open("~/eos_base/BasicPlots/GraphMCSignal_v18d_PFmuon_hibin0_NoNcoll.root","read");
    
    if(selfmix)
       file_bkgMC = TFile::Open("~/eos_base/BasicPlots/GraphMCSigBkg_v17d_PFmuon_350_10HF_ov20.root","read");
@@ -531,7 +531,7 @@ int main(int argc, char *argv[]){
       if(isgen)
          file_bkgMC = TFile::Open("~/eos_base/BasicPlots/GraphMCBackground_v18e_880_671_ov1.root","read");
       else
-         file_bkgMC = TFile::Open("~/eos_base/BasicPlots/GraphMCBackground_v18e_NoHFVZ_ov10_hiBin0_NoNcoll.root","read");
+         file_bkgMC = TFile::Open("~/eos_base/BasicPlots/GraphMCBackground_v18e_NoHFVZ_ov1_nohiBinshift.root","read");
    }
 
    if(isgen)
@@ -554,9 +554,9 @@ int main(int argc, char *argv[]){
    //ZBasicBkgSub_loop(40, 30, 200,  0, 100,  1, 2);
    ZBasicBkgSub_loop(40, 40, 200,  0, 100,  1, 2);
    ZBasicBkgSub_loop(40, 40, 200,  0, 10,  1, 2);
-   ZBasicBkgSub_loop(40, 40, 200,  10, 30,  1, 2);
-   ZBasicBkgSub_loop(40, 40, 200,  30, 50,  1, 2);
-   ZBasicBkgSub_loop(40, 40, 200,  50, 90,  1, 2);
+   //ZBasicBkgSub_loop(40, 40, 200,  10, 30,  1, 2);
+   //ZBasicBkgSub_loop(40, 40, 200,  30, 50,  1, 2);
+   //ZBasicBkgSub_loop(40, 40, 200,  50, 90,  1, 2);
    //ZBasicBkgSub_loop(40, 40, 60,  0, 100,  1, 2);
    //ZBasicBkgSub_loop(40, 40, 200,  0, 10,  2, 4);
    //ZBasicBkgSub_loop(40, 40, 200,  0, 10,  4, 10);
