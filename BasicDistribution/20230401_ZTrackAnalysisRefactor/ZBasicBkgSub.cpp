@@ -507,7 +507,7 @@ void ZBasicBkgSub_loop(int binnum=40,float ptL=20,float ptH=2000,float centL=0,f
    string XTitleName[] = {"#Delta#phi_{Z,track}"};
    string YTitleName[] = {"dN/d#Delta#phi"};
    
-   int rebin_num[] = {2, 2, 2, 2, 1, 1};
+   int rebin_num[] = {1, 2, 2, 2, 1, 1};
 
    int i_draw = sizeof(HistName)/sizeof(HistName[0]);
 
