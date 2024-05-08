@@ -74,7 +74,7 @@ TFile *file_ppMC;
 TFile *file_ppbkgMC;
 
 
-const char *typeofdata = "v18_PFmuon/20240507/Reco_v18e_663_671_ov1_nohiBinshift";
+const char *typeofdata = "v18_PFmuon/20240507/Reco_v18e_663_671_ov1_nohiBinshift_test";
 //const char *typeofdata = "testBkgSub/20240204/v17d_No1Sub";
 //const char *typeofdata1 = "no1sub";
 //const char *typeofdata1 = "37_ov10_RECO_PP";
@@ -200,20 +200,22 @@ void ZBasicBkgSub_single(int binnum=40,float ptL=20,float ptH=2000,float centL=0
    hMC_bkg_phi->Sumw2();
    hpp_phi->Sumw2();
 
-   hMC_phi->Scale(1./tM_tN/bin_width);
-   hMC_bkg_phi->Scale(1./tMb_tN/bin_width);
-   hpp_phi->Scale(1./tpM_tN/bin_width);
-   hpp_bkg_phi->Scale(1./tpb_tN/bin_width);
-
    hMC_phi->Rebin(rebinnum);
    hMC_bkg_phi->Rebin(rebinnum);
    hpp_phi->Rebin(rebinnum);
    hpp_bkg_phi->Rebin(rebinnum);
 
-   hMC_phi->Scale(1./rebinnum);
-   hMC_bkg_phi->Scale(1./rebinnum);
-   hpp_phi->Scale(1./rebinnum);
-   hpp_bkg_phi->Scale(1./rebinnum);
+   bin_width*=rebinnum;
+
+   hMC_phi->Scale(1./tM_tN/bin_width);
+   hMC_bkg_phi->Scale(1./tMb_tN/bin_width);
+   hpp_phi->Scale(1./tpM_tN/bin_width);
+   hpp_bkg_phi->Scale(1./tpb_tN/bin_width);
+
+   //hMC_phi->Scale(1./rebinnum);
+   //hMC_bkg_phi->Scale(1./rebinnum);
+   //hpp_phi->Scale(1./rebinnum);
+   //hpp_bkg_phi->Scale(1./rebinnum);
 
    TH1D *hMC_sb_phi = (TH1D*) hMC_phi->Clone("hMC_sb_phi");
 
