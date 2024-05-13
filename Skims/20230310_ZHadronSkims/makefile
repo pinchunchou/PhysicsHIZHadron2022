@@ -153,6 +153,12 @@ PrepareToRunPP:
 		10 LogPP_v18c_PFmuon/ $(CERNBOX)/OutputPPMC_v18c_PFmuon/ \
  		--Fraction 1 `./Expand Setting.dh PPSignalMC Nominal`
 
+PrepareToRunPPHiBin0:
+	bash PrepareInput.sh \
+		$(PPSignalMC)/ \
+		10 LogPP_v18d_PFmuon_hibin0/ $(EOSBase)/OutputPPMC_v18d_PFmuon_hibin0/ \
+ 		--Fraction 1 --DoMCHiBinShift false `./Expand Setting.dh PPSignalMC Nominal`
+
 PrepareToRunGenPP:
 	bash PrepareInput.sh \
 		$(PPSignalMC)/ \
