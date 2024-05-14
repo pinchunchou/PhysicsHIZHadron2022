@@ -86,8 +86,9 @@ const char *typeofdata1 = "37_ov1_Reco";
 
 bool selfmix = false;
 bool isgen   = false;
-bool drawlog = true;
+bool drawlog = false;
 bool drawrat = false;
+bool drawlow = false;
 
 void ZBasicBkgSub_single(int binnum=40,float ptL=20,float ptH=2000,float centL=0,float centH=90,float TptL=0,float TptH=10000, 
    string HistName="HPhi", string XTitleName = "#Delta#phi_{Z,track}", string YTitleName = "dN/d#Delta#phi", int rebinnum=1)
@@ -479,12 +480,13 @@ void ZBasicBkgSub_single(int binnum=40,float ptL=20,float ptH=2000,float centL=0
    }
    
    
+   if(drawlow){
+      hMC_phi->SetMaximum(1.2*max3);
+      hMC_bkg_phi->SetMaximum(1.2*max3);
 
-   hMC_phi->SetMaximum(1.2*max3);
-   hMC_bkg_phi->SetMaximum(1.2*max3);
+      c->SaveAs(Form("/eos/user/p/pchou/figs/track/%s/BasicBkgSub/%s/Ztrack_%s_com_%.0f_%.0f_%.0f_%.0f_%.0f_%.0f_pp.png",typeofdata,HistName.c_str(),typeofdata1,ptL,ptH,centL,centH,TptL,TptH)); 
+   }
 
-   c->SaveAs(Form("/eos/user/p/pchou/figs/track/%s/BasicBkgSub/%s/Ztrack_%s_com_%.0f_%.0f_%.0f_%.0f_%.0f_%.0f_pp.png",typeofdata,HistName.c_str(),typeofdata1,ptL,ptH,centL,centH,TptL,TptH)); 
-   
    c->Clear(); 
 
 }
@@ -539,7 +541,7 @@ int main(int argc, char *argv[]){
    if(isgen)
       file_ppMC  = TFile::Open("~/eos_base/BasicPlots/GraphPPMC0NPU_v18c_v2.root","read");
    else
-      file_ppMC  = TFile::Open("~/eos_base/BasicPlots/GraphPPMC0NPU_v18c_v2.root","read");
+      file_ppMC  = TFile::Open("~/eos_base/BasicPlots/GraphPPMC0NPU_v18c_noW_v3.root","read");
 
    if(selfmix)
       file_ppbkgMC  = TFile::Open("~/eos_base/BasicPlots/GraphPPMCSigBkg_v17d_PFmuon_143_10HF.root","read");
