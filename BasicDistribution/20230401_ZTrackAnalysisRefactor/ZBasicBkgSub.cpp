@@ -75,7 +75,7 @@ TFile *file_ppbkgMC;
 
 
 //const char *typeofdata = "v18_PFmuon/20240514/Reco_v18e_663_671_ov1_NoNcoll_noTrkResW";
-const char *typeofdata = "v18_PFmuon/20240514/Reco_v18e_770_413_ov1_NoNcoll_noTrkResW";
+const char *typeofdata = "v18_PFmuon/20240514/Reco_v18e_722_386_ov1_sube0";
 //const char *typeofdata = "testBkgSub/20240204/v17d_No1Sub";
 //const char *typeofdata1 = "no1sub";
 //const char *typeofdata1 = "37_ov10_RECO_PP";
@@ -89,7 +89,9 @@ bool selfmix = false;
 bool isgen   = false;
 bool drawlog = false;
 bool drawrat = false;
-bool drawlow = false;
+bool drawlow = true;
+
+bool comparesub0 = true;
 
 void ZBasicBkgSub_single(int binnum=40,float ptL=20,float ptH=2000,float centL=0,float centH=90,float TptL=0,float TptH=10000, 
    string HistName="HPhi", string XTitleName = "#Delta#phi_{Z,track}", string YTitleName = "dN/d#Delta#phi", int rebinnum=1)
@@ -145,7 +147,12 @@ void ZBasicBkgSub_single(int binnum=40,float ptL=20,float ptH=2000,float centL=0
    cout<<"HistNameGen = "<<HistNameGen<<endl;
    TH1D* hMC_phi = (TH1D*) file_sigMC->Get(Form("%s/%s", FolderName.c_str(), HistName.c_str()));
    //cout<<"a"<<endl;
-   TH1D* hpp_phi = (TH1D*) file_ppMC->Get(Form("%s/%s", FolderName.c_str(), HistName.c_str()));//HistNameGen
+
+   std::string HistNamePP = HistName;
+   if(comparesub0)
+      HistNamePP.replace(HistNamePP.find('H'), 1, "HGen");
+
+   TH1D* hpp_phi = (TH1D*) file_ppMC->Get(Form("%s/%s", FolderName.c_str(), HistNamePP.c_str()));//HistNameGen
    //cout<<"b"<<endl;
    TH1D* hpp_bkg_phi = (TH1D*) file_ppbkgMC->Get(Form("%s/%s", FolderName.c_str(), HistName.c_str()));
    //cout<<"c"<<endl;
@@ -171,9 +178,13 @@ void ZBasicBkgSub_single(int binnum=40,float ptL=20,float ptH=2000,float centL=0
       NameEntryCount = "EntryCount";
 
 
+   string NameEntryCountPP = NameEntryCount;
+   if(comparesub0)
+      NameEntryCountPP = "GenEntryCount";
+
    TNamed *nM_tN  = (TNamed *) file_sigMC->Get(Form("%s/%s",FolderName.c_str(),NameEntryCount.c_str()));
    TNamed *nMb_tN = (TNamed *) file_bkgMC->Get(Form("%s/%s",FolderName.c_str(),NameEntryCount.c_str()));
-   TNamed *npM_tN = (TNamed *) file_ppMC->Get(Form("%s/%s",FolderName.c_str(),NameEntryCount.c_str()));//GenEntryCount
+   TNamed *npM_tN = (TNamed *) file_ppMC->Get(Form("%s/%s",FolderName.c_str(),NameEntryCountPP.c_str()));//GenEntryCount
    TNamed *npb_tN = (TNamed *) file_ppbkgMC->Get(Form("%s/%s",FolderName.c_str(),NameEntryCount.c_str()));
 
    std::string sM_tN  = (std::string) nM_tN->GetTitle();
@@ -315,6 +326,8 @@ void ZBasicBkgSub_single(int binnum=40,float ptL=20,float ptH=2000,float centL=0
 
    if(selfmix)
       pptext = "#Sigma pp (raw-bkg)";
+   else if(comparesub0)
+      pptext = "sig pythia gen";
    else
       pptext = "#Sigma pp";//sig pythia gen
 
@@ -365,12 +378,15 @@ void ZBasicBkgSub_single(int binnum=40,float ptL=20,float ptH=2000,float centL=0
    //leg1.AddEntry(hMC_bkg_phi ,"bkg (subevt#neq0)","lep");
    //leg1.AddEntry(hMC_bkg_phi ,"raw Gen (subevt#neq0)","lep");
    leg1.AddEntry(hMC_sb_phi ,Form("raw-bkg%s",genlegtxt.c_str()),"lep");
-   if(selfmix)
+   if(selfmix){
       leg1.AddEntry(hpp_phi ,Form("pp raw-bkg%s",genlegtxt.c_str()),"l");
-   else
-      //leg1.AddEntry(hpp_phi ,"sig GEN (sube=0)","lep");
-      leg1.AddEntry(hpp_phi ,Form("pp%s (NPU=0)",genlegtxt.c_str()),"l");
+   }else{
+      if(comparesub0)
+         leg1.AddEntry(hpp_phi ,"sig GEN (sube=0)","lep");
+      else
+         leg1.AddEntry(hpp_phi ,Form("pp%s (NPU=0)",genlegtxt.c_str()),"l");
       //leg1.AddEntry(hpp_phi ,"sig GEN","l");
+   }
    leg1.SetFillColorAlpha(kWhite,0);
    leg1.SetLineColor(kBlack);
    leg1.SetLineWidth(1);
@@ -485,7 +501,7 @@ void ZBasicBkgSub_single(int binnum=40,float ptL=20,float ptH=2000,float centL=0
       hMC_phi->SetMaximum(1.2*max3);
       hMC_bkg_phi->SetMaximum(1.2*max3);
 
-      c->SaveAs(Form("/eos/user/p/pchou/figs/track/%s/BasicBkgSub/%s/Ztrack_%s_com_%.0f_%.0f_%.0f_%.0f_%.0f_%.0f_pp.png",typeofdata,HistName.c_str(),typeofdata1,ptL,ptH,centL,centH,TptL,TptH)); 
+      c->SaveAs(Form("/eos/user/p/pchou/figs/track/%s/BasicBkgSub/%s/Ztrack_%s_com_%.0f_%.0f_%.0f_%.0f_%.0f_%.0f_low.png",typeofdata,HistName.c_str(),typeofdata1,ptL,ptH,centL,centH,TptL,TptH)); 
    }
 
    c->Clear(); 
@@ -510,7 +526,7 @@ void ZBasicBkgSub_loop(int binnum=40,float ptL=20,float ptH=2000,float centL=0,f
    string XTitleName[] = {"#Delta#phi_{Z,track}"};
    string YTitleName[] = {"dN/d#Delta#phi"};
    
-   int rebin_num[] = {1, 2, 2, 2, 1, 1};
+   int rebin_num[] = {2, 2, 2, 2, 1, 1};
 
    int i_draw = sizeof(HistName)/sizeof(HistName[0]);
 
@@ -528,7 +544,7 @@ int main(int argc, char *argv[]){
       file_sigMC = TFile::Open("~/eos_base/BasicPlots/GraphMCSignal_v18d_PFmuon_v2.root","read");
    else
       //file_sigMC = TFile::Open("~/eos_base/BasicPlots/GraphMCSignal_v18d_PFmuon_v2.root","read");
-      file_sigMC = TFile::Open("~/eos_base/BasicPlots/GraphMCSignal_v18d_PFmuon_v2_NoNcoll_noTrkResW.root","read");
+      file_sigMC = TFile::Open("~/eos_base/BasicPlots/GraphMCSignal_v18d_PFmuon_v2.root","read");
    
    if(selfmix)
       file_bkgMC = TFile::Open("~/eos_base/BasicPlots/GraphMCSigBkg_v17d_PFmuon_350_10HF_ov20.root","read");
@@ -536,11 +552,13 @@ int main(int argc, char *argv[]){
       if(isgen)
          file_bkgMC = TFile::Open("~/eos_base/BasicPlots/GraphMCBackground_v18e_880_671_ov1.root","read");
       else
-         file_bkgMC = TFile::Open("~/eos_base/BasicPlots/GraphMCBackground_v18e_770_413_ov1_hibin3_NoNcoll_noTrkResW.root","read");
+         file_bkgMC = TFile::Open("~/eos_base/BasicPlots/GraphMCBackground_v18e_722_386_ov1_hibin3.root","read");
    }
 
    if(isgen)
       file_ppMC  = TFile::Open("~/eos_base/BasicPlots/GraphPPMC0NPU_v18c_v3.root","read");
+   else if(comparesub0)
+      file_ppMC  = TFile::Open("~/eos_base/BasicPlots/GraphMCSignalGen0Sub_v18c_v3.root","read");
    else
       file_ppMC  = TFile::Open("~/eos_base/BasicPlots/GraphPPMC0NPU_v18c_noTrkResW_v3.root","read");
 
