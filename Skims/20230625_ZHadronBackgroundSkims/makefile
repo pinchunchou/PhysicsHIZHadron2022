@@ -103,7 +103,7 @@ TestRunPPDataSigBkg: Execute
 
 PrepareToRunRandomMCBackground:
 	bash PrepareInputRandomBackground.sh \
-		$(EOSBase)/OutputMC_v18d_PFmuon/ LogMCBackground_v18e_695_400_ov1_hibin3/ $(EOSBase)/OutputMCBackground_v18e_695_400_ov1_hibin3/ $(PbPbBackgroundMC)/ 37 \
+		$(CERNBOX)/OutputMC_v18d_PFmuon/ LogMCBackground_v18e_695_400_ov1_hibin3/ $(EOSBase)/OutputMCBackground_v18e_695_400_ov1_hibin3/ $(PbPbBackgroundMC)/ 37 \
 		--DoMCHiBinShift true `./Expand Setting.dh PbPbBackgroundMC Nominal`
 
 PrepareToRunRandomMCBackground1:
