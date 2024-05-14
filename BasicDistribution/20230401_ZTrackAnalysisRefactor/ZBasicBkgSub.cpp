@@ -498,8 +498,11 @@ void ZBasicBkgSub_single(int binnum=40,float ptL=20,float ptH=2000,float centL=0
    
    
    if(drawlow){
-      hMC_phi->SetMaximum(1.2*max3);
-      hMC_bkg_phi->SetMaximum(1.2*max3);
+      //hMC_phi->SetMaximum(1.2*max3);
+      //hMC_bkg_phi->SetMaximum(1.2*max3);
+
+      hMC_phi->SetMaximum(8);
+      hMC_bkg_phi->SetMaximum(8);
 
       c->SaveAs(Form("/eos/user/p/pchou/figs/track/%s/BasicBkgSub/%s/Ztrack_%s_com_%.0f_%.0f_%.0f_%.0f_%.0f_%.0f_low.png",typeofdata,HistName.c_str(),typeofdata1,ptL,ptH,centL,centH,TptL,TptH)); 
    }
