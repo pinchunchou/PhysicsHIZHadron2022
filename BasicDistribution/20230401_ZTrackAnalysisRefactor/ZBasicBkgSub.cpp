@@ -74,7 +74,7 @@ TFile *file_ppMC;
 TFile *file_ppbkgMC;
 
 
-const char *typeofdata = "v18_PFmuon/20240507/Reco_v18e_663_671_ov1_nohiBinshift_test";
+const char *typeofdata = "v18_PFmuon/20240514/Reco_v18e_663_671_ov1_noW";
 //const char *typeofdata = "testBkgSub/20240204/v17d_No1Sub";
 //const char *typeofdata1 = "no1sub";
 //const char *typeofdata1 = "37_ov10_RECO_PP";
@@ -525,7 +525,7 @@ int main(int argc, char *argv[]){
       file_sigMC = TFile::Open("~/eos_base/BasicPlots/GraphMCSignal_v18d_PFmuon_v2.root","read");
    else
       //file_sigMC = TFile::Open("~/eos_base/BasicPlots/GraphMCSignal_v18d_PFmuon_v2.root","read");
-      file_sigMC = TFile::Open("~/eos_base/BasicPlots/GraphMCSignal_v18d_PFmuon_hibin0.root","read");
+      file_sigMC = TFile::Open("~/eos_base/BasicPlots/GraphMCSignal_v18d_PFmuon_v2_noW.root","read");
    
    if(selfmix)
       file_bkgMC = TFile::Open("~/eos_base/BasicPlots/GraphMCSigBkg_v17d_PFmuon_350_10HF_ov20.root","read");
@@ -533,7 +533,7 @@ int main(int argc, char *argv[]){
       if(isgen)
          file_bkgMC = TFile::Open("~/eos_base/BasicPlots/GraphMCBackground_v18e_880_671_ov1.root","read");
       else
-         file_bkgMC = TFile::Open("~/eos_base/BasicPlots/GraphMCBackground_v18e_663_671_ov1_nohiBinshift.root","read");
+         file_bkgMC = TFile::Open("~/eos_base/BasicPlots/GraphMCBackground_v18e_ov1_noW.root","read");
    }
 
    if(isgen)
@@ -544,7 +544,7 @@ int main(int argc, char *argv[]){
    if(selfmix)
       file_ppbkgMC  = TFile::Open("~/eos_base/BasicPlots/GraphPPMCSigBkg_v17d_PFmuon_143_10HF.root","read");
    else
-      file_ppbkgMC  = TFile::Open("~/eos_base/BasicPlots/GraphPPMC_v18c_v2.root","read");
+      file_ppbkgMC  = TFile::Open("~/eos_base/BasicPlots/GraphPPMC_v18c_noW_v3.root","read");
 
    //file_ppbkgMC  = TFile::Open("~/eos_base/BasicPlots/GraphPPMCSigBkg_v17d_Cent10_143.root","read");
 
