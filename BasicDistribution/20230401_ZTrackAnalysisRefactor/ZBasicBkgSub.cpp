@@ -75,7 +75,7 @@ TFile *file_ppbkgMC;
 
 
 //const char *typeofdata = "v18_PFmuon/20240514/Reco_v18e_663_671_ov1_NoNcoll_noTrkResW";
-const char *typeofdata = "v18_PFmuon/20240515/Reco_v18e_695_400_ov1";
+const char *typeofdata = "v18_PFmuon/20240515/Reco_v18e_695_400_ov1_sube0";
 //const char *typeofdata = "testBkgSub/20240204/v17d_No1Sub";
 //const char *typeofdata1 = "no1sub";
 //const char *typeofdata1 = "37_ov10_RECO_PP";
@@ -91,7 +91,7 @@ bool drawlog = false;
 bool drawrat = false;
 bool drawlow = true;
 
-bool comparesub0 = false;
+bool comparesub0 = true;
 
 void ZBasicBkgSub_single(int binnum=40,float ptL=20,float ptH=2000,float centL=0,float centH=90,float TptL=0,float TptH=10000, 
    string HistName="HPhi", string XTitleName = "#Delta#phi_{Z,track}", string YTitleName = "dN/d#Delta#phi", int rebinnum=1)
