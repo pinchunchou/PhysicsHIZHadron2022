@@ -28,10 +28,10 @@ PPRecoTrack="--DoTrackEfficiency true --TrackEfficiencyPath ${ProjectBase}/Commo
 PbPbRecoTrack="--DoTrackEfficiency true --TrackEfficiencyPath ${ProjectBase}/CommonCode/root/ --DoTrackResidual true --TrackResidualPath $TrackResidualPathPbPb"
 
 #BackgroundMC="   --DoBackground true --HFShift 739.5  --Tolerance 390.7 --ToleranceFraction 0.001 --Oversample 1 --HFCeiling 134000" # --DoMCHiBinShift false
-BackgroundMC1="  --DoBackground true --HFShift 770.4  --Tolerance 413.4 --ToleranceFraction 0.001 --Oversample 1 --HFCeiling 134000" # --DoMCHiBinShift false
-BackgroundMC2="  --DoBackground true --HFShift 753.8  --Tolerance 408.3 --ToleranceFraction 0.001 --Oversample 1 --HFCeiling 134000" # --DoMCHiBinShift false
-BackgroundMC3="  --DoBackground true --HFShift 721.9  --Tolerance 385.7 --ToleranceFraction 0.001 --Oversample 1 --HFCeiling 134000" # --DoMCHiBinShift false
-BackgroundMC="   --DoBackground true --HFShift 695  --Tolerance 400 --ToleranceFraction 0.001 --Oversample 1 --HFCeiling 134000" # 
+BackgroundMC1="  --DoBackground true --HFShift 800  --Tolerance 400 --ToleranceFraction 0.001 --Oversample 1 --HFCeiling 134000" # --DoMCHiBinShift false
+BackgroundMC2="  --DoBackground true --HFShift 800  --Tolerance 671 --ToleranceFraction 0.001 --Oversample 1 --HFCeiling 134000" # --DoMCHiBinShift false
+BackgroundMC3="  --DoBackground true --HFShift 800  --Tolerance 800 --ToleranceFraction 0.001 --Oversample 1 --HFCeiling 134000" # --DoMCHiBinShift false
+BackgroundMC="   --DoBackground true --HFShift 800  --Tolerance 187.5 --ToleranceFraction 0.001 --Oversample 1 --HFCeiling 134000" # 
 #BackgroundMC="   --DoBackground true --HFShift 682  --Tolerance 187.5 --ToleranceFraction 0.001 --Oversample 1 --HFCeiling 134000"
 BackgroundGenMC="--DoBackground true --HFShift 816.7 --Tolerance 187.5 --ToleranceFraction 0.001 --Oversample 1 --HFCeiling 156000 --VZTolerance 2"
 BackgroundData=" --DoBackground true --HFShift 660  --Tolerance 150.0   --ToleranceFraction 0.001 --Oversample 25 --HFCeiling  70000"
