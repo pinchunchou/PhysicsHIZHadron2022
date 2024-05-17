@@ -112,6 +112,9 @@ int main(int argc, char *argv[])
 
    bool ForceGenMatch                 = CL.GetBool("ForceGenMatch", false);
 
+   double MinZPT                      = CL.GetDouble("MinZPT", 20.00);
+   double MaxZPT                      = CL.GetDouble("MaxZPT", 2000000.0);
+
 
    //std::cout<<"TrackEfficiency"<<std::endl;
 
@@ -238,6 +241,8 @@ int main(int argc, char *argv[])
    Key = "MaximumCentrality";       Value = InfoString(MaximumCentrality);       InfoTree.Fill();
    Key = "ForceGenMatch";           Value = InfoString(ForceGenMatch);           InfoTree.Fill();
    Key = "MCHiBinShift";            Value = InfoString(MCHiBinShift);            InfoTree.Fill();
+   Key = "MinZPT";                  Value = InfoString(MinZPT);                  InfoTree.Fill();
+   Key = "MaxZPT";                  Value = InfoString(MaxZPT);                  InfoTree.Fill();
    
    TH2D H2D("H2D", "", 100, -6, 6, 100, -M_PI, M_PI);
 
@@ -398,6 +403,10 @@ int main(int argc, char *argv[])
             {
                MZHadron.BackgroundGenHF = SumGenHF;
             }
+
+            double zPt = DoGenCorrelation ? MZHadron.genZPt->at(0) : MZHadron.zPt->at(0);
+            if(zPt > MaxZPT || zPt < MinZPT)
+               continue;
 
             double Mu1Eta = DoGenCorrelation ? MZHadron.genMuEta1->at(0) : MZHadron.muEta1->at(0);
             double Mu1Phi = DoGenCorrelation ? MZHadron.genMuPhi1->at(0) : MZHadron.muPhi1->at(0);
