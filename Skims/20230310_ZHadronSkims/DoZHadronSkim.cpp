@@ -111,7 +111,9 @@ int main(int argc, char *argv[])
    bool DoGenLevel                    = CL.GetBool("DoGenLevel", true);
    double Fraction                    = CL.GetDouble("Fraction", 1.00);
    double MinZPT                      = CL.GetDouble("MinZPT", 20.00);
+   double MaxZPT                      = CL.GetDouble("MaxZPT", 2000000.0);
    double MinTrackPT                  = CL.GetDouble("MinTrackPT", 1.00);
+   double MaxTrackPT                  = CL.GetDouble("MaxTrackPT", 10000.00);
    double MinGenTrackPT               = CL.GetDouble("MinGenTrackPT", 0.40);
    double MinPFPT                     = CL.GetDouble("MinPFPT", 0);
    bool FirstZ                        = CL.GetBool("FirstZ", false);
@@ -265,7 +267,9 @@ int main(int argc, char *argv[])
    Key = "DoGenLevel";              Value = InfoString(DoGenLevel);              InfoTree.Fill();
    Key = "Fraction";                Value = InfoString(Fraction);                InfoTree.Fill();
    Key = "MinZPT";                  Value = InfoString(MinZPT);                  InfoTree.Fill();
+   Key = "MaxZPT";                  Value = InfoString(MaxZPT);                  InfoTree.Fill();
    Key = "MinTrackPT";              Value = InfoString(MinTrackPT);              InfoTree.Fill();
+   Key = "MaxTrackPT";              Value = InfoString(MaxTrackPT);              InfoTree.Fill();
    Key = "MinGenTrackPT";           Value = InfoString(MinGenTrackPT);           InfoTree.Fill();
    Key = "MinPFPT";                 Value = InfoString(MinPFPT);                 InfoTree.Fill();
    Key = "IsData";                  Value = InfoString(IsData);                  InfoTree.Fill();
@@ -588,8 +592,8 @@ int main(int argc, char *argv[])
             MZHadron.SignalVZ = MSignalEvent.vz;
 
             // Z-track correlation
-            bool GoodGenZ = MZHadron.genZPt->size() > 0 && (MZHadron.genZPt->at(0) > MinZPT);
-            bool GoodRecoZ = MZHadron.zPt->size() > 0 && (MZHadron.zPt->at(0) > MinZPT);
+            bool GoodGenZ = MZHadron.genZPt->size() > 0 && (MZHadron.genZPt->at(0) > MinZPT) && (MZHadron.genZPt->at(0) < MaxZPT);
+            bool GoodRecoZ = MZHadron.zPt->size() > 0 && (MZHadron.zPt->at(0) > MinZPT) && (MZHadron.zPt->at(0) < MaxZPT);
             if((DoGenCorrelation == true && GoodGenZ == true) || (DoGenCorrelation == false && GoodRecoZ == true))
             {
                // Decide whether to use signal or background for tracks
@@ -664,10 +668,10 @@ int main(int argc, char *argv[])
                int NTrack = DoGenCorrelation ? MGen->Mult : (IsPP ? MTrackPP->nTrk : MTrack->TrackPT->size());
                for(int itrack = 0; itrack < NTrack; itrack++)
                {
-                  if(DoGenCorrelation == true && IsData == false && IsPP == false){
-                     if(MGen->PT->at(itrack) < MinGenTrackPT )
-                        continue;
-                  }
+                  //if(DoGenCorrelation == true && IsData == false && IsPP == false){
+                  //   if(MGen->PT->at(itrack) < MinGenTrackPT )
+                  //      continue;
+                  //}
 
                   if(DoGenCorrelation == false)   // track selection on reco
                   {
@@ -708,11 +712,14 @@ int main(int argc, char *argv[])
                      // }
                      if((IsPP ? MTrackPP->trkPt[itrack] : MTrack->TrackPT->at(itrack)) < MinTrackPT)
                         continue;
+
+                     if((IsPP ? MTrackPP->trkPt[itrack] : MTrack->TrackPT->at(itrack)) > MaxTrackPT)
+                        continue;
                   }
 
                   if(DoGenCorrelation == true)
                   {
-                     if(MGen->PT->at(itrack) < MinTrackPT)
+                     if(MGen->PT->at(itrack) < MinTrackPT || MGen->PT->at(itrack) > MaxTrackPT)
                         continue;
                      if(MGen->Eta->at(itrack) < -2.4)
                         continue;
@@ -799,7 +806,7 @@ int main(int argc, char *argv[])
                   if(MGen->PT->at(itrack) < MinGenTrackPT )
                      continue;
 
-                  if(MGen->PT->at(itrack) < MinTrackPT)
+                  if(MGen->PT->at(itrack) < MinTrackPT || MGen->PT->at(itrack) > MaxTrackPT)
                      continue;
                   if(MGen->Eta->at(itrack) < -2.4)
                      continue;

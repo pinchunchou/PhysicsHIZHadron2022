@@ -67,6 +67,7 @@ int main(int argc, char *argv[])
    bool DoGenLevel                    = CL.GetBool("DoGenLevel", true);
    double Fraction                    = CL.GetDouble("Fraction", 1.00);
    double MinTrackPT                  = CL.GetDouble("MinTrackPT", 1.00);
+   double MaxTrackPT                  = CL.GetDouble("MaxTrackPT", 10000.00);
    double MinGenTrackPT               = CL.GetDouble("MinGenTrackPT", 0.40);
    double MinPFPT                     = CL.GetDouble("MinPFPT", 0);
    bool IsData                        = CL.GetBool("IsData", false);
@@ -217,6 +218,7 @@ int main(int argc, char *argv[])
    Key = "DoGenLevel";              Value = InfoString(DoGenLevel);              InfoTree.Fill();
    Key = "Fraction";                Value = InfoString(Fraction);                InfoTree.Fill();
    Key = "MinTrackPT";              Value = InfoString(MinTrackPT);              InfoTree.Fill();
+   Key = "MaxTrackPT";              Value = InfoString(MaxTrackPT);              InfoTree.Fill();
    Key = "MinGenTrackPT";           Value = InfoString(MinGenTrackPT);           InfoTree.Fill();
    Key = "MinPFPT";                 Value = InfoString(MinPFPT);                 InfoTree.Fill();
    Key = "IsData";                  Value = InfoString(IsData);                  InfoTree.Fill();
@@ -460,13 +462,17 @@ int main(int argc, char *argv[])
                      if(DoAlternateTrackSelection == true && AlternateTrackSelection == 2 && MTrack.PassZHadron2022CutTight(itrack) == false)
                         continue;
                   }
+                  
                   if((IsPP ? MTrackPP.trkPt[itrack] : MTrack.TrackPT->at(itrack)) < MinTrackPT)
+                     continue;
+
+                  if((IsPP ? MTrackPP.trkPt[itrack] : MTrack.TrackPT->at(itrack)) > MaxTrackPT)
                      continue;
                }
 
                if(DoGenCorrelation == true)
                {
-                  if(MGen.PT->at(itrack) < MinTrackPT)
+                  if(MGen.PT->at(itrack) < MinTrackPT || MGen.PT->at(itrack) > MaxTrackPT)
                      continue;
                   if(MGen.Eta->at(itrack) < -2.4)
                      continue;
@@ -545,7 +551,7 @@ int main(int argc, char *argv[])
                   if(MGen.PT->at(itrack) < MinGenTrackPT )
                      continue;
 
-                  if(MGen.PT->at(itrack) < MinTrackPT)
+                  if(MGen.PT->at(itrack) < MinTrackPT || MGen.PT->at(itrack) > MaxTrackPT )
                      continue;
                   if(MGen.Eta->at(itrack) < -2.4)
                      continue;

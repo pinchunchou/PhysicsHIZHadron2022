@@ -1,5 +1,5 @@
 
-Common="--MinZPT 40 --MaxZPT 200  --MinTrackPT 0.5 --DoSumET false --DoExtraAxes true"
+Common="--MinZPT 40 --MaxZPT 200  --MinTrackPT 1 --MaxTrackPT 100 --DoSumET false --DoExtraAxes true"
 
 MC="--DoGenLevel true --DoGenCorrelation false --IsData false"
 MCGen="--DoGenLevel true --DoGenCorrelation true --GenCorrelationCharged true --IsData false"
