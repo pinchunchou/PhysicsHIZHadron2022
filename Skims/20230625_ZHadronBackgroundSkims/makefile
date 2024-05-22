@@ -223,22 +223,22 @@ PrepareToRunRandomDataBackgroundUEDown30:
 
 PrepareToRunRandomMCSigBkg:
 	bash PrepareInputRandomBackground.sh \
-		$(EOSBase)/OutputMC_v17_PFmuon/ LogMCSigBkg_v17d_PFmuon_350_10HF_ov20/ $(EOSBase)/OutputMCSigBkg_v17d_PFmuon_350_10HF_ov20/ $(PbPbSignalMC)/ 350 \
+		$(EOSBase)/OutputMC_v18d_PFmuon_pt40_200_1_100/ LogMCSigBkg_v18e_PFmuon_350_10HF_ov20_pt40_200_1_100/ $(EOSBase)/OutputMCSigBkg_v18e_PFmuon_350_10HF_ov20_pt40_200_1_100/ $(PbPbSignalMC)/ 350 \
 		`./Expand Setting.dh PbPbSignalMC Nominal`
 
 PrepareToRunRandomDataSigBkg:
 	bash PrepareInputRandomBackground.sh \
-		$(EOSBase)/OutputData_v17_PFmuon/ LogDataSigBkg_v17d_PFmuon_10HF/ $(EOSBase)/OutputDataSigBkg_v17d_PFmuon_10HF/ '$(PbPbSignalSingleMuon)/*/' 200 \
+		$(EOSBase)/OutputData_v18c_PFmuon/ LogDataSigBkg_v18e_PFmuon_10HF/ $(EOSBase)/OutputDataSigBkg_v18e_PFmuon_10HF/ '$(PbPbSignalSingleMuon)/*/' 200 \
 		`./Expand Setting.dh PbPbSignalData Nominal`
 
 PrepareToRunRandomMCGenSigBkg:
 	bash PrepareInputRandomBackground.sh \
-		$(EOSBase)/OutputMCGen_v17_PFmuon/ LogMCGenSigBkg_v17d_PFmuon_10HF/ $(EOSBase)/OutputMCGenSigBkg_v17d_PFmuon_10HF/ $(PbPbSignalMC)/ 50 \
+		$(EOSBase)/OutputMCGen_v17_PFmuon/ LogMCGenSigBkg_v17e_PFmuon/ $(EOSBase)/OutputMCGenSigBkg_v17e_PFmuon/ $(PbPbSignalMC)/ 50 \
 		`./Expand Setting.dh PbPbSignalGenMC Nominal`
 
 PrepareToRunRandomPPMCSigBkg:
 	bash PrepareInputRandomBackground.sh \
-		$(EOSBase)/OutputPPMC_v17_PFmuon/ LogPPMCSigBkg_v17d_PFmuon_143_10HF/ $(EOSBase)/OutputPPMCSigBkg_v17d_PFmuon_143_10HF/ $(PPSignalMC)/ 143 \
+		$(CERNBOX)/OutputPPMC_v18c_PFmuon/ LogPPMCSigBkg_v18e_PFmuon_143_10HF/ $(EOSBase)/OutputPPMCSigBkg_v18e_PFmuon_143_10HF/ $(PPSignalMC)/ 143 \
 		`./Expand Setting.dh PPSignalMC Nominal`
 
 PrepareToRunRandomPPDataSigBkg:

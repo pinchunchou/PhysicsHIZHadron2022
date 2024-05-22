@@ -33,9 +33,9 @@ int FindFirstAbove(vector<EventIndex> &Indices, double X);
 double GetHFSum(PFTreeMessenger *M, double MinPFPT);
 double GetGenHFSum(GenParticleTreeMessenger *M, double MinGenTrackPT);
 bool EventPassesZ(int iE, HiEventTreeMessenger &MSignalEvent, MuTreeMessenger &MSignalMu, 
-   SkimTreeMessenger &MSignalSkim, TriggerTreeMessenger &MSignalTrigger, 
+   TriggerTreeMessenger &MSignalTrigger, 
    bool IsPP, bool IsData, bool DoMCHiBinShift, bool DoGenLevel, double MCHiBinShift, double MaximumCentrality,
-   int& i_gen1, int& i_gen2, int& i_pair );
+   int& i_gen1, int& i_gen2, int& i_pair , double MinZPT, double MaxZPT);
 
 struct EventIndex
 {
@@ -277,7 +277,6 @@ int main(int argc, char *argv[])
 
       //HiEventTreeMessenger     MSignalEvent(InputFile);
       MuTreeMessenger          MSignalMu(InputFile);
-      SkimTreeMessenger        MSignalSkim(InputFile);
       TriggerTreeMessenger     MSignalTrigger(InputFile);
 
       // Start looping over events
@@ -347,8 +346,9 @@ int main(int argc, char *argv[])
 
          if(CheckForBackgroundZ == true){
             
-            Z_passed = EventPassesZ(iE, MEvent, MSignalMu, MSignalSkim, MSignalTrigger, 
-               IsPP, IsData, DoMCHiBinShift, DoGenLevel, MCHiBinShift, MaximumCentrality, i_gen1, i_gen2, i_pair);
+            Z_passed = EventPassesZ(iE, MEvent, MSignalMu, MSignalTrigger, 
+               IsPP, IsData, DoMCHiBinShift, DoGenLevel, MCHiBinShift, MaximumCentrality, i_gen1, i_gen2, i_pair, 
+                MinZPT,  MaxZPT);
             if(Z_passed == false)
                continue;
 
@@ -742,9 +742,9 @@ double GetGenHFSum(GenParticleTreeMessenger *M, double MinGenTrackPT)
 
 
 bool EventPassesZ(int iE, HiEventTreeMessenger &MSignalEvent, MuTreeMessenger &MSignalMu, 
-   SkimTreeMessenger &MSignalSkim, TriggerTreeMessenger &MSignalTrigger, 
+   TriggerTreeMessenger &MSignalTrigger, 
    bool IsPP, bool IsData, bool DoMCHiBinShift, bool DoGenLevel, double MCHiBinShift, double MaximumCentrality,
-   int& i_gen1, int& i_gen2, int& i_pair)
+   int& i_gen1, int& i_gen2, int& i_pair, double MinZPT, double MaxZPT)
 {
 
    bool Z_passed = true;
@@ -753,35 +753,14 @@ bool EventPassesZ(int iE, HiEventTreeMessenger &MSignalEvent, MuTreeMessenger &M
 
    MSignalEvent.GetEntry(iE);
    MSignalMu.GetEntry(iE);
-   MSignalSkim.GetEntry(iE);
    MSignalTrigger.GetEntry(iE);
 
-
-   //if(IsPP == false && IsData == false && DoMCHiBinShift == true)   // PbPb MC, we shift 1.5% as per Kaya
-   //{
-   //   MSignalEvent.hiBin = MSignalEvent.hiBin - MCHiBinShift;
-   //   if((MSignalEvent.hiBin < 0) || (MSignalEvent.hiBin > MaximumCentrality*2) )   // too central, skip
-   //   {   
-   //      Z_passed = false;
-   //      return false;
-   //   }
-   //}
 
    // Do event selection and triggers
    if(IsPP == true)
    {
       if(IsData == true)
       {
-         int pprimaryVertexFilter = MSignalSkim.PVFilter;
-         int beamScrapingFilter = MSignalSkim.BeamScrapingFilter;
-
-         // Event selection criteria
-         //    see https://twiki.cern.ch/twiki/bin/viewauth/CMS/HIPhotonJe5TeVpp2017PbPb2018
-         if(pprimaryVertexFilter == 0 || beamScrapingFilter == 0)
-         {   
-            Z_passed = false;
-            return false;
-         }
 
          //HLT trigger to select dimuon events, see Kaya's note: AN2019_143_v12, p.5
          int HLT_HIL2Mu12 = MSignalTrigger.CheckTriggerStartWith("HLT_HIL2Mu12");
@@ -797,17 +776,6 @@ bool EventPassesZ(int iE, HiEventTreeMessenger &MSignalEvent, MuTreeMessenger &M
    {
       if(IsData == true)
       {
-         int pprimaryVertexFilter = MSignalSkim.PVFilter;
-         int phfCoincFilter2Th4 = MSignalSkim.HFCoincidenceFilter2Th4;
-         int pclusterCompatibilityFilter = MSignalSkim.ClusterCompatibilityFilter;
-
-         // Event selection criteria
-         //    see https://twiki.cern.ch/twiki/bin/viewauth/CMS/HIPhotonJe5TeVpp2017PbPb2018
-         if(pprimaryVertexFilter == 0 || phfCoincFilter2Th4 == 0 || pclusterCompatibilityFilter == 0)
-         {   
-            Z_passed = false;
-            return false;
-         }
 
          //HLT trigger to select dimuon events, see Kaya's note: AN2019_143_v12, p.5
          int HLT_HIL3Mu12 = MSignalTrigger.CheckTriggerStartWith("HLT_HIL3Mu12");
@@ -861,6 +829,9 @@ bool EventPassesZ(int iE, HiEventTreeMessenger &MSignalEvent, MuTreeMessenger &M
             if(fabs(VGenZ.Rapidity()) > 2.4)
                continue;
 
+            if((VGenZ.Pt() < MinZPT) || (VGenZ.Pt() > MaxZPT) )
+               continue;
+
             isgoodgen = true;
 
             // We are only taking the first Z.
@@ -898,6 +869,9 @@ bool EventPassesZ(int iE, HiEventTreeMessenger &MSignalEvent, MuTreeMessenger &M
       Mu2.SetPtEtaPhiM(MSignalMu.DiPT2[ipair], MSignalMu.DiEta2[ipair], MSignalMu.DiPhi2[ipair], M_MU);
       TLorentzVector Z = Mu1 + Mu2;
       if(fabs(Z.Rapidity()) > 2.4)
+         continue;
+
+      if((MSignalMu.DiPT[ipair]< MinZPT) || (MSignalMu.DiPT[ipair] > MaxZPT) )
          continue;
 
       isgooddimuon = true;
