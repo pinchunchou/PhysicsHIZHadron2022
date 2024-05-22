@@ -158,7 +158,7 @@ PrepareToRunRandomMCBackgroundNoHFVZ1:
 
 PrepareToRunRandomDataBackground:
 	bash PrepareInputRandomBackground.sh \
-		$(EOSBase)/OutputData_v17_PFmuon/ LogDataBackground_v17_10HF/ $(EOSBase)/OutputDataBackground_v17_10HF/ $(PbPbBackgroundData)/ 200 \
+		$(EOSBase)/OutputData_v18c_PFmuon/ LogDataBackground_v18e_10HF/ $(EOSBase)/OutputDataBackground_v18e_10HF/ $(PbPbBackgroundData)/ 200 \
 		`./Expand Setting.dh PbPbBackgroundData Nominal`
 
 PrepareToRunRandomMCGenBackground:
